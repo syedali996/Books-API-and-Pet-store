@@ -1,0 +1,2035 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:schemas="https://api.nytimes.com/svc/books/v3/schemas" xmlns:wsdl="https://api.nytimes.com/svc/books/v3/wsdl" targetNamespace="https://api.nytimes.com/svc/books/v3/wsdl" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema xmlns:tns="https://api.nytimes.com/svc/books/v3/schemas" targetNamespace="https://api.nytimes.com/svc/books/v3/schemas" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="GET_GET_lists-format_InputMessage" type="schemas:GET_GET_lists-format_InputMessage" />
+      <xs:element name="GET_GET_lists-format_OutputMessage" type="schemas:GET_GET_lists-format_OutputMessage" />
+      <xs:element name="GET_GET_lists-date-list-json_InputMessage" type="schemas:GET_GET_lists-date-list-json_InputMessage" />
+      <xs:element name="GET_GET_lists-date-list-json_OutputMessage" type="schemas:GET_GET_lists-date-list-json_OutputMessage" />
+      <xs:element name="GET_GET_lists-full-overview-format_InputMessage" type="schemas:GET_GET_lists-full-overview-format_InputMessage" />
+      <xs:element name="GET_GET_lists-full-overview-format_OutputMessage" type="schemas:GET_GET_lists-full-overview-format_OutputMessage" />
+      <xs:element name="GET_GET_lists-overview-format_InputMessage" type="schemas:GET_GET_lists-overview-format_InputMessage" />
+      <xs:element name="GET_GET_lists-overview-format_OutputMessage" type="schemas:GET_GET_lists-overview-format_OutputMessage" />
+      <xs:element name="GET_GET_lists-names-format_InputMessage" type="schemas:GET_GET_lists-names-format_InputMessage" />
+      <xs:element name="GET_GET_lists-names-format_OutputMessage" type="schemas:GET_GET_lists-names-format_OutputMessage" />
+      <xs:element name="GET_GET_lists-best-sellers-history-json_InputMessage" type="schemas:GET_GET_lists-best-sellers-history-json_InputMessage" />
+      <xs:element name="GET_GET_lists-best-sellers-history-json_OutputMessage" type="schemas:GET_GET_lists-best-sellers-history-json_OutputMessage" />
+      <xs:element name="GET_GET_reviews-format_InputMessage" type="schemas:GET_GET_reviews-format_InputMessage" />
+      <xs:element name="GET_GET_reviews-format_OutputMessage" type="schemas:GET_GET_reviews-format_OutputMessage" />
+      <xs:element name="GET_getPetById_InputMessage" type="schemas:GET_getPetById_InputMessage" />
+      <xs:element name="GET_getPetById_OutputMessage" type="schemas:GET_getPetById_OutputMessage" />
+      <xs:element name="GET_getPetById_400" type="schemas:GET_getPetById_400" />
+      <xs:element name="GET_getPetById_404" type="schemas:GET_getPetById_404" />
+      <xs:element name="POST_updatePetWithForm_InputMessage" type="schemas:POST_updatePetWithForm_InputMessage" />
+      <xs:element name="POST_updatePetWithForm_405" type="schemas:POST_updatePetWithForm_405" />
+      <xs:element name="DELETE_deletePet_InputMessage" type="schemas:DELETE_deletePet_InputMessage" />
+      <xs:element name="DELETE_deletePet_400" type="schemas:DELETE_deletePet_400" />
+      <xs:element name="DELETE_deletePet_404" type="schemas:DELETE_deletePet_404" />
+      <xs:element name="POST_uploadFile_InputMessage" type="schemas:POST_uploadFile_InputMessage" />
+      <xs:element name="POST_uploadFile_OutputMessage" type="schemas:POST_uploadFile_OutputMessage" />
+      <xs:element name="POST_addPet_InputMessage" type="schemas:POST_addPet_InputMessage" />
+      <xs:element name="POST_addPet_405" type="schemas:POST_addPet_405" />
+      <xs:element name="PUT_updatePet_InputMessage" type="schemas:PUT_updatePet_InputMessage" />
+      <xs:element name="PUT_updatePet_400" type="schemas:PUT_updatePet_400" />
+      <xs:element name="PUT_updatePet_404" type="schemas:PUT_updatePet_404" />
+      <xs:element name="PUT_updatePet_405" type="schemas:PUT_updatePet_405" />
+      <xs:element name="GET_findPetsByStatus_InputMessage" type="schemas:GET_findPetsByStatus_InputMessage" />
+      <xs:element name="GET_findPetsByStatus_OutputMessage" type="schemas:GET_findPetsByStatus_OutputMessage" />
+      <xs:element name="GET_findPetsByStatus_400" type="schemas:GET_findPetsByStatus_400" />
+      <xs:element name="GET_findPetsByTags_InputMessage" type="schemas:GET_findPetsByTags_InputMessage" />
+      <xs:element name="GET_findPetsByTags_OutputMessage" type="schemas:GET_findPetsByTags_OutputMessage" />
+      <xs:element name="GET_findPetsByTags_400" type="schemas:GET_findPetsByTags_400" />
+      <xs:element name="POST_placeOrder_InputMessage" type="schemas:POST_placeOrder_InputMessage" />
+      <xs:element name="POST_placeOrder_OutputMessage" type="schemas:POST_placeOrder_OutputMessage" />
+      <xs:element name="POST_placeOrder_400" type="schemas:POST_placeOrder_400" />
+      <xs:element name="GET_getOrderById_InputMessage" type="schemas:GET_getOrderById_InputMessage" />
+      <xs:element name="GET_getOrderById_OutputMessage" type="schemas:GET_getOrderById_OutputMessage" />
+      <xs:element name="GET_getOrderById_400" type="schemas:GET_getOrderById_400" />
+      <xs:element name="GET_getOrderById_404" type="schemas:GET_getOrderById_404" />
+      <xs:element name="DELETE_deleteOrder_InputMessage" type="schemas:DELETE_deleteOrder_InputMessage" />
+      <xs:element name="DELETE_deleteOrder_400" type="schemas:DELETE_deleteOrder_400" />
+      <xs:element name="DELETE_deleteOrder_404" type="schemas:DELETE_deleteOrder_404" />
+      <xs:element name="GET_getInventory_InputMessage" type="schemas:GET_getInventory_InputMessage" />
+      <xs:element name="GET_getInventory_OutputMessage" type="schemas:GET_getInventory_OutputMessage" />
+      <xs:element name="GET_getUserByName_InputMessage" type="schemas:GET_getUserByName_InputMessage" />
+      <xs:element name="GET_getUserByName_OutputMessage" type="schemas:GET_getUserByName_OutputMessage" />
+      <xs:element name="GET_getUserByName_400" type="schemas:GET_getUserByName_400" />
+      <xs:element name="GET_getUserByName_404" type="schemas:GET_getUserByName_404" />
+      <xs:element name="PUT_updateUser_InputMessage" type="schemas:PUT_updateUser_InputMessage" />
+      <xs:element name="PUT_updateUser_400" type="schemas:PUT_updateUser_400" />
+      <xs:element name="PUT_updateUser_404" type="schemas:PUT_updateUser_404" />
+      <xs:element name="DELETE_deleteUser_InputMessage" type="schemas:DELETE_deleteUser_InputMessage" />
+      <xs:element name="DELETE_deleteUser_400" type="schemas:DELETE_deleteUser_400" />
+      <xs:element name="DELETE_deleteUser_404" type="schemas:DELETE_deleteUser_404" />
+      <xs:element name="GET_loginUser_InputMessage" type="schemas:GET_loginUser_InputMessage" />
+      <xs:element name="GET_loginUser_OutputMessage" type="schemas:GET_loginUser_OutputMessage" />
+      <xs:element name="GET_loginUser_400" type="schemas:GET_loginUser_400" />
+      <xs:element name="GET_logoutUser_InputMessage" type="schemas:GET_logoutUser_InputMessage" />
+      <xs:element name="GET_logoutUser_0" type="schemas:GET_logoutUser_0" />
+      <xs:element name="POST_createUsersWithArrayInput_InputMessage" type="schemas:POST_createUsersWithArrayInput_InputMessage" />
+      <xs:element name="POST_createUsersWithArrayInput_0" type="schemas:POST_createUsersWithArrayInput_0" />
+      <xs:element name="POST_createUsersWithListInput_InputMessage" type="schemas:POST_createUsersWithListInput_InputMessage" />
+      <xs:element name="POST_createUsersWithListInput_0" type="schemas:POST_createUsersWithListInput_0" />
+      <xs:element name="POST_createUser_InputMessage" type="schemas:POST_createUser_InputMessage" />
+      <xs:element name="POST_createUser_0" type="schemas:POST_createUser_0" />
+      <xs:complexType name="OverviewResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="status" type="xs:string" />
+          <xs:element minOccurs="0" name="copyright" type="xs:string" />
+          <xs:element minOccurs="0" name="num_results" type="xs:integer" />
+          <xs:element minOccurs="0" name="results" type="schemas:Results" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Book">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="age_group" type="xs:string" />
+          <xs:element minOccurs="0" name="author" type="xs:string" />
+          <xs:element minOccurs="0" name="contributor" type="xs:string" />
+          <xs:element minOccurs="0" name="contributor_note" type="xs:string" />
+          <xs:element minOccurs="0" name="created_date" type="xs:string" />
+          <xs:element minOccurs="0" name="description" type="xs:string" />
+          <xs:element minOccurs="0" name="price" type="xs:integer" />
+          <xs:element minOccurs="0" name="primary_isbn13" type="xs:string" />
+          <xs:element minOccurs="0" name="primary_isbn10" type="xs:string" />
+          <xs:element minOccurs="0" name="publisher" type="xs:string" />
+          <xs:element minOccurs="0" name="rank" type="xs:integer" />
+          <xs:element minOccurs="0" name="title" type="xs:string" />
+          <xs:element minOccurs="0" name="updated_date" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Book1">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="rank" type="xs:integer" />
+          <xs:element minOccurs="0" name="rank_last_week" type="xs:integer" />
+          <xs:element minOccurs="0" name="weeks_on_list" type="xs:integer" />
+          <xs:element minOccurs="0" name="asterisk" type="xs:integer" />
+          <xs:element minOccurs="0" name="dagger" type="xs:integer" />
+          <xs:element minOccurs="0" name="primary_isbn10" type="xs:string" />
+          <xs:element minOccurs="0" name="primary_isbn13" type="xs:string" />
+          <xs:element minOccurs="0" name="publisher" type="xs:string" />
+          <xs:element minOccurs="0" name="description" type="xs:string" />
+          <xs:element minOccurs="0" name="price" type="xs:integer" />
+          <xs:element minOccurs="0" name="title" type="xs:string" />
+          <xs:element minOccurs="0" name="author" type="xs:string" />
+          <xs:element minOccurs="0" name="contributor" type="xs:string" />
+          <xs:element minOccurs="0" name="contributor_note" type="xs:string" />
+          <xs:element minOccurs="0" name="book_image" type="xs:string" />
+          <xs:element minOccurs="0" name="amazon_product_url" type="xs:string" />
+          <xs:element minOccurs="0" name="age_group" type="xs:string" />
+          <xs:element minOccurs="0" name="book_review_link" type="xs:string" />
+          <xs:element minOccurs="0" name="first_chapter_link" type="xs:string" />
+          <xs:element minOccurs="0" name="sunday_review_link" type="xs:string" />
+          <xs:element minOccurs="0" name="article_chapter_link" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="isbns" type="schemas:Isbn" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BookDetail">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="title" type="xs:string" />
+          <xs:element minOccurs="0" name="description" type="xs:string" />
+          <xs:element minOccurs="0" name="contributor" type="xs:string" />
+          <xs:element minOccurs="0" name="author" type="xs:string" />
+          <xs:element minOccurs="0" name="contributor_note" type="xs:string" />
+          <xs:element minOccurs="0" name="price" type="xs:integer" />
+          <xs:element minOccurs="0" name="age_group" type="xs:string" />
+          <xs:element minOccurs="0" name="publisher" type="xs:string" />
+          <xs:element minOccurs="0" name="primary_isbn13" type="xs:string" />
+          <xs:element minOccurs="0" name="primary_isbn10" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_lists-best-sellers-history-jsonResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="status" type="xs:string" />
+          <xs:element minOccurs="0" name="copyright" type="xs:string" />
+          <xs:element minOccurs="0" name="num_results" type="xs:integer" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="results" type="schemas:Results4" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_lists-date-list-jsonResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="status" type="xs:string" />
+          <xs:element minOccurs="0" name="copyright" type="xs:string" />
+          <xs:element minOccurs="0" name="num_results" type="xs:integer" />
+          <xs:element minOccurs="0" name="last_modified" type="xs:string" />
+          <xs:element minOccurs="0" name="results" type="schemas:Results2" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_lists-formatResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="status" type="xs:string" />
+          <xs:element minOccurs="0" name="copyright" type="xs:string" />
+          <xs:element minOccurs="0" name="num_results" type="xs:integer" />
+          <xs:element minOccurs="0" name="last_modified" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="results" type="schemas:Results1" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_lists-names-formatResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="status" type="xs:string" />
+          <xs:element minOccurs="0" name="copyright" type="xs:string" />
+          <xs:element minOccurs="0" name="num_results" type="xs:integer" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="results" type="schemas:Results3" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_reviews-formatResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="status" type="xs:string" />
+          <xs:element minOccurs="0" name="copyright" type="xs:string" />
+          <xs:element minOccurs="0" name="num_results" type="xs:integer" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="results" type="schemas:Results5" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Isbn">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="isbn10" type="xs:string" />
+          <xs:element minOccurs="0" name="isbn13" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="List">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="list_id" type="xs:integer" />
+          <xs:element minOccurs="0" name="list_name" type="xs:string" />
+          <xs:element minOccurs="0" name="display_name" type="xs:string" />
+          <xs:element minOccurs="0" name="updated" type="xs:string" />
+          <xs:element minOccurs="0" name="list_image" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="books" type="schemas:Book" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RanksHistory">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="primary_isbn10" type="xs:string" />
+          <xs:element minOccurs="0" name="primary_isbn13" type="xs:string" />
+          <xs:element minOccurs="0" name="rank" type="xs:integer" />
+          <xs:element minOccurs="0" name="list_name" type="xs:string" />
+          <xs:element minOccurs="0" name="display_name" type="xs:string" />
+          <xs:element minOccurs="0" name="published_date" type="xs:string" />
+          <xs:element minOccurs="0" name="bestsellers_date" type="xs:string" />
+          <xs:element minOccurs="0" name="weeks_on_list" type="xs:integer" />
+          <xs:element minOccurs="0" name="ranks_last_week" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="asterisk" type="xs:integer" />
+          <xs:element minOccurs="0" name="dagger" type="xs:integer" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Results">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="bestsellers_date" type="xs:string" />
+          <xs:element minOccurs="0" name="published_date" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="lists" type="schemas:List" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Results1">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="list_name" type="xs:string" />
+          <xs:element minOccurs="0" name="display_name" type="xs:string" />
+          <xs:element minOccurs="0" name="bestsellers_date" type="xs:string" />
+          <xs:element minOccurs="0" name="published_date" type="xs:string" />
+          <xs:element minOccurs="0" name="rank" type="xs:integer" />
+          <xs:element minOccurs="0" name="rank_last_week" type="xs:integer" />
+          <xs:element minOccurs="0" name="weeks_on_list" type="xs:integer" />
+          <xs:element minOccurs="0" name="asterisk" type="xs:integer" />
+          <xs:element minOccurs="0" name="dagger" type="xs:integer" />
+          <xs:element minOccurs="0" name="amazon_product_url" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="isbns" type="schemas:Isbn" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="book_details" type="schemas:BookDetail" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="reviews" type="schemas:Review" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Results2">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="list_name" type="xs:string" />
+          <xs:element minOccurs="0" name="bestsellers_date" type="xs:string" />
+          <xs:element minOccurs="0" name="published_date" type="xs:string" />
+          <xs:element minOccurs="0" name="display_name" type="xs:string" />
+          <xs:element minOccurs="0" name="normal_list_ends_at" type="xs:integer" />
+          <xs:element minOccurs="0" name="updated" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="books" type="schemas:Book1" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="corrections">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:any />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Results3">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="list_name" type="xs:string" />
+          <xs:element minOccurs="0" name="display_name" type="xs:string" />
+          <xs:element minOccurs="0" name="list_name_encoded" type="xs:string" />
+          <xs:element minOccurs="0" name="oldest_published_date" type="xs:string" />
+          <xs:element minOccurs="0" name="newest_published_date" type="xs:string" />
+          <xs:element minOccurs="0" name="updated" type="schemas:Updated" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Results4">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="title" type="xs:string" />
+          <xs:element minOccurs="0" name="description" type="xs:string" />
+          <xs:element minOccurs="0" name="contributor" type="xs:string" />
+          <xs:element minOccurs="0" name="author" type="xs:string" />
+          <xs:element minOccurs="0" name="contributor_note" type="xs:string" />
+          <xs:element minOccurs="0" name="price" type="xs:integer" />
+          <xs:element minOccurs="0" name="age_group" type="xs:string" />
+          <xs:element minOccurs="0" name="publisher" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="isbns" type="schemas:Isbn" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ranks_history" type="schemas:RanksHistory" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="reviews" type="schemas:Review" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Results5">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="url" type="xs:string" />
+          <xs:element minOccurs="0" name="publication_dt" type="xs:string" />
+          <xs:element minOccurs="0" name="byline" type="xs:string" />
+          <xs:element minOccurs="0" name="book_title" type="xs:string" />
+          <xs:element minOccurs="0" name="book_author" type="xs:string" />
+          <xs:element minOccurs="0" name="summary" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="isbn13" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Review">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="book_review_link" type="xs:string" />
+          <xs:element minOccurs="0" name="first_chapter_link" type="xs:string" />
+          <xs:element minOccurs="0" name="sunday_review_link" type="xs:string" />
+          <xs:element minOccurs="0" name="article_chapter_link" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="Updated">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="WEEKLY" />
+          <xs:enumeration value="MONTHLY" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="Category">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Pet">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="Category" type="schemas:Category" />
+          <xs:element minOccurs="1" name="name" type="xs:string" />
+          <xs:element name="photoUrl">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="1" maxOccurs="unbounded" name="photoUrl" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="tags">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="tags" type="schemas:Tag" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="status" type="schemas:Status">
+            <xs:annotation>
+              <xs:documentation>pet status in the store</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Tag">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ApiResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="code" type="xs:integer" />
+          <xs:element minOccurs="0" name="type" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Order">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="petId" type="xs:long" />
+          <xs:element minOccurs="0" name="quantity" type="xs:integer" />
+          <xs:element minOccurs="0" name="shipDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="status" type="schemas:Status1">
+            <xs:annotation>
+              <xs:documentation>Order Status</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="complete" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="User">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long" />
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" name="firstName" type="xs:string" />
+          <xs:element minOccurs="0" name="lastName" type="xs:string" />
+          <xs:element minOccurs="0" name="email" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="phone" type="xs:string" />
+          <xs:element minOccurs="0" name="userStatus" type="xs:integer">
+            <xs:annotation>
+              <xs:documentation>User Status</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="Status">
+        <xs:annotation>
+          <xs:documentation>pet status in the store</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="available" />
+          <xs:enumeration value="pending" />
+          <xs:enumeration value="sold" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="Status1">
+        <xs:annotation>
+          <xs:documentation>Order Status</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="placed" />
+          <xs:enumeration value="approved" />
+          <xs:enumeration value="delivered" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="status2">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="available" />
+          <xs:enumeration value="pending" />
+          <xs:enumeration value="sold" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="GET_GET_lists-format_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" default="hardcover-fiction" name="list" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The name of the Times best sellers list (hardcover-fiction, paperback-nonfiction, ...).
+The /lists/names service returns all the list names.
+The encoded list names are lower case with hyphens instead of spaces (e.g. e-book-fiction, instead of E-Book Fiction).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" fixed="application/json" name="Content-Type" type="xs:string" />
+          <xs:element minOccurs="0" name="bestsellers-date">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>YYYY-MM-DD
+
+The week-ending date for the sales reflected on list-name. Times best sellers lists are compiled using available book sale data. The bestsellers-date may be significantly earlier than published-date. For additional information, see the explanation at the bottom of any best-seller list page on NYTimes.com (example: Hardcover Fiction, published Dec. 5 but reflecting sales to Nov. 29).</xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:string">
+                <xs:pattern value="^\d{4}-\d{2}-\d{2}$" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" name="published-date">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>YYYY-MM-DD
+
+The date the best sellers list was published on NYTimes.com (different than bestsellers-date).  Use "current" for latest list.</xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:string">
+                <xs:pattern value="^\d{4}-\d{2}-\d{2}$" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" name="offset">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>Sets the starting point of the result set (0, 20, ...).  Used to paginate thru books if list has more than 20. Defaults to 0.  The num_results field indicates how many books are in the list.</xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:integer" />
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_GET_lists-format_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response" type="schemas:GET_lists-formatResponse">
+            <xs:annotation>
+              <xs:documentation>Best Sellers list books</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_GET_lists-date-list-json_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="date">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>YYYY-MM-DD or "current"
+
+The date the best sellers list was published on NYTimes.com.  Use "current" to get latest list.</xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:string">
+                <xs:pattern value="^(\d{4}-\d{2}-\d{2}|current)$" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="1" name="list" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Name of the Best Sellers List (e.g. hardcover-fiction). You can get the full list of names from the /lists/names.json service.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" fixed="application/json" name="Content-Type" type="xs:string" />
+          <xs:element minOccurs="0" name="offset">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>Sets the starting point of the result set (0, 20, ...).  Used to paginate thru books if list has more than 20. Defaults to 0.  The num_results field indicates how many books are in the list.</xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:integer" />
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_GET_lists-date-list-json_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response" type="schemas:GET_lists-date-list-jsonResponse">
+            <xs:annotation>
+              <xs:documentation>Best Sellers list books.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_GET_lists-full-overview-format_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="published_date">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>YYYY-MM-DD
+
+The best-seller list publication date.
+You do not have to specify the exact date the list was published. The service will search forward (into the future) for the closest publication date to the date you specify. For example, a request for lists/overview/2013-05-22 will retrieve the list that was published on 05-26.
+
+If you do not include a published date, the current week's best sellers lists will be returned.</xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:string">
+                <xs:pattern value="^\d{4}-\d{2}-\d{2}$" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_GET_lists-full-overview-format_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response" type="schemas:OverviewResponse">
+            <xs:annotation>
+              <xs:documentation>Full overview of Best Sellers lists.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_GET_lists-overview-format_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" fixed="application/json" name="Content-Type" type="xs:string" />
+          <xs:element minOccurs="0" name="published_date">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>YYYY-MM-DD
+
+The best-seller list publication date.
+You do not have to specify the exact date the list was published. The service will search forward (into the future) for the closest publication date to the date you specify. For example, a request for lists/overview/2013-05-22 will retrieve the list that was published on 05-26.
+
+If you do not include a published date, the current week's best sellers lists will be returned.</xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:string">
+                <xs:pattern value="^\d{4}-\d{2}-\d{2}$" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_GET_lists-overview-format_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response" type="schemas:OverviewResponse">
+            <xs:annotation>
+              <xs:documentation>Overview of Best Sellers lists.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_GET_lists-names-format_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" fixed="application/json" name="Content-Type" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_GET_lists-names-format_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response" type="schemas:GET_lists-names-formatResponse">
+            <xs:annotation>
+              <xs:documentation>Get Best Sellers list names.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_GET_lists-best-sellers-history-json_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" fixed="application/json" name="Content-Type" type="xs:string" />
+          <xs:element minOccurs="0" name="age-group" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The target age group for the best seller.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="author" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The author of the best seller. The author field does not include additional contributors (see Data Structure for more details about the author and contributor fields).
+
+When searching the author field, you can specify any combination of first, middle and last names.
+
+When sort-by is set to author, the results will be sorted by author's first name.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="contributor" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The author of the best seller, as well as other contributors such as the illustrator (to search or sort by author name only, use author instead).
+
+When searching, you can specify any combination of first, middle and last names of any of the contributors.
+
+When sort-by is set to contributor, the results will be sorted by the first name of the first contributor listed.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="isbn" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>International Standard Book Number, 10 or 13 digits
+
+A best seller may have both 10-digit and 13-digit ISBNs, and may have multiple ISBNs of each type. To search on multiple ISBNs, separate the ISBNs with semicolons (example: 9780446579933;0061374229).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="offset">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>Sets the starting point of the result set (0, 20, ...).  Used to paginate thru results if there are more than 20. Defaults to 0. The num_results field indicates how many results there are total.</xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:integer" />
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" name="price" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The publisher's list price of the best seller, including decimal point.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="publisher" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The standardized name of the publisher</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="title" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The title of the best seller
+
+When searching, you can specify a portion of a title or a full title.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_GET_lists-best-sellers-history-json_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response" type="schemas:GET_lists-best-sellers-history-jsonResponse">
+            <xs:annotation>
+              <xs:documentation>Best Sellers list history</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_GET_reviews-format_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" fixed="application/json" name="Content-Type" type="xs:string" />
+          <xs:element minOccurs="0" name="isbn" type="xs:integer">
+            <xs:annotation>
+              <xs:documentation>Searching by ISBN is the recommended method. You can enter 10- or 13-digit ISBNs.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="title" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>You’ll need to enter the full title of the book. Spaces in the title will be converted into the characters %20.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="author" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>You’ll need to enter the author’s first and last name, separated by a space. This space will be converted into the characters %20.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_GET_reviews-format_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response" type="schemas:GET_reviews-formatResponse">
+            <xs:annotation>
+              <xs:documentation>Book reviews.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_getPetById_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="petId" type="xs:long">
+            <xs:annotation>
+              <xs:documentation>ID of pet to return</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_getPetById_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response" type="schemas:Pet">
+            <xs:annotation>
+              <xs:documentation>successful operation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_getPetById_400">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Invalid ID supplied</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_getPetById_404">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Pet not found</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_updatePetWithForm_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="petId" type="xs:long">
+            <xs:annotation>
+              <xs:documentation>ID of pet that needs to be updated</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" fixed="application/x-www-form-urlencoded" name="Content-Type" type="xs:string" />
+          <xs:element minOccurs="0" name="name" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Updated name of the pet</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="status" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Updated status of the pet</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_updatePetWithForm_405">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Invalid input</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DELETE_deletePet_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="petId" type="xs:long">
+            <xs:annotation>
+              <xs:documentation>Pet id to delete</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="api_key" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DELETE_deletePet_400">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Invalid ID supplied</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DELETE_deletePet_404">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Pet not found</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_uploadFile_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="petId" type="xs:long">
+            <xs:annotation>
+              <xs:documentation>ID of pet to update</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="additionalMetadata" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Additional data to pass to server</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="file" type="xs:hexBinary">
+            <xs:annotation>
+              <xs:documentation>file to upload</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_uploadFile_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response" type="schemas:ApiResponse">
+            <xs:annotation>
+              <xs:documentation>successful operation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_addPet_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="body" type="schemas:Pet">
+            <xs:annotation>
+              <xs:documentation>Pet object that needs to be added to the store</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" fixed="application/json" name="Content-Type" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_addPet_405">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Invalid input</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PUT_updatePet_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="body" type="schemas:Pet">
+            <xs:annotation>
+              <xs:documentation>Pet object that needs to be added to the store</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" fixed="application/json" name="Content-Type" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PUT_updatePet_400">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Invalid ID supplied</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PUT_updatePet_404">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Pet not found</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PUT_updatePet_405">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Validation exception</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_findPetsByStatus_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="status" type="schemas:status2">
+            <xs:annotation>
+              <xs:documentation>Status values that need to be considered for filter</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_findPetsByStatus_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="response" type="schemas:Pet">
+            <xs:annotation>
+              <xs:documentation>successful operation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_findPetsByStatus_400">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Invalid status value</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_findPetsByTags_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="tags" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Tags to filter by</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_findPetsByTags_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="response" type="schemas:Pet">
+            <xs:annotation>
+              <xs:documentation>successful operation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_findPetsByTags_400">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Invalid tag value</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_placeOrder_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="body" type="schemas:Order">
+            <xs:annotation>
+              <xs:documentation>order placed for purchasing the pet</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" fixed="application/json" name="Content-Type" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_placeOrder_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response" type="schemas:Order">
+            <xs:annotation>
+              <xs:documentation>successful operation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_placeOrder_400">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Invalid Order</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_getOrderById_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="orderId">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>ID of pet that needs to be fetched</xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:long">
+                <xs:maxInclusive value="10" />
+                <xs:minInclusive value="1" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_getOrderById_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response" type="schemas:Order">
+            <xs:annotation>
+              <xs:documentation>successful operation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_getOrderById_400">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Invalid ID supplied</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_getOrderById_404">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Order not found</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DELETE_deleteOrder_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="orderId">
+            <xs:simpleType>
+              <xs:annotation>
+                <xs:documentation>ID of the order that needs to be deleted</xs:documentation>
+              </xs:annotation>
+              <xs:restriction base="xs:long">
+                <xs:minInclusive value="1" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DELETE_deleteOrder_400">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Invalid ID supplied</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DELETE_deleteOrder_404">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Order not found</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_getInventory_InputMessage">
+        <xs:sequence>
+          <xs:any />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_getInventory_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response" type="xs:integer">
+            <xs:annotation>
+              <xs:documentation>successful operation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_getUserByName_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="username" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The name that needs to be fetched. Use user1 for testing.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_getUserByName_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response" type="schemas:User">
+            <xs:annotation>
+              <xs:documentation>successful operation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_getUserByName_400">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Invalid username supplied</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_getUserByName_404">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>User not found</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PUT_updateUser_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="username" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>name that need to be updated</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" name="body" type="schemas:User">
+            <xs:annotation>
+              <xs:documentation>Updated user object</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" fixed="application/json" name="Content-Type" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PUT_updateUser_400">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Invalid user supplied</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PUT_updateUser_404">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>User not found</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DELETE_deleteUser_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="username" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The name that needs to be deleted</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DELETE_deleteUser_400">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Invalid username supplied</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DELETE_deleteUser_404">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>User not found</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_loginUser_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="username" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The user name for login</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" name="password" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The password for login in clear text</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_loginUser_OutputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>successful operation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_loginUser_400">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>Invalid username/password supplied</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_logoutUser_InputMessage">
+        <xs:sequence>
+          <xs:any />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GET_logoutUser_0">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>successful operation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_createUsersWithArrayInput_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="body" type="schemas:User">
+            <xs:annotation>
+              <xs:documentation>List of user object</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" fixed="application/json" name="Content-Type" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_createUsersWithArrayInput_0">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>successful operation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_createUsersWithListInput_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="unbounded" name="body" type="schemas:User">
+            <xs:annotation>
+              <xs:documentation>List of user object</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" fixed="application/json" name="Content-Type" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_createUsersWithListInput_0">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>successful operation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_createUser_InputMessage">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="body" type="schemas:User">
+            <xs:annotation>
+              <xs:documentation>Created user object</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="1" fixed="application/json" name="Content-Type" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POST_createUser_0">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="response">
+            <xs:annotation>
+              <xs:documentation>successful operation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="GET_GET_lists-format_InputMessage">
+    <part name="GET_GET_lists-format_InputMessage" element="schemas:GET_GET_lists-format_InputMessage" />
+  </message>
+  <message name="GET_GET_lists-format_OutputMessage">
+    <part name="GET_GET_lists-format_OutputMessage" element="schemas:GET_GET_lists-format_OutputMessage" />
+  </message>
+  <message name="GET_GET_lists-date-list-json_InputMessage">
+    <part name="GET_GET_lists-date-list-json_InputMessage" element="schemas:GET_GET_lists-date-list-json_InputMessage" />
+  </message>
+  <message name="GET_GET_lists-date-list-json_OutputMessage">
+    <part name="GET_GET_lists-date-list-json_OutputMessage" element="schemas:GET_GET_lists-date-list-json_OutputMessage" />
+  </message>
+  <message name="GET_GET_lists-full-overview-format_InputMessage">
+    <part name="GET_GET_lists-full-overview-format_InputMessage" element="schemas:GET_GET_lists-full-overview-format_InputMessage" />
+  </message>
+  <message name="GET_GET_lists-full-overview-format_OutputMessage">
+    <part name="GET_GET_lists-full-overview-format_OutputMessage" element="schemas:GET_GET_lists-full-overview-format_OutputMessage" />
+  </message>
+  <message name="GET_GET_lists-overview-format_InputMessage">
+    <part name="GET_GET_lists-overview-format_InputMessage" element="schemas:GET_GET_lists-overview-format_InputMessage" />
+  </message>
+  <message name="GET_GET_lists-overview-format_OutputMessage">
+    <part name="GET_GET_lists-overview-format_OutputMessage" element="schemas:GET_GET_lists-overview-format_OutputMessage" />
+  </message>
+  <message name="GET_GET_lists-names-format_InputMessage">
+    <part name="GET_GET_lists-names-format_InputMessage" element="schemas:GET_GET_lists-names-format_InputMessage" />
+  </message>
+  <message name="GET_GET_lists-names-format_OutputMessage">
+    <part name="GET_GET_lists-names-format_OutputMessage" element="schemas:GET_GET_lists-names-format_OutputMessage" />
+  </message>
+  <message name="GET_GET_lists-best-sellers-history-json_InputMessage">
+    <part name="GET_GET_lists-best-sellers-history-json_InputMessage" element="schemas:GET_GET_lists-best-sellers-history-json_InputMessage" />
+  </message>
+  <message name="GET_GET_lists-best-sellers-history-json_OutputMessage">
+    <part name="GET_GET_lists-best-sellers-history-json_OutputMessage" element="schemas:GET_GET_lists-best-sellers-history-json_OutputMessage" />
+  </message>
+  <message name="GET_GET_reviews-format_InputMessage">
+    <part name="GET_GET_reviews-format_InputMessage" element="schemas:GET_GET_reviews-format_InputMessage" />
+  </message>
+  <message name="GET_GET_reviews-format_OutputMessage">
+    <part name="GET_GET_reviews-format_OutputMessage" element="schemas:GET_GET_reviews-format_OutputMessage" />
+  </message>
+  <message name="GET_getPetById_InputMessage">
+    <part name="GET_getPetById_InputMessage" element="schemas:GET_getPetById_InputMessage" />
+  </message>
+  <message name="GET_getPetById_OutputMessage">
+    <part name="GET_getPetById_OutputMessage" element="schemas:GET_getPetById_OutputMessage" />
+  </message>
+  <message name="GET_getPetById_400">
+    <part name="GET_getPetById_400" element="schemas:GET_getPetById_400" />
+  </message>
+  <message name="GET_getPetById_404">
+    <part name="GET_getPetById_404" element="schemas:GET_getPetById_404" />
+  </message>
+  <message name="POST_updatePetWithForm_InputMessage">
+    <part name="POST_updatePetWithForm_InputMessage" element="schemas:POST_updatePetWithForm_InputMessage" />
+  </message>
+  <message name="POST_updatePetWithForm_405">
+    <part name="POST_updatePetWithForm_405" element="schemas:POST_updatePetWithForm_405" />
+  </message>
+  <message name="DELETE_deletePet_InputMessage">
+    <part name="DELETE_deletePet_InputMessage" element="schemas:DELETE_deletePet_InputMessage" />
+  </message>
+  <message name="DELETE_deletePet_400">
+    <part name="DELETE_deletePet_400" element="schemas:DELETE_deletePet_400" />
+  </message>
+  <message name="DELETE_deletePet_404">
+    <part name="DELETE_deletePet_404" element="schemas:DELETE_deletePet_404" />
+  </message>
+  <message name="POST_uploadFile_InputMessage">
+    <part name="POST_uploadFile_InputMessage" element="schemas:POST_uploadFile_InputMessage" />
+  </message>
+  <message name="POST_uploadFile_OutputMessage">
+    <part name="POST_uploadFile_OutputMessage" element="schemas:POST_uploadFile_OutputMessage" />
+  </message>
+  <message name="POST_addPet_InputMessage">
+    <part name="POST_addPet_InputMessage" element="schemas:POST_addPet_InputMessage" />
+  </message>
+  <message name="POST_addPet_405">
+    <part name="POST_addPet_405" element="schemas:POST_addPet_405" />
+  </message>
+  <message name="PUT_updatePet_InputMessage">
+    <part name="PUT_updatePet_InputMessage" element="schemas:PUT_updatePet_InputMessage" />
+  </message>
+  <message name="PUT_updatePet_400">
+    <part name="PUT_updatePet_400" element="schemas:PUT_updatePet_400" />
+  </message>
+  <message name="PUT_updatePet_404">
+    <part name="PUT_updatePet_404" element="schemas:PUT_updatePet_404" />
+  </message>
+  <message name="PUT_updatePet_405">
+    <part name="PUT_updatePet_405" element="schemas:PUT_updatePet_405" />
+  </message>
+  <message name="GET_findPetsByStatus_InputMessage">
+    <part name="GET_findPetsByStatus_InputMessage" element="schemas:GET_findPetsByStatus_InputMessage" />
+  </message>
+  <message name="GET_findPetsByStatus_OutputMessage">
+    <part name="GET_findPetsByStatus_OutputMessage" element="schemas:GET_findPetsByStatus_OutputMessage" />
+  </message>
+  <message name="GET_findPetsByStatus_400">
+    <part name="GET_findPetsByStatus_400" element="schemas:GET_findPetsByStatus_400" />
+  </message>
+  <message name="GET_findPetsByTags_InputMessage">
+    <part name="GET_findPetsByTags_InputMessage" element="schemas:GET_findPetsByTags_InputMessage" />
+  </message>
+  <message name="GET_findPetsByTags_OutputMessage">
+    <part name="GET_findPetsByTags_OutputMessage" element="schemas:GET_findPetsByTags_OutputMessage" />
+  </message>
+  <message name="GET_findPetsByTags_400">
+    <part name="GET_findPetsByTags_400" element="schemas:GET_findPetsByTags_400" />
+  </message>
+  <message name="POST_placeOrder_InputMessage">
+    <part name="POST_placeOrder_InputMessage" element="schemas:POST_placeOrder_InputMessage" />
+  </message>
+  <message name="POST_placeOrder_OutputMessage">
+    <part name="POST_placeOrder_OutputMessage" element="schemas:POST_placeOrder_OutputMessage" />
+  </message>
+  <message name="POST_placeOrder_400">
+    <part name="POST_placeOrder_400" element="schemas:POST_placeOrder_400" />
+  </message>
+  <message name="GET_getOrderById_InputMessage">
+    <part name="GET_getOrderById_InputMessage" element="schemas:GET_getOrderById_InputMessage" />
+  </message>
+  <message name="GET_getOrderById_OutputMessage">
+    <part name="GET_getOrderById_OutputMessage" element="schemas:GET_getOrderById_OutputMessage" />
+  </message>
+  <message name="GET_getOrderById_400">
+    <part name="GET_getOrderById_400" element="schemas:GET_getOrderById_400" />
+  </message>
+  <message name="GET_getOrderById_404">
+    <part name="GET_getOrderById_404" element="schemas:GET_getOrderById_404" />
+  </message>
+  <message name="DELETE_deleteOrder_InputMessage">
+    <part name="DELETE_deleteOrder_InputMessage" element="schemas:DELETE_deleteOrder_InputMessage" />
+  </message>
+  <message name="DELETE_deleteOrder_400">
+    <part name="DELETE_deleteOrder_400" element="schemas:DELETE_deleteOrder_400" />
+  </message>
+  <message name="DELETE_deleteOrder_404">
+    <part name="DELETE_deleteOrder_404" element="schemas:DELETE_deleteOrder_404" />
+  </message>
+  <message name="GET_getInventory_InputMessage">
+    <part name="GET_getInventory_InputMessage" element="schemas:GET_getInventory_InputMessage" />
+  </message>
+  <message name="GET_getInventory_OutputMessage">
+    <part name="GET_getInventory_OutputMessage" element="schemas:GET_getInventory_OutputMessage" />
+  </message>
+  <message name="GET_getUserByName_InputMessage">
+    <part name="GET_getUserByName_InputMessage" element="schemas:GET_getUserByName_InputMessage" />
+  </message>
+  <message name="GET_getUserByName_OutputMessage">
+    <part name="GET_getUserByName_OutputMessage" element="schemas:GET_getUserByName_OutputMessage" />
+  </message>
+  <message name="GET_getUserByName_400">
+    <part name="GET_getUserByName_400" element="schemas:GET_getUserByName_400" />
+  </message>
+  <message name="GET_getUserByName_404">
+    <part name="GET_getUserByName_404" element="schemas:GET_getUserByName_404" />
+  </message>
+  <message name="PUT_updateUser_InputMessage">
+    <part name="PUT_updateUser_InputMessage" element="schemas:PUT_updateUser_InputMessage" />
+  </message>
+  <message name="PUT_updateUser_400">
+    <part name="PUT_updateUser_400" element="schemas:PUT_updateUser_400" />
+  </message>
+  <message name="PUT_updateUser_404">
+    <part name="PUT_updateUser_404" element="schemas:PUT_updateUser_404" />
+  </message>
+  <message name="DELETE_deleteUser_InputMessage">
+    <part name="DELETE_deleteUser_InputMessage" element="schemas:DELETE_deleteUser_InputMessage" />
+  </message>
+  <message name="DELETE_deleteUser_400">
+    <part name="DELETE_deleteUser_400" element="schemas:DELETE_deleteUser_400" />
+  </message>
+  <message name="DELETE_deleteUser_404">
+    <part name="DELETE_deleteUser_404" element="schemas:DELETE_deleteUser_404" />
+  </message>
+  <message name="GET_loginUser_InputMessage">
+    <part name="GET_loginUser_InputMessage" element="schemas:GET_loginUser_InputMessage" />
+  </message>
+  <message name="GET_loginUser_OutputMessage">
+    <part name="GET_loginUser_OutputMessage" element="schemas:GET_loginUser_OutputMessage" />
+  </message>
+  <message name="GET_loginUser_400">
+    <part name="GET_loginUser_400" element="schemas:GET_loginUser_400" />
+  </message>
+  <message name="GET_logoutUser_InputMessage">
+    <part name="GET_logoutUser_InputMessage" element="schemas:GET_logoutUser_InputMessage" />
+  </message>
+  <message name="GET_logoutUser_0">
+    <part name="GET_logoutUser_0" element="schemas:GET_logoutUser_0" />
+  </message>
+  <message name="POST_createUsersWithArrayInput_InputMessage">
+    <part name="POST_createUsersWithArrayInput_InputMessage" element="schemas:POST_createUsersWithArrayInput_InputMessage" />
+  </message>
+  <message name="POST_createUsersWithArrayInput_0">
+    <part name="POST_createUsersWithArrayInput_0" element="schemas:POST_createUsersWithArrayInput_0" />
+  </message>
+  <message name="POST_createUsersWithListInput_InputMessage">
+    <part name="POST_createUsersWithListInput_InputMessage" element="schemas:POST_createUsersWithListInput_InputMessage" />
+  </message>
+  <message name="POST_createUsersWithListInput_0">
+    <part name="POST_createUsersWithListInput_0" element="schemas:POST_createUsersWithListInput_0" />
+  </message>
+  <message name="POST_createUser_InputMessage">
+    <part name="POST_createUser_InputMessage" element="schemas:POST_createUser_InputMessage" />
+  </message>
+  <message name="POST_createUser_0">
+    <part name="POST_createUser_0" element="schemas:POST_createUser_0" />
+  </message>
+  <portType name="default_PortType">
+    <operation name="GET_GET_lists-format">
+      <documentation>Get Best Sellers list.  If no date is provided returns the latest list.</documentation>
+      <input message="wsdl:GET_GET_lists-format_InputMessage" />
+      <output message="wsdl:GET_GET_lists-format_OutputMessage">
+        <documentation>Best Sellers list books</documentation>
+      </output>
+    </operation>
+    <operation name="GET_GET_lists-date-list-json">
+      <documentation>Get Best Sellers list by date.</documentation>
+      <input message="wsdl:GET_GET_lists-date-list-json_InputMessage" />
+      <output message="wsdl:GET_GET_lists-date-list-json_OutputMessage">
+        <documentation>Best Sellers list books.</documentation>
+      </output>
+    </operation>
+    <operation name="GET_GET_lists-full-overview-format">
+      <documentation>Get all books for all the Best Sellers lists for specified date.</documentation>
+      <input message="wsdl:GET_GET_lists-full-overview-format_InputMessage" />
+      <output message="wsdl:GET_GET_lists-full-overview-format_OutputMessage">
+        <documentation>Full overview of Best Sellers lists.</documentation>
+      </output>
+    </operation>
+    <operation name="GET_GET_lists-overview-format">
+      <documentation>Get top 5 books for all the Best Sellers lists for specified date.</documentation>
+      <input message="wsdl:GET_GET_lists-overview-format_InputMessage" />
+      <output message="wsdl:GET_GET_lists-overview-format_OutputMessage">
+        <documentation>Overview of Best Sellers lists.</documentation>
+      </output>
+    </operation>
+    <operation name="GET_GET_lists-names-format">
+      <documentation>Get Best Sellers list names.</documentation>
+      <input message="wsdl:GET_GET_lists-names-format_InputMessage" />
+      <output message="wsdl:GET_GET_lists-names-format_OutputMessage">
+        <documentation>Get Best Sellers list names.</documentation>
+      </output>
+    </operation>
+    <operation name="GET_GET_lists-best-sellers-history-json">
+      <documentation>Get Best Sellers list history.</documentation>
+      <input message="wsdl:GET_GET_lists-best-sellers-history-json_InputMessage" />
+      <output message="wsdl:GET_GET_lists-best-sellers-history-json_OutputMessage">
+        <documentation>Best Sellers list history</documentation>
+      </output>
+    </operation>
+    <operation name="GET_GET_reviews-format">
+      <documentation>Get book reviews.</documentation>
+      <input message="wsdl:GET_GET_reviews-format_InputMessage" />
+      <output message="wsdl:GET_GET_reviews-format_OutputMessage">
+        <documentation>Book reviews.</documentation>
+      </output>
+    </operation>
+  </portType>
+  <portType name="server1_PortType">
+    <operation name="GET_getPetById">
+      <documentation>Returns a single pet</documentation>
+      <input message="wsdl:GET_getPetById_InputMessage" />
+      <output message="wsdl:GET_getPetById_OutputMessage">
+        <documentation>successful operation</documentation>
+      </output>
+      <fault name="GET_getPetById_400" message="wsdl:GET_getPetById_400">
+        <documentation>Invalid ID supplied</documentation>
+      </fault>
+      <fault name="GET_getPetById_404" message="wsdl:GET_getPetById_404">
+        <documentation>Pet not found</documentation>
+      </fault>
+    </operation>
+    <operation name="POST_updatePetWithForm">
+      <documentation>Updates a pet in the store with form data</documentation>
+      <input message="wsdl:POST_updatePetWithForm_InputMessage" />
+      <fault name="POST_updatePetWithForm_405" message="wsdl:POST_updatePetWithForm_405">
+        <documentation>Invalid input</documentation>
+      </fault>
+    </operation>
+    <operation name="DELETE_deletePet">
+      <documentation>Deletes a pet</documentation>
+      <input message="wsdl:DELETE_deletePet_InputMessage" />
+      <fault name="DELETE_deletePet_400" message="wsdl:DELETE_deletePet_400">
+        <documentation>Invalid ID supplied</documentation>
+      </fault>
+      <fault name="DELETE_deletePet_404" message="wsdl:DELETE_deletePet_404">
+        <documentation>Pet not found</documentation>
+      </fault>
+    </operation>
+    <operation name="POST_uploadFile">
+      <documentation>uploads an image</documentation>
+      <input message="wsdl:POST_uploadFile_InputMessage" />
+      <output message="wsdl:POST_uploadFile_OutputMessage">
+        <documentation>successful operation</documentation>
+      </output>
+    </operation>
+    <operation name="POST_addPet">
+      <documentation>Add a new pet to the store</documentation>
+      <input message="wsdl:POST_addPet_InputMessage" />
+      <fault name="POST_addPet_405" message="wsdl:POST_addPet_405">
+        <documentation>Invalid input</documentation>
+      </fault>
+    </operation>
+    <operation name="PUT_updatePet">
+      <documentation>Update an existing pet</documentation>
+      <input message="wsdl:PUT_updatePet_InputMessage" />
+      <fault name="PUT_updatePet_400" message="wsdl:PUT_updatePet_400">
+        <documentation>Invalid ID supplied</documentation>
+      </fault>
+      <fault name="PUT_updatePet_404" message="wsdl:PUT_updatePet_404">
+        <documentation>Pet not found</documentation>
+      </fault>
+      <fault name="PUT_updatePet_405" message="wsdl:PUT_updatePet_405">
+        <documentation>Validation exception</documentation>
+      </fault>
+    </operation>
+    <operation name="GET_findPetsByStatus">
+      <documentation>Multiple status values can be provided with comma separated strings</documentation>
+      <input message="wsdl:GET_findPetsByStatus_InputMessage" />
+      <output message="wsdl:GET_findPetsByStatus_OutputMessage">
+        <documentation>successful operation</documentation>
+      </output>
+      <fault name="GET_findPetsByStatus_400" message="wsdl:GET_findPetsByStatus_400">
+        <documentation>Invalid status value</documentation>
+      </fault>
+    </operation>
+    <operation name="GET_findPetsByTags">
+      <documentation>Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.</documentation>
+      <input message="wsdl:GET_findPetsByTags_InputMessage" />
+      <output message="wsdl:GET_findPetsByTags_OutputMessage">
+        <documentation>successful operation</documentation>
+      </output>
+      <fault name="GET_findPetsByTags_400" message="wsdl:GET_findPetsByTags_400">
+        <documentation>Invalid tag value</documentation>
+      </fault>
+    </operation>
+    <operation name="POST_placeOrder">
+      <documentation>Place an order for a pet</documentation>
+      <input message="wsdl:POST_placeOrder_InputMessage" />
+      <output message="wsdl:POST_placeOrder_OutputMessage">
+        <documentation>successful operation</documentation>
+      </output>
+      <fault name="POST_placeOrder_400" message="wsdl:POST_placeOrder_400">
+        <documentation>Invalid Order</documentation>
+      </fault>
+    </operation>
+    <operation name="GET_getOrderById">
+      <documentation>For valid response try integer IDs with value &gt;= 1 and &lt;= 10. Other values will generated exceptions</documentation>
+      <input message="wsdl:GET_getOrderById_InputMessage" />
+      <output message="wsdl:GET_getOrderById_OutputMessage">
+        <documentation>successful operation</documentation>
+      </output>
+      <fault name="GET_getOrderById_400" message="wsdl:GET_getOrderById_400">
+        <documentation>Invalid ID supplied</documentation>
+      </fault>
+      <fault name="GET_getOrderById_404" message="wsdl:GET_getOrderById_404">
+        <documentation>Order not found</documentation>
+      </fault>
+    </operation>
+    <operation name="DELETE_deleteOrder">
+      <documentation>For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors</documentation>
+      <input message="wsdl:DELETE_deleteOrder_InputMessage" />
+      <fault name="DELETE_deleteOrder_400" message="wsdl:DELETE_deleteOrder_400">
+        <documentation>Invalid ID supplied</documentation>
+      </fault>
+      <fault name="DELETE_deleteOrder_404" message="wsdl:DELETE_deleteOrder_404">
+        <documentation>Order not found</documentation>
+      </fault>
+    </operation>
+    <operation name="GET_getInventory">
+      <documentation>Returns a map of status codes to quantities</documentation>
+      <input message="wsdl:GET_getInventory_InputMessage" />
+      <output message="wsdl:GET_getInventory_OutputMessage">
+        <documentation>successful operation</documentation>
+      </output>
+    </operation>
+    <operation name="GET_getUserByName">
+      <documentation>Get user by user name</documentation>
+      <input message="wsdl:GET_getUserByName_InputMessage" />
+      <output message="wsdl:GET_getUserByName_OutputMessage">
+        <documentation>successful operation</documentation>
+      </output>
+      <fault name="GET_getUserByName_400" message="wsdl:GET_getUserByName_400">
+        <documentation>Invalid username supplied</documentation>
+      </fault>
+      <fault name="GET_getUserByName_404" message="wsdl:GET_getUserByName_404">
+        <documentation>User not found</documentation>
+      </fault>
+    </operation>
+    <operation name="PUT_updateUser">
+      <documentation>This can only be done by the logged in user.</documentation>
+      <input message="wsdl:PUT_updateUser_InputMessage" />
+      <fault name="PUT_updateUser_400" message="wsdl:PUT_updateUser_400">
+        <documentation>Invalid user supplied</documentation>
+      </fault>
+      <fault name="PUT_updateUser_404" message="wsdl:PUT_updateUser_404">
+        <documentation>User not found</documentation>
+      </fault>
+    </operation>
+    <operation name="DELETE_deleteUser">
+      <documentation>This can only be done by the logged in user.</documentation>
+      <input message="wsdl:DELETE_deleteUser_InputMessage" />
+      <fault name="DELETE_deleteUser_400" message="wsdl:DELETE_deleteUser_400">
+        <documentation>Invalid username supplied</documentation>
+      </fault>
+      <fault name="DELETE_deleteUser_404" message="wsdl:DELETE_deleteUser_404">
+        <documentation>User not found</documentation>
+      </fault>
+    </operation>
+    <operation name="GET_loginUser">
+      <documentation>Logs user into the system</documentation>
+      <input message="wsdl:GET_loginUser_InputMessage" />
+      <output message="wsdl:GET_loginUser_OutputMessage">
+        <documentation>successful operation</documentation>
+      </output>
+      <fault name="GET_loginUser_400" message="wsdl:GET_loginUser_400">
+        <documentation>Invalid username/password supplied</documentation>
+      </fault>
+    </operation>
+    <operation name="GET_logoutUser">
+      <documentation>Logs out current logged in user session</documentation>
+      <input message="wsdl:GET_logoutUser_InputMessage" />
+      <fault name="GET_logoutUser_0" message="wsdl:GET_logoutUser_0">
+        <documentation>successful operation</documentation>
+      </fault>
+    </operation>
+    <operation name="POST_createUsersWithArrayInput">
+      <documentation>Creates list of users with given input array</documentation>
+      <input message="wsdl:POST_createUsersWithArrayInput_InputMessage" />
+      <fault name="POST_createUsersWithArrayInput_0" message="wsdl:POST_createUsersWithArrayInput_0">
+        <documentation>successful operation</documentation>
+      </fault>
+    </operation>
+    <operation name="POST_createUsersWithListInput">
+      <documentation>Creates list of users with given input array</documentation>
+      <input message="wsdl:POST_createUsersWithListInput_InputMessage" />
+      <fault name="POST_createUsersWithListInput_0" message="wsdl:POST_createUsersWithListInput_0">
+        <documentation>successful operation</documentation>
+      </fault>
+    </operation>
+    <operation name="POST_createUser">
+      <documentation>This can only be done by the logged in user.</documentation>
+      <input message="wsdl:POST_createUser_InputMessage" />
+      <fault name="POST_createUser_0" message="wsdl:POST_createUser_0">
+        <documentation>successful operation</documentation>
+      </fault>
+    </operation>
+  </portType>
+  <portType name="server2_PortType" />
+  <portType name="authserver_PortType" />
+  <binding name="default_Binding" type="wsdl:default_PortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="GET_GET_lists-format">
+      <soap:operation soapAction="GET_GET_lists-format" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GET_GET_lists-date-list-json">
+      <soap:operation soapAction="GET_GET_lists-date-list-json" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GET_GET_lists-full-overview-format">
+      <soap:operation soapAction="GET_GET_lists-full-overview-format" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GET_GET_lists-overview-format">
+      <soap:operation soapAction="GET_GET_lists-overview-format" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GET_GET_lists-names-format">
+      <soap:operation soapAction="GET_GET_lists-names-format" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GET_GET_lists-best-sellers-history-json">
+      <soap:operation soapAction="GET_GET_lists-best-sellers-history-json" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GET_GET_reviews-format">
+      <soap:operation soapAction="GET_GET_reviews-format" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="server1_Binding" type="wsdl:server1_PortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="GET_getPetById">
+      <soap:operation soapAction="GET_getPetById" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+      <fault name="GET_getPetById_400">
+        <soap:fault use="literal" name="GET_getPetById_400" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+      <fault name="GET_getPetById_404">
+        <soap:fault use="literal" name="GET_getPetById_404" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="POST_updatePetWithForm">
+      <soap:operation soapAction="POST_updatePetWithForm" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <fault name="POST_updatePetWithForm_405">
+        <soap:fault use="literal" name="POST_updatePetWithForm_405" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="DELETE_deletePet">
+      <soap:operation soapAction="DELETE_deletePet" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <fault name="DELETE_deletePet_400">
+        <soap:fault use="literal" name="DELETE_deletePet_400" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+      <fault name="DELETE_deletePet_404">
+        <soap:fault use="literal" name="DELETE_deletePet_404" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="POST_uploadFile">
+      <soap:operation soapAction="POST_uploadFile" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="POST_addPet">
+      <soap:operation soapAction="POST_addPet" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <fault name="POST_addPet_405">
+        <soap:fault use="literal" name="POST_addPet_405" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="PUT_updatePet">
+      <soap:operation soapAction="PUT_updatePet" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <fault name="PUT_updatePet_400">
+        <soap:fault use="literal" name="PUT_updatePet_400" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+      <fault name="PUT_updatePet_404">
+        <soap:fault use="literal" name="PUT_updatePet_404" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+      <fault name="PUT_updatePet_405">
+        <soap:fault use="literal" name="PUT_updatePet_405" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="GET_findPetsByStatus">
+      <soap:operation soapAction="GET_findPetsByStatus" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+      <fault name="GET_findPetsByStatus_400">
+        <soap:fault use="literal" name="GET_findPetsByStatus_400" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="GET_findPetsByTags">
+      <soap:operation soapAction="GET_findPetsByTags" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+      <fault name="GET_findPetsByTags_400">
+        <soap:fault use="literal" name="GET_findPetsByTags_400" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="POST_placeOrder">
+      <soap:operation soapAction="POST_placeOrder" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+      <fault name="POST_placeOrder_400">
+        <soap:fault use="literal" name="POST_placeOrder_400" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="GET_getOrderById">
+      <soap:operation soapAction="GET_getOrderById" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+      <fault name="GET_getOrderById_400">
+        <soap:fault use="literal" name="GET_getOrderById_400" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+      <fault name="GET_getOrderById_404">
+        <soap:fault use="literal" name="GET_getOrderById_404" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="DELETE_deleteOrder">
+      <soap:operation soapAction="DELETE_deleteOrder" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <fault name="DELETE_deleteOrder_400">
+        <soap:fault use="literal" name="DELETE_deleteOrder_400" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+      <fault name="DELETE_deleteOrder_404">
+        <soap:fault use="literal" name="DELETE_deleteOrder_404" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="GET_getInventory">
+      <soap:operation soapAction="GET_getInventory" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GET_getUserByName">
+      <soap:operation soapAction="GET_getUserByName" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+      <fault name="GET_getUserByName_400">
+        <soap:fault use="literal" name="GET_getUserByName_400" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+      <fault name="GET_getUserByName_404">
+        <soap:fault use="literal" name="GET_getUserByName_404" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="PUT_updateUser">
+      <soap:operation soapAction="PUT_updateUser" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <fault name="PUT_updateUser_400">
+        <soap:fault use="literal" name="PUT_updateUser_400" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+      <fault name="PUT_updateUser_404">
+        <soap:fault use="literal" name="PUT_updateUser_404" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="DELETE_deleteUser">
+      <soap:operation soapAction="DELETE_deleteUser" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <fault name="DELETE_deleteUser_400">
+        <soap:fault use="literal" name="DELETE_deleteUser_400" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+      <fault name="DELETE_deleteUser_404">
+        <soap:fault use="literal" name="DELETE_deleteUser_404" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="GET_loginUser">
+      <soap:operation soapAction="GET_loginUser" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+      <fault name="GET_loginUser_400">
+        <soap:fault use="literal" name="GET_loginUser_400" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="GET_logoutUser">
+      <soap:operation soapAction="GET_logoutUser" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <fault name="GET_logoutUser_0">
+        <soap:fault use="literal" name="GET_logoutUser_0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="POST_createUsersWithArrayInput">
+      <soap:operation soapAction="POST_createUsersWithArrayInput" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <fault name="POST_createUsersWithArrayInput_0">
+        <soap:fault use="literal" name="POST_createUsersWithArrayInput_0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="POST_createUsersWithListInput">
+      <soap:operation soapAction="POST_createUsersWithListInput" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <fault name="POST_createUsersWithListInput_0">
+        <soap:fault use="literal" name="POST_createUsersWithListInput_0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+    <operation name="POST_createUser">
+      <soap:operation soapAction="POST_createUser" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <fault name="POST_createUser_0">
+        <soap:fault use="literal" name="POST_createUser_0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </fault>
+    </operation>
+  </binding>
+  <binding name="server2_Binding" type="wsdl:server2_PortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+  </binding>
+  <binding name="authserver_Binding" type="wsdl:authserver_PortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+  </binding>
+  <service name="Petstore_x0020__x0026__x0020_Books_x0020_API">
+    <documentation>The Books API provides information about book reviews and The New York Times Best Sellers lists.
+
+## Best Sellers Lists Services
+### List Names
+The lists/names service returns a list of all the NYT Best Sellers Lists.  Some lists are published weekly and others monthly.  The response includes when each list was first published and last published.
+
+```
+/lists/names.json
+```
+
+### List Data
+
+The lists/{date}/{name} service returns the books on the best sellers list for the specified date and list name.
+
+```
+/lists/2019-01-20/hardcover-fiction.json
+```
+
+Use "current" for {date} to get the latest list.
+```
+/lists/current/hardcover-fiction.json
+```
+
+## Book Reviews Services
+
+The book reviews service lets you get NYT book review by author, ISBN, or title.
+
+```
+/reviews.json?author=Michelle+Obama
+```
+
+```
+/reviews.json?isbn=9781524763138
+```
+
+```
+/reviews.json?title=Becoming
+```
+
+## Example Calls
+
+```
+https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=yourkey
+```
+
+```
+https://api.nytimes.com/svc/books/v3/reviews.json?author=Stephen+King&amp;api-key=yourkey
+```
+</documentation>
+    <port name="default_Port" binding="wsdl:default_Binding">
+      <soap:address location="https://api.nytimes.com/svc/books/v3" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+    <port name="server1_Port" binding="wsdl:server1_Binding">
+      <soap:address location="https://petstore.swagger.io/v2" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+    <port name="server2_Port" binding="wsdl:server2_Binding">
+      <soap:address location="http://petstore.swagger.io/v2" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+    <port name="authserver_Port" binding="wsdl:authserver_Binding">
+      <soap:address location="https://petstore.swagger.io/oauth" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>

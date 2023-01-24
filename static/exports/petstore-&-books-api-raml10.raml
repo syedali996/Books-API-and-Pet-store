@@ -1,0 +1,2012 @@
+#%RAML 1.0
+title: Petstore & Books API
+version: 3.0.0
+baseUri: https://api.nytimes.com/svc/books/v3
+baseUriParameters: {}
+protocols:
+- HTTPS
+- HTTP
+documentation:
+- title: Petstore & Books API
+  content: |
+    The Books API provides information about book reviews and The New York Times Best Sellers lists.
+
+
+    ## Best Sellers Lists Services
+
+    ### List Names
+
+    The lists/names service returns a list of all the NYT Best Sellers Lists.  Some lists are published weekly and others monthly.  The response includes when each list was first published and last published.
+
+
+    ```
+
+    /lists/names.json
+
+    ```
+
+
+    ### List Data
+
+
+    The lists/{date}/{name} service returns the books on the best sellers list for the specified date and list name.
+
+
+    ```
+
+    /lists/2019-01-20/hardcover-fiction.json
+
+    ```
+
+
+    Use "current" for {date} to get the latest list.
+
+    ```
+
+    /lists/current/hardcover-fiction.json
+
+    ```
+
+
+    ## Book Reviews Services
+
+
+    The book reviews service lets you get NYT book review by author, ISBN, or title.
+
+
+    ```
+
+    /reviews.json?author=Michelle+Obama
+
+    ```
+
+
+    ```
+
+    /reviews.json?isbn=9781524763138
+
+    ```
+
+
+    ```
+
+    /reviews.json?title=Becoming
+
+    ```
+
+
+    ## Example Calls
+
+
+    ```
+
+    https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=yourkey
+
+    ```
+
+
+    ```
+
+    https://api.nytimes.com/svc/books/v3/reviews.json?author=Stephen+King&api-key=yourkey
+
+    ```
+securitySchemes:
+  api-key:
+    type: Pass Through
+    describedBy:
+      queryParameters:
+        api-key:
+          required: true
+          default: S36VNES3R5jDxeBwfdVeWvqKUQoWem8l
+          displayName: api-key
+          type: string
+  api_key:
+    type: Pass Through
+    describedBy:
+      headers:
+        api_key:
+          required: true
+          displayName: api_key
+          type: string
+  petstore_auth:
+    type: OAuth 2.0
+    settings:
+      authorizationUri: https://petstore.swagger.io/oauth/authorize
+      accessTokenUri: ''
+      authorizationGrants:
+      - implicit
+      scopes:
+      - read:pets
+      - write:pets
+securedBy: []
+types:
+  OverviewResponse:
+    displayName: OverviewResponse
+    type: object
+    properties:
+      status:
+        required: false
+        displayName: status
+        type: string
+      copyright:
+        required: false
+        displayName: copyright
+        type: string
+      num_results:
+        required: false
+        displayName: num_results
+        type: integer
+        format: int32
+      results:
+        required: false
+        displayName: results
+        type: Results
+  Book:
+    displayName: Book
+    type: object
+    properties:
+      age_group:
+        required: false
+        displayName: age_group
+        type: string
+      author:
+        required: false
+        displayName: author
+        type: string
+      contributor:
+        required: false
+        displayName: contributor
+        type: string
+      contributor_note:
+        required: false
+        displayName: contributor_note
+        type: string
+      created_date:
+        required: false
+        displayName: created_date
+        type: string
+      description:
+        required: false
+        displayName: description
+        type: string
+      price:
+        required: false
+        displayName: price
+        type: integer
+        format: int32
+      primary_isbn13:
+        required: false
+        displayName: primary_isbn13
+        type: string
+      primary_isbn10:
+        required: false
+        displayName: primary_isbn10
+        type: string
+      publisher:
+        required: false
+        displayName: publisher
+        type: string
+      rank:
+        required: false
+        displayName: rank
+        type: integer
+        format: int32
+      title:
+        required: false
+        displayName: title
+        type: string
+      updated_date:
+        required: false
+        displayName: updated_date
+        type: string
+  Book1:
+    displayName: Book1
+    type: object
+    properties:
+      rank:
+        required: false
+        displayName: rank
+        type: integer
+        format: int32
+      rank_last_week:
+        required: false
+        displayName: rank_last_week
+        type: integer
+        format: int32
+      weeks_on_list:
+        required: false
+        displayName: weeks_on_list
+        type: integer
+        format: int32
+      asterisk:
+        required: false
+        displayName: asterisk
+        type: integer
+        format: int32
+      dagger:
+        required: false
+        displayName: dagger
+        type: integer
+        format: int32
+      primary_isbn10:
+        required: false
+        displayName: primary_isbn10
+        type: string
+      primary_isbn13:
+        required: false
+        displayName: primary_isbn13
+        type: string
+      publisher:
+        required: false
+        displayName: publisher
+        type: string
+      description:
+        required: false
+        displayName: description
+        type: string
+      price:
+        required: false
+        displayName: price
+        type: integer
+        format: int32
+      title:
+        required: false
+        displayName: title
+        type: string
+      author:
+        required: false
+        displayName: author
+        type: string
+      contributor:
+        required: false
+        displayName: contributor
+        type: string
+      contributor_note:
+        required: false
+        displayName: contributor_note
+        type: string
+      book_image:
+        required: false
+        displayName: book_image
+        type: string
+      amazon_product_url:
+        required: false
+        displayName: amazon_product_url
+        type: string
+      age_group:
+        required: false
+        displayName: age_group
+        type: string
+      book_review_link:
+        required: false
+        displayName: book_review_link
+        type: string
+      first_chapter_link:
+        required: false
+        displayName: first_chapter_link
+        type: string
+      sunday_review_link:
+        required: false
+        displayName: sunday_review_link
+        type: string
+      article_chapter_link:
+        required: false
+        displayName: article_chapter_link
+        type: string
+      isbns:
+        required: false
+        displayName: isbns
+        type: array
+        items:
+          type: Isbn
+  BookDetail:
+    displayName: BookDetail
+    type: object
+    properties:
+      title:
+        required: false
+        displayName: title
+        type: string
+      description:
+        required: false
+        displayName: description
+        type: string
+      contributor:
+        required: false
+        displayName: contributor
+        type: string
+      author:
+        required: false
+        displayName: author
+        type: string
+      contributor_note:
+        required: false
+        displayName: contributor_note
+        type: string
+      price:
+        required: false
+        displayName: price
+        type: integer
+        format: int32
+      age_group:
+        required: false
+        displayName: age_group
+        type: string
+      publisher:
+        required: false
+        displayName: publisher
+        type: string
+      primary_isbn13:
+        required: false
+        displayName: primary_isbn13
+        type: string
+      primary_isbn10:
+        required: false
+        displayName: primary_isbn10
+        type: string
+  GET_lists-best-sellers-history-jsonResponse:
+    displayName: GET_lists-best-sellers-history-jsonResponse
+    type: object
+    properties:
+      status:
+        required: false
+        displayName: status
+        type: string
+      copyright:
+        required: false
+        displayName: copyright
+        type: string
+      num_results:
+        required: false
+        displayName: num_results
+        type: integer
+        format: int32
+      results:
+        required: false
+        displayName: results
+        type: array
+        items:
+          type: Results4
+  GET_lists-date-list-jsonResponse:
+    displayName: GET_lists-date-list-jsonResponse
+    type: object
+    properties:
+      status:
+        required: false
+        displayName: status
+        type: string
+      copyright:
+        required: false
+        displayName: copyright
+        type: string
+      num_results:
+        required: false
+        displayName: num_results
+        type: integer
+        format: int32
+      last_modified:
+        required: false
+        displayName: last_modified
+        type: string
+      results:
+        required: false
+        displayName: results
+        type: Results2
+  GET_lists-formatResponse:
+    displayName: GET_lists-formatResponse
+    type: object
+    properties:
+      status:
+        required: false
+        displayName: status
+        type: string
+      copyright:
+        required: false
+        displayName: copyright
+        type: string
+      num_results:
+        required: false
+        displayName: num_results
+        type: integer
+        format: int32
+      last_modified:
+        required: false
+        displayName: last_modified
+        type: string
+      results:
+        required: false
+        displayName: results
+        type: array
+        items:
+          type: Results1
+  GET_lists-names-formatResponse:
+    displayName: GET_lists-names-formatResponse
+    type: object
+    properties:
+      status:
+        required: false
+        displayName: status
+        type: string
+      copyright:
+        required: false
+        displayName: copyright
+        type: string
+      num_results:
+        required: false
+        displayName: num_results
+        type: integer
+        format: int32
+      results:
+        required: false
+        displayName: results
+        type: array
+        items:
+          type: Results3
+  GET_reviews-formatResponse:
+    displayName: GET_reviews-formatResponse
+    type: object
+    properties:
+      status:
+        required: false
+        displayName: status
+        type: string
+      copyright:
+        required: false
+        displayName: copyright
+        type: string
+      num_results:
+        required: false
+        displayName: num_results
+        type: integer
+        format: int32
+      results:
+        required: false
+        displayName: results
+        type: array
+        items:
+          type: Results5
+  Isbn:
+    displayName: Isbn
+    type: object
+    properties:
+      isbn10:
+        required: false
+        displayName: isbn10
+        type: string
+      isbn13:
+        required: false
+        displayName: isbn13
+        type: string
+  List:
+    displayName: List
+    type: object
+    properties:
+      list_id:
+        required: false
+        displayName: list_id
+        type: integer
+        format: int32
+      list_name:
+        required: false
+        displayName: list_name
+        type: string
+      display_name:
+        required: false
+        displayName: display_name
+        type: string
+      updated:
+        required: false
+        displayName: updated
+        type: string
+      list_image:
+        required: false
+        displayName: list_image
+        type: string
+      books:
+        required: false
+        displayName: books
+        type: array
+        items:
+          type: Book
+  RanksHistory:
+    displayName: RanksHistory
+    type: object
+    properties:
+      primary_isbn10:
+        required: false
+        displayName: primary_isbn10
+        type: string
+      primary_isbn13:
+        required: false
+        displayName: primary_isbn13
+        type: string
+      rank:
+        required: false
+        displayName: rank
+        type: integer
+        format: int32
+      list_name:
+        required: false
+        displayName: list_name
+        type: string
+      display_name:
+        required: false
+        displayName: display_name
+        type: string
+      published_date:
+        required: false
+        displayName: published_date
+        type: string
+      bestsellers_date:
+        required: false
+        displayName: bestsellers_date
+        type: string
+      weeks_on_list:
+        required: false
+        displayName: weeks_on_list
+        type: integer
+        format: int32
+      ranks_last_week:
+        required: false
+        displayName: ranks_last_week
+        type:
+        - string
+        - nil
+      asterisk:
+        required: false
+        displayName: asterisk
+        type: integer
+        format: int32
+      dagger:
+        required: false
+        displayName: dagger
+        type: integer
+        format: int32
+  Results:
+    displayName: Results
+    type: object
+    properties:
+      bestsellers_date:
+        required: false
+        displayName: bestsellers_date
+        type: string
+      published_date:
+        required: false
+        displayName: published_date
+        type: string
+      lists:
+        required: false
+        displayName: lists
+        type: array
+        items:
+          type: List
+  Results1:
+    displayName: Results1
+    type: object
+    properties:
+      list_name:
+        required: false
+        displayName: list_name
+        type: string
+      display_name:
+        required: false
+        displayName: display_name
+        type: string
+      bestsellers_date:
+        required: false
+        displayName: bestsellers_date
+        type: string
+      published_date:
+        required: false
+        displayName: published_date
+        type: string
+      rank:
+        required: false
+        displayName: rank
+        type: integer
+        format: int32
+      rank_last_week:
+        required: false
+        displayName: rank_last_week
+        type: integer
+        format: int32
+      weeks_on_list:
+        required: false
+        displayName: weeks_on_list
+        type: integer
+        format: int32
+      asterisk:
+        required: false
+        displayName: asterisk
+        type: integer
+        format: int32
+      dagger:
+        required: false
+        displayName: dagger
+        type: integer
+        format: int32
+      amazon_product_url:
+        required: false
+        displayName: amazon_product_url
+        type: string
+      isbns:
+        required: false
+        displayName: isbns
+        type: array
+        items:
+          type: Isbn
+      book_details:
+        required: false
+        displayName: book_details
+        type: array
+        items:
+          type: BookDetail
+      reviews:
+        required: false
+        displayName: reviews
+        type: array
+        items:
+          type: Review
+  Results2:
+    displayName: Results2
+    type: object
+    properties:
+      list_name:
+        required: false
+        displayName: list_name
+        type: string
+      bestsellers_date:
+        required: false
+        displayName: bestsellers_date
+        type: string
+      published_date:
+        required: false
+        displayName: published_date
+        type: string
+      display_name:
+        required: false
+        displayName: display_name
+        type: string
+      normal_list_ends_at:
+        required: false
+        displayName: normal_list_ends_at
+        type: integer
+        format: int32
+      updated:
+        required: false
+        displayName: updated
+        type: string
+      books:
+        required: false
+        displayName: books
+        type: array
+        items:
+          type: Book1
+      corrections:
+        required: false
+        displayName: corrections
+        type: array
+        items:
+          type: object
+          properties: {}
+  Results3:
+    displayName: Results3
+    type: object
+    properties:
+      list_name:
+        required: false
+        displayName: list_name
+        type: string
+      display_name:
+        required: false
+        displayName: display_name
+        type: string
+      list_name_encoded:
+        required: false
+        displayName: list_name_encoded
+        type: string
+      oldest_published_date:
+        required: false
+        displayName: oldest_published_date
+        type: string
+      newest_published_date:
+        required: false
+        displayName: newest_published_date
+        type: string
+      updated:
+        required: false
+        displayName: updated
+        type: string
+        enum:
+        - WEEKLY
+        - MONTHLY
+  Results4:
+    displayName: Results4
+    type: object
+    properties:
+      title:
+        required: false
+        displayName: title
+        type: string
+      description:
+        required: false
+        displayName: description
+        type: string
+      contributor:
+        required: false
+        displayName: contributor
+        type: string
+      author:
+        required: false
+        displayName: author
+        type: string
+      contributor_note:
+        required: false
+        displayName: contributor_note
+        type: string
+      price:
+        required: false
+        displayName: price
+        type: integer
+        format: int32
+      age_group:
+        required: false
+        displayName: age_group
+        type: string
+      publisher:
+        required: false
+        displayName: publisher
+        type: string
+      isbns:
+        required: false
+        displayName: isbns
+        type: array
+        items:
+          type: Isbn
+      ranks_history:
+        required: false
+        displayName: ranks_history
+        type: array
+        items:
+          type: RanksHistory
+      reviews:
+        required: false
+        displayName: reviews
+        type: array
+        items:
+          type: Review
+  Results5:
+    displayName: Results5
+    type: object
+    properties:
+      url:
+        required: false
+        displayName: url
+        type: string
+      publication_dt:
+        required: false
+        displayName: publication_dt
+        type: string
+      byline:
+        required: false
+        displayName: byline
+        type: string
+      book_title:
+        required: false
+        displayName: book_title
+        type: string
+      book_author:
+        required: false
+        displayName: book_author
+        type: string
+      summary:
+        required: false
+        displayName: summary
+        type: string
+      isbn13:
+        required: false
+        displayName: isbn13
+        type: array
+        items:
+          type: string
+  Review:
+    displayName: Review
+    type: object
+    properties:
+      book_review_link:
+        required: false
+        displayName: book_review_link
+        type: string
+      first_chapter_link:
+        required: false
+        displayName: first_chapter_link
+        type: string
+      sunday_review_link:
+        required: false
+        displayName: sunday_review_link
+        type: string
+      article_chapter_link:
+        required: false
+        displayName: article_chapter_link
+        type: string
+  Category:
+    displayName: Category
+    xml:
+      name: Category
+    type: object
+    properties:
+      id:
+        required: false
+        displayName: id
+        type: integer
+        format: int64
+      name:
+        required: false
+        displayName: name
+        type: string
+  Pet:
+    displayName: Pet
+    xml:
+      name: Pet
+    type: object
+    properties:
+      id:
+        required: false
+        displayName: id
+        type: integer
+        format: int64
+      category:
+        required: false
+        displayName: category
+        xml:
+          attribute: false
+          wrapped: false
+          name: Category
+        type: Category
+      name:
+        required: true
+        displayName: name
+        type: string
+      photoUrls:
+        required: true
+        displayName: photoUrls
+        xml:
+          attribute: false
+          wrapped: true
+        type: array
+        items:
+          xml:
+            name: photoUrl
+          type: string
+      tags:
+        required: false
+        displayName: tags
+        xml:
+          attribute: false
+          wrapped: true
+        type: array
+        items:
+          type: Tag
+      status:
+        required: false
+        displayName: status
+        description: pet status in the store
+        type: string
+        enum:
+        - available
+        - pending
+        - sold
+  Tag:
+    displayName: Tag
+    xml:
+      name: Tag
+    type: object
+    properties:
+      id:
+        required: false
+        displayName: id
+        type: integer
+        format: int64
+      name:
+        required: false
+        displayName: name
+        type: string
+  ApiResponse:
+    displayName: ApiResponse
+    type: object
+    properties:
+      code:
+        required: false
+        displayName: code
+        type: integer
+        format: int32
+      type:
+        required: false
+        displayName: type
+        type: string
+      message:
+        required: false
+        displayName: message
+        type: string
+  Order:
+    displayName: Order
+    xml:
+      name: Order
+    type: object
+    properties:
+      id:
+        required: false
+        displayName: id
+        type: integer
+        format: int64
+      petId:
+        required: false
+        displayName: petId
+        type: integer
+        format: int64
+      quantity:
+        required: false
+        displayName: quantity
+        type: integer
+        format: int32
+      shipDate:
+        required: false
+        displayName: shipDate
+        type: datetime
+      status:
+        required: false
+        displayName: status
+        description: Order Status
+        type: string
+        enum:
+        - placed
+        - approved
+        - delivered
+      complete:
+        required: false
+        displayName: complete
+        type: boolean
+  User:
+    displayName: User
+    xml:
+      name: User
+    type: object
+    properties:
+      id:
+        required: false
+        displayName: id
+        type: integer
+        format: int64
+      username:
+        required: false
+        displayName: username
+        type: string
+      firstName:
+        required: false
+        displayName: firstName
+        type: string
+      lastName:
+        required: false
+        displayName: lastName
+        type: string
+      email:
+        required: false
+        displayName: email
+        type: string
+      password:
+        required: false
+        displayName: password
+        type: string
+      phone:
+        required: false
+        displayName: phone
+        type: string
+      userStatus:
+        required: false
+        displayName: userStatus
+        description: User Status
+        type: integer
+        format: int32
+/pet:
+  post:
+    displayName: addPet
+    description: Add a new pet to the store
+    body:
+      application/json:
+        displayName: body
+        description: Pet object that needs to be added to the store
+        type: Pet
+    securedBy:
+    - petstore_auth:
+        scopes:
+        - write:pets
+        - read:pets
+    headers:
+      Content-Type:
+        required: true
+        displayName: Content-Type
+        type: string
+        enum:
+        - application/json
+    responses:
+      '405':
+        description: Invalid input
+        body: {}
+  put:
+    displayName: updatePet
+    description: Update an existing pet
+    body:
+      application/json:
+        displayName: body
+        description: Pet object that needs to be added to the store
+        type: Pet
+    securedBy:
+    - petstore_auth:
+        scopes:
+        - write:pets
+        - read:pets
+    headers:
+      Content-Type:
+        required: true
+        displayName: Content-Type
+        type: string
+        enum:
+        - application/json
+    responses:
+      '400':
+        description: Invalid ID supplied
+        body: {}
+      '404':
+        description: Pet not found
+        body: {}
+      '405':
+        description: Validation exception
+        body: {}
+  /{petId}:
+    uriParameters:
+      petId:
+        required: true
+        displayName: petId
+        description: ID of pet to return
+        type: integer
+        format: int64
+    get:
+      displayName: getPetById
+      description: Returns a single pet
+      securedBy:
+      - api_key
+      responses:
+        '200':
+          description: successful operation
+          body:
+            application/json:
+              displayName: response
+              description: ''
+              type: Pet
+            application/xml:
+              displayName: response
+              description: ''
+              xml:
+                attribute: false
+                wrapped: false
+                name: Pet
+              type: Pet
+        '400':
+          description: Invalid ID supplied
+          body: {}
+        '404':
+          description: Pet not found
+          body: {}
+    post:
+      displayName: updatePetWithForm
+      description: Updates a pet in the store with form data
+      body:
+        multipart/form-data:
+          type: object
+          properties:
+            name:
+              required: false
+              displayName: name
+              description: Updated name of the pet
+              type: string
+            status:
+              required: false
+              displayName: status
+              description: Updated status of the pet
+              type: string
+      securedBy:
+      - petstore_auth:
+          scopes:
+          - write:pets
+          - read:pets
+      headers:
+        Content-Type:
+          required: true
+          displayName: Content-Type
+          type: string
+          enum:
+          - application/x-www-form-urlencoded
+      responses:
+        '405':
+          description: Invalid input
+          body: {}
+    delete:
+      displayName: deletePet
+      description: Deletes a pet
+      securedBy:
+      - petstore_auth:
+          scopes:
+          - write:pets
+          - read:pets
+      headers:
+        api_key:
+          required: false
+          displayName: api_key
+          type: string
+      responses:
+        '400':
+          description: Invalid ID supplied
+          body: {}
+        '404':
+          description: Pet not found
+          body: {}
+    /uploadImage:
+      post:
+        displayName: uploadFile
+        description: uploads an image
+        body:
+          multipart/form-data:
+            type: object
+            properties:
+              additionalMetadata:
+                required: false
+                displayName: additionalMetadata
+                description: Additional data to pass to server
+                type: string
+              file:
+                required: false
+                displayName: file
+                description: file to upload
+                type: file
+        securedBy:
+        - petstore_auth:
+            scopes:
+            - write:pets
+            - read:pets
+        responses:
+          '200':
+            description: successful operation
+            body:
+              application/json:
+                displayName: response
+                description: ''
+                type: ApiResponse
+  /findByStatus:
+    get:
+      displayName: findPetsByStatus
+      description: Multiple status values can be provided with comma separated strings
+      securedBy:
+      - petstore_auth:
+          scopes:
+          - write:pets
+          - read:pets
+      queryParameters:
+        status:
+          required: true
+          displayName: status
+          description: Status values that need to be considered for filter
+          type: array
+          items:
+            type: string
+            enum:
+            - available
+            - pending
+            - sold
+      responses:
+        '200':
+          description: successful operation
+          body:
+            application/json:
+              displayName: response
+              description: ''
+              type: array
+              items:
+                type: Pet
+            application/xml:
+              displayName: response
+              description: ''
+              xml:
+                attribute: false
+                wrapped: false
+              type: array
+              items:
+                xml:
+                  name: Pet
+                type: Pet
+        '400':
+          description: Invalid status value
+          body: {}
+  /findByTags:
+    get:
+      displayName: findPetsByTags
+      description: Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+      securedBy:
+      - petstore_auth:
+          scopes:
+          - write:pets
+          - read:pets
+      queryParameters:
+        tags:
+          required: true
+          displayName: tags
+          description: Tags to filter by
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          body:
+            application/json:
+              displayName: response
+              description: ''
+              type: array
+              items:
+                type: Pet
+            application/xml:
+              displayName: response
+              description: ''
+              xml:
+                attribute: false
+                wrapped: false
+              type: array
+              items:
+                xml:
+                  name: Pet
+                type: Pet
+        '400':
+          description: Invalid tag value
+          body: {}
+/user:
+  post:
+    displayName: createUser
+    description: This can only be done by the logged in user.
+    body:
+      application/json:
+        displayName: body
+        description: Created user object
+        type: User
+    headers:
+      Content-Type:
+        required: true
+        displayName: Content-Type
+        type: string
+        enum:
+        - application/json
+  /{username}:
+    uriParameters:
+      username:
+        required: true
+        displayName: username
+        description: The name that needs to be fetched. Use user1 for testing.
+        type: string
+    get:
+      displayName: getUserByName
+      description: Get user by user name
+      responses:
+        '200':
+          description: successful operation
+          body:
+            application/json:
+              displayName: response
+              description: ''
+              type: User
+            application/xml:
+              displayName: response
+              description: ''
+              xml:
+                attribute: false
+                wrapped: false
+                name: User
+              type: User
+        '400':
+          description: Invalid username supplied
+          body: {}
+        '404':
+          description: User not found
+          body: {}
+    put:
+      displayName: updateUser
+      description: This can only be done by the logged in user.
+      body:
+        application/json:
+          displayName: body
+          description: Updated user object
+          type: User
+      headers:
+        Content-Type:
+          required: true
+          displayName: Content-Type
+          type: string
+          enum:
+          - application/json
+      responses:
+        '400':
+          description: Invalid user supplied
+          body: {}
+        '404':
+          description: User not found
+          body: {}
+    delete:
+      displayName: deleteUser
+      description: This can only be done by the logged in user.
+      responses:
+        '400':
+          description: Invalid username supplied
+          body: {}
+        '404':
+          description: User not found
+          body: {}
+  /login:
+    get:
+      displayName: loginUser
+      description: Logs user into the system
+      queryParameters:
+        username:
+          required: true
+          displayName: username
+          description: The user name for login
+          type: string
+        password:
+          required: true
+          displayName: password
+          description: The password for login in clear text
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-Expires-After:
+              displayName: X-Expires-After
+              description: date in UTC when token expires
+              type: string
+            X-Rate-Limit:
+              displayName: X-Rate-Limit
+              description: calls per hour allowed by the user
+              type: string
+          body:
+            application/json:
+              displayName: response
+              description: ''
+              type: string
+            application/xml:
+              displayName: response
+              description: ''
+              xml:
+                attribute: false
+                wrapped: false
+                name: response
+              type: string
+        '400':
+          description: Invalid username/password supplied
+          body: {}
+  /logout:
+    get:
+      displayName: logoutUser
+      description: Logs out current logged in user session
+  /createWithArray:
+    post:
+      displayName: createUsersWithArrayInput
+      description: Creates list of users with given input array
+      body:
+        application/json:
+          displayName: body
+          description: List of user object
+          type: array
+          items:
+            type: User
+      headers:
+        Content-Type:
+          required: true
+          displayName: Content-Type
+          type: string
+          enum:
+          - application/json
+  /createWithList:
+    post:
+      displayName: createUsersWithListInput
+      description: Creates list of users with given input array
+      body:
+        application/json:
+          displayName: body
+          description: List of user object
+          type: array
+          items:
+            type: User
+      headers:
+        Content-Type:
+          required: true
+          displayName: Content-Type
+          type: string
+          enum:
+          - application/json
+/lists.json:
+  get:
+    displayName: GET_lists-format
+    description: Get Best Sellers list.  If no date is provided returns the latest list.
+    securedBy:
+    - api-key
+    queryParameters:
+      list:
+        required: true
+        default: hardcover-fiction
+        displayName: list
+        description: |
+          The name of the Times best sellers list (hardcover-fiction, paperback-nonfiction, ...).
+
+          The /lists/names service returns all the list names.
+
+          The encoded list names are lower case with hyphens instead of spaces (e.g. e-book-fiction, instead of E-Book Fiction).
+        type: string
+      bestsellers-date:
+        required: false
+        displayName: bestsellers-date
+        description: |
+          YYYY-MM-DD
+
+
+          The week-ending date for the sales reflected on list-name. Times best sellers lists are compiled using available book sale data. The bestsellers-date may be significantly earlier than published-date. For additional information, see the explanation at the bottom of any best-seller list page on NYTimes.com (example: Hardcover Fiction, published Dec. 5 but reflecting sales to Nov. 29).
+        type: string
+        pattern: ^\d{4}-\d{2}-\d{2}$
+      published-date:
+        required: false
+        displayName: published-date
+        description: |
+          YYYY-MM-DD
+
+
+          The date the best sellers list was published on NYTimes.com (different than bestsellers-date).  Use "current" for latest list.
+        type: string
+        pattern: ^\d{4}-\d{2}-\d{2}$
+      offset:
+        required: false
+        displayName: offset
+        description: Sets the starting point of the result set (0, 20, ...).  Used to paginate thru books if list has more than 20. Defaults to 0.  The num_results field indicates how many books are in the list.
+        type: integer
+        format: int32
+        multipleOf: 20
+    headers:
+      Content-Type:
+        required: true
+        displayName: Content-Type
+        type: string
+        enum:
+        - application/json
+    responses:
+      '200':
+        description: Best Sellers list books
+        body:
+          application/json:
+            example:
+              value:
+                status: OK
+                copyright: Copyright (c) 2019 The New York Times Company.  All Rights Reserved.
+                num_results: 1
+                last_modified: 2016-03-11T13:09:01-05:00
+                results:
+                - list_name: Hardcover Fiction
+                  display_name: Hardcover Fiction
+                  bestsellers_date: 2016-03-05
+                  published_date: 2016-03-20
+                  rank: 5
+                  rank_last_week: 2
+                  weeks_on_list: 2
+                  asterisk: 0
+                  dagger: 0
+                  amazon_product_url: http://www.amazon.com/Girls-Guide-Moving-On-Novel-ebook/dp/B00ZNE17B4?tag=thenewyorktim-20
+                  isbns:
+                  - isbn10: '0553391925'
+                    isbn13: '9780553391923'
+                  book_details:
+                  - title: A GIRL'S GUIDE TO MOVING ON
+                    description: A mother and her daughter-in-law both leave unhappy marriages and take up with new men.
+                    contributor: by Debbie Macomber
+                    author: Debbie Macomber
+                    contributor_note: ''
+                    price: 0
+                    age_group: ''
+                    publisher: Ballantine
+                    primary_isbn13: '9780553391923'
+                    primary_isbn10: '0553391925'
+                  reviews:
+                  - book_review_link: ''
+                    first_chapter_link: ''
+                    sunday_review_link: ''
+                    article_chapter_link: ''
+            displayName: response
+            description: ''
+            type: GET_lists-formatResponse
+/reviews.json:
+  get:
+    displayName: GET_reviews-format
+    description: Get book reviews.
+    securedBy:
+    - api-key
+    queryParameters:
+      isbn:
+        required: false
+        displayName: isbn
+        description: Searching by ISBN is the recommended method. You can enter 10- or 13-digit ISBNs.
+        type: integer
+        format: int32
+      title:
+        required: false
+        displayName: title
+        description: You’ll need to enter the full title of the book. Spaces in the title will be converted into the characters %20.
+        type: string
+      author:
+        required: false
+        displayName: author
+        description: You’ll need to enter the author’s first and last name, separated by a space. This space will be converted into the characters %20.
+        type: string
+    headers:
+      Content-Type:
+        required: true
+        displayName: Content-Type
+        type: string
+        enum:
+        - application/json
+    responses:
+      '200':
+        description: Book reviews.
+        body:
+          application/json:
+            example:
+              value:
+                status: OK
+                copyright: Copyright (c) 2019 The New York Times Company.  All Rights Reserved.
+                num_results: 2
+                results:
+                - url: http://www.nytimes.com/2011/11/10/books/1q84-by-haruki-murakami-review.html
+                  publication_dt: 2011-11-10
+                  byline: JANET MASLIN
+                  book_title: 1Q84
+                  book_author: Haruki Murakami
+                  summary: In “1Q84,” the Japanese novelist Haruki Murakami writes about characters in a Tokyo with two moons.
+                  isbn13:
+                  - '9780307476463'
+            displayName: response
+            description: ''
+            type: GET_reviews-formatResponse
+/store:
+  /order:
+    post:
+      displayName: placeOrder
+      description: Place an order for a pet
+      body:
+        application/json:
+          displayName: body
+          description: order placed for purchasing the pet
+          type: Order
+      headers:
+        Content-Type:
+          required: true
+          displayName: Content-Type
+          type: string
+          enum:
+          - application/json
+      responses:
+        '200':
+          description: successful operation
+          body:
+            application/json:
+              displayName: response
+              description: ''
+              type: Order
+            application/xml:
+              displayName: response
+              description: ''
+              xml:
+                attribute: false
+                wrapped: false
+                name: Order
+              type: Order
+        '400':
+          description: Invalid Order
+          body: {}
+    /{orderId}:
+      uriParameters:
+        orderId:
+          required: true
+          displayName: orderId
+          description: ID of pet that needs to be fetched
+          type: integer
+          minimum: 1
+          maximum: 10
+          format: int64
+      get:
+        displayName: getOrderById
+        description: For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions
+        responses:
+          '200':
+            description: successful operation
+            body:
+              application/json:
+                displayName: response
+                description: ''
+                type: Order
+              application/xml:
+                displayName: response
+                description: ''
+                xml:
+                  attribute: false
+                  wrapped: false
+                  name: Order
+                type: Order
+          '400':
+            description: Invalid ID supplied
+            body: {}
+          '404':
+            description: Order not found
+            body: {}
+      delete:
+        displayName: deleteOrder
+        description: For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors
+        responses:
+          '400':
+            description: Invalid ID supplied
+            body: {}
+          '404':
+            description: Order not found
+            body: {}
+  /inventory:
+    get:
+      displayName: getInventory
+      description: Returns a map of status codes to quantities
+      securedBy:
+      - api_key
+      responses:
+        '200':
+          description: successful operation
+          body:
+            application/json:
+              displayName: response
+              description: ''
+              type: object
+              additionalProperties: true
+              properties:
+                //:
+                  type: integer
+/lists:
+  /{date}/{list}.json:
+    uriParameters:
+      date:
+        required: true
+        displayName: date
+        description: |
+          YYYY-MM-DD or "current"
+
+
+          The date the best sellers list was published on NYTimes.com.  Use "current" to get latest list.
+        type: string
+        pattern: ^(\d{4}-\d{2}-\d{2}|current)$
+      list:
+        required: true
+        displayName: list
+        description: Name of the Best Sellers List (e.g. hardcover-fiction). You can get the full list of names from the /lists/names.json service.
+        type: string
+    get:
+      displayName: GET_lists-date-list-json
+      description: Get Best Sellers list by date.
+      securedBy:
+      - api-key
+      queryParameters:
+        offset:
+          required: false
+          displayName: offset
+          description: Sets the starting point of the result set (0, 20, ...).  Used to paginate thru books if list has more than 20. Defaults to 0.  The num_results field indicates how many books are in the list.
+          type: integer
+          format: int32
+          multipleOf: 20
+      headers:
+        Content-Type:
+          required: true
+          displayName: Content-Type
+          type: string
+          enum:
+          - application/json
+      responses:
+        '200':
+          description: Best Sellers list books.
+          body:
+            application/json:
+              example:
+                value:
+                  status: OK
+                  copyright: Copyright (c) 2019 The New York Times Company.  All Rights Reserved.
+                  num_results: 15
+                  last_modified: 2015-12-25T13:05:20-05:00
+                  results:
+                    list_name: Trade Fiction Paperback
+                    bestsellers_date: 2015-12-19
+                    published_date: 2016-01-03
+                    display_name: Paperback Trade Fiction
+                    normal_list_ends_at: 10
+                    updated: WEEKLY
+                    books:
+                    - rank: 1
+                      rank_last_week: 0
+                      weeks_on_list: 60
+                      asterisk: 0
+                      dagger: 0
+                      primary_isbn10: '0553418025'
+                      primary_isbn13: '9780553418026'
+                      publisher: Broadway
+                      description: Separated from his crew, an astronaut embarks on a quest to stay alive on Mars. The basis of the movie.
+                      price: 0
+                      title: THE MARTIAN
+                      author: Andy Weir
+                      contributor: by Andy Weir
+                      contributor_note: ''
+                      book_image: http://du.ec2.nytimes.com.s3.amazonaws.com/prd/books/9780804139038.jpg
+                      amazon_product_url: http://www.amazon.com/The-Martian-Novel-Andy-Weir-ebook/dp/B00EMXBDMA?tag=thenewyorktim-20
+                      age_group: ''
+                      book_review_link: ''
+                      first_chapter_link: ''
+                      sunday_review_link: ''
+                      article_chapter_link: ''
+                      isbns:
+                      - isbn10: '0804139024'
+                        isbn13: '9780804139021'
+                    corrections: []
+              displayName: response
+              description: ''
+              type: GET_lists-date-list-jsonResponse
+  /full-overview.json:
+    get:
+      displayName: GET_lists-full-overview-format
+      description: Get all books for all the Best Sellers lists for specified date.
+      securedBy:
+      - api-key
+      queryParameters:
+        published_date:
+          required: false
+          displayName: published_date
+          description: |
+            YYYY-MM-DD
+
+
+            The best-seller list publication date.
+
+            You do not have to specify the exact date the list was published. The service will search forward (into the future) for the closest publication date to the date you specify. For example, a request for lists/overview/2013-05-22 will retrieve the list that was published on 05-26.
+
+
+            If you do not include a published date, the current week's best sellers lists will be returned.
+          type: string
+          pattern: ^\d{4}-\d{2}-\d{2}$
+      responses:
+        '200':
+          description: Full overview of Best Sellers lists.
+          body:
+            application/json:
+              displayName: response
+              description: ''
+              type: OverviewResponse
+  /overview.json:
+    get:
+      displayName: GET_lists-overview-format
+      description: Get top 5 books for all the Best Sellers lists for specified date.
+      securedBy:
+      - api-key
+      queryParameters:
+        published_date:
+          required: false
+          displayName: published_date
+          description: |
+            YYYY-MM-DD
+
+
+            The best-seller list publication date.
+
+            You do not have to specify the exact date the list was published. The service will search forward (into the future) for the closest publication date to the date you specify. For example, a request for lists/overview/2013-05-22 will retrieve the list that was published on 05-26.
+
+
+            If you do not include a published date, the current week's best sellers lists will be returned.
+          type: string
+          pattern: ^\d{4}-\d{2}-\d{2}$
+      headers:
+        Content-Type:
+          required: true
+          displayName: Content-Type
+          type: string
+          enum:
+          - application/json
+      responses:
+        '200':
+          description: Overview of Best Sellers lists.
+          body:
+            application/json:
+              example:
+                value:
+                  status: OK
+                  copyright: Copyright (c) 2019 The New York Times Company.  All Rights Reserved.
+                  num_results: 210
+                  results:
+                    bestsellers_date: 2016-03-05
+                    published_date: 2016-03-20
+                    lists:
+                    - list_id: 704
+                      list_name: Combined Print and E-Book Fiction
+                      display_name: Combined Print & E-Book Fiction
+                      updated: WEEKLY
+                      list_image: http://du.ec2.nytimes.com.s3.amazonaws.com/prd/books/9780399175954.jpg
+                      books:
+                      - age_group: ''
+                        author: Clive Cussler and Justin Scott
+                        contributor: by Clive Cussler and Justin Scott
+                        contributor_note: ''
+                        created_date: 2016-03-10 12:00:22
+                        description: In the ninth book in this series, set in 1906, the New York detective Isaac Bell contends with a crime boss passing as a respectable businessman and a tycoon’s plot against President Theodore Roosevelt.
+                        price: 0
+                        primary_isbn13: '9780698406421'
+                        primary_isbn10: '0698406427'
+                        publisher: Putnam
+                        rank: 1
+                        title: THE GANGSTER
+                        updated_date: 2016-03-10 17:00:21
+              displayName: response
+              description: ''
+              type: OverviewResponse
+  /names.json:
+    get:
+      displayName: GET_lists-names-format
+      description: Get Best Sellers list names.
+      securedBy:
+      - api-key
+      headers:
+        Content-Type:
+          required: true
+          displayName: Content-Type
+          type: string
+          enum:
+          - application/json
+      responses:
+        '200':
+          description: Get Best Sellers list names.
+          body:
+            application/json:
+              example:
+                value:
+                  status: OK
+                  copyright: Copyright (c) 2019 The New York Times Company.  All Rights Reserved.
+                  num_results: 53
+                  results:
+                  - list_name: Combined Print and E-Book Fiction
+                    display_name: Combined Print & E-Book Fiction
+                    list_name_encoded: combined-print-and-e-book-fiction
+                    oldest_published_date: 2011-02-13
+                    newest_published_date: 2016-03-20
+                    updated: WEEKLY
+              displayName: response
+              description: ''
+              type: GET_lists-names-formatResponse
+  /best-sellers/history.json:
+    get:
+      displayName: GET_lists-best-sellers-history-json
+      description: Get Best Sellers list history.
+      securedBy:
+      - api-key
+      queryParameters:
+        age-group:
+          required: false
+          displayName: age-group
+          description: The target age group for the best seller.
+          type: string
+        author:
+          required: false
+          displayName: author
+          description: |
+            The author of the best seller. The author field does not include additional contributors (see Data Structure for more details about the author and contributor fields).
+
+
+            When searching the author field, you can specify any combination of first, middle and last names.
+
+
+            When sort-by is set to author, the results will be sorted by author's first name.
+          type: string
+        contributor:
+          required: false
+          displayName: contributor
+          description: |
+            The author of the best seller, as well as other contributors such as the illustrator (to search or sort by author name only, use author instead).
+
+
+            When searching, you can specify any combination of first, middle and last names of any of the contributors.
+
+
+            When sort-by is set to contributor, the results will be sorted by the first name of the first contributor listed.
+          type: string
+        isbn:
+          required: false
+          displayName: isbn
+          description: |
+            International Standard Book Number, 10 or 13 digits
+
+
+            A best seller may have both 10-digit and 13-digit ISBNs, and may have multiple ISBNs of each type. To search on multiple ISBNs, separate the ISBNs with semicolons (example: 9780446579933;0061374229).
+          type: string
+        offset:
+          required: false
+          displayName: offset
+          description: Sets the starting point of the result set (0, 20, ...).  Used to paginate thru results if there are more than 20. Defaults to 0. The num_results field indicates how many results there are total.
+          type: integer
+          format: int32
+          multipleOf: 20
+        price:
+          required: false
+          displayName: price
+          description: The publisher's list price of the best seller, including decimal point.
+          type: string
+        publisher:
+          required: false
+          displayName: publisher
+          description: The standardized name of the publisher
+          type: string
+        title:
+          required: false
+          displayName: title
+          description: |
+            The title of the best seller
+
+
+            When searching, you can specify a portion of a title or a full title.
+          type: string
+      headers:
+        Content-Type:
+          required: true
+          displayName: Content-Type
+          type: string
+          enum:
+          - application/json
+      responses:
+        '200':
+          description: Best Sellers list history
+          body:
+            application/json:
+              example:
+                value:
+                  status: OK
+                  copyright: Copyright (c) 2019 The New York Times Company.  All Rights Reserved.
+                  num_results: 28970
+                  results:
+                  - title: '#GIRLBOSS'
+                    description: An online fashion retailer traces her path to success.
+                    contributor: by Sophia Amoruso
+                    author: Sophia Amoruso
+                    contributor_note: ''
+                    price: 0
+                    age_group: ''
+                    publisher: Portfolio/Penguin/Putnam
+                    isbns:
+                    - isbn10: 039916927X
+                      isbn13: '9780399169274'
+                    ranks_history:
+                    - primary_isbn10: '1591847931'
+                      primary_isbn13: '9781591847939'
+                      rank: 8
+                      list_name: Business Books
+                      display_name: Business
+                      published_date: 2016-03-13
+                      bestsellers_date: 2016-02-27
+                      weeks_on_list: 0
+                      ranks_last_week: null
+                      asterisk: 0
+                      dagger: 0
+                    reviews:
+                    - book_review_link: ''
+                      first_chapter_link: ''
+                      sunday_review_link: ''
+                      article_chapter_link: ''
+              displayName: response
+              description: ''
+              type: GET_lists-best-sellers-history-jsonResponse

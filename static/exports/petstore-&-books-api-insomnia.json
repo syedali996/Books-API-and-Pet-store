@@ -1,0 +1,670 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_source": "apimatic.transformer",
+  "resources": [
+    {
+      "name": "Petstore & Books API",
+      "_type": "workspace",
+      "_id": "wrk_483db78443fd498bac82af775648359e",
+      "description": "The Books API provides information about book reviews and The New York Times Best Sellers lists.\n\n## Best Sellers Lists Services\n### List Names\nThe lists/names service returns a list of all the NYT Best Sellers Lists.  Some lists are published weekly and others monthly.  The response includes when each list was first published and last published.\n\n```\n/lists/names.json\n```\n\n### List Data\n\nThe lists/{date}/{name} service returns the books on the best sellers list for the specified date and list name.\n\n```\n/lists/2019-01-20/hardcover-fiction.json\n```\n\nUse \"current\" for {date} to get the latest list.\n```\n/lists/current/hardcover-fiction.json\n```\n\n## Book Reviews Services\n\nThe book reviews service lets you get NYT book review by author, ISBN, or title.\n\n```\n/reviews.json?author=Michelle+Obama\n```\n\n```\n/reviews.json?isbn=9781524763138\n```\n\n```\n/reviews.json?title=Becoming\n```\n\n## Example Calls\n\n```\nhttps://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=yourkey\n```\n\n```\nhttps://api.nytimes.com/svc/books/v3/reviews.json?author=Stephen+King&api-key=yourkey\n```\n"
+    },
+    {
+      "name": "production",
+      "data": {
+        "default": "https://api.nytimes.com/svc/books/v3",
+        "server1": "https://petstore.swagger.io/v2",
+        "server2": "http://petstore.swagger.io/v2",
+        "authserver": "https://petstore.swagger.io/oauth"
+      },
+      "_type": "environment",
+      "_id": "env_ffa817356ab443ae962f9067d888bb15",
+      "parentId": "wrk_483db78443fd498bac82af775648359e"
+    },
+    {
+      "name": "pet",
+      "_type": "request_group",
+      "_id": "fld_64d58442c14a4559aab8035862711c63",
+      "parentId": "wrk_483db78443fd498bac82af775648359e",
+      "description": "Everything about your Pets"
+    },
+    {
+      "name": "store",
+      "_type": "request_group",
+      "_id": "fld_51d3ede19f9e432e91dde93efb6078f7",
+      "parentId": "wrk_483db78443fd498bac82af775648359e",
+      "description": "Access to Petstore orders"
+    },
+    {
+      "name": "user",
+      "_type": "request_group",
+      "_id": "fld_a5dd79983745431d9a7bb49a732f8cfc",
+      "parentId": "wrk_483db78443fd498bac82af775648359e",
+      "description": "Operations about user"
+    },
+    {
+      "name": "getPetById",
+      "method": "GET",
+      "url": "{{server1}}/pet/{petId}",
+      "headers": [
+        {
+          "name": "api_key",
+          "value": "api_key0",
+          "disabled": false
+        }
+      ],
+      "_type": "request",
+      "_id": "req_3d006d7a32304012919d4f5be912f75c",
+      "parentId": "fld_64d58442c14a4559aab8035862711c63",
+      "description": "Returns a single pet"
+    },
+    {
+      "name": "updatePetWithForm",
+      "method": "POST",
+      "url": "{{server1}}/pet/{petId}",
+      "body": {
+        "mimeType": "application/x-www-form-urlencoded",
+        "params": [
+          {
+            "type": "text",
+            "name": "name",
+            "value": "name17",
+            "disabled": false
+          },
+          {
+            "type": "text",
+            "name": "status",
+            "value": "status51",
+            "disabled": false
+          }
+        ]
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded",
+          "disabled": false
+        }
+      ],
+      "authentication": {
+        "type": "oauth2",
+        "authorizationUrl": "https://petstore.swagger.io/oauth/authorize",
+        "grantType": "implicit"
+      },
+      "_type": "request",
+      "_id": "req_180964ab24044a3fb9bec4217c985f31",
+      "parentId": "fld_64d58442c14a4559aab8035862711c63",
+      "description": "Updates a pet in the store with form data"
+    },
+    {
+      "name": "deletePet",
+      "method": "DELETE",
+      "url": "{{server1}}/pet/{petId}",
+      "headers": [
+        {
+          "name": "api_key",
+          "value": "api_key81",
+          "disabled": false
+        }
+      ],
+      "authentication": {
+        "type": "oauth2",
+        "authorizationUrl": "https://petstore.swagger.io/oauth/authorize",
+        "grantType": "implicit"
+      },
+      "_type": "request",
+      "_id": "req_76513ad0649d4ad09406a80467cf3a26",
+      "parentId": "fld_64d58442c14a4559aab8035862711c63",
+      "description": "Deletes a pet"
+    },
+    {
+      "name": "uploadFile",
+      "method": "POST",
+      "url": "{{server1}}/pet/{petId}/uploadImage",
+      "body": {
+        "mimeType": "multipart/form-data",
+        "params": [
+          {
+            "type": "text",
+            "name": "additionalMetadata",
+            "value": "additionalMetadata22",
+            "disabled": false
+          },
+          {
+            "type": "file",
+            "name": "file",
+            "value": "path/to/file61",
+            "disabled": false
+          }
+        ]
+      },
+      "authentication": {
+        "type": "oauth2",
+        "authorizationUrl": "https://petstore.swagger.io/oauth/authorize",
+        "grantType": "implicit"
+      },
+      "_type": "request",
+      "_id": "req_3e9180f8be244774bfc5a87090d5194a",
+      "parentId": "fld_64d58442c14a4559aab8035862711c63",
+      "description": "uploads an image"
+    },
+    {
+      "name": "addPet",
+      "method": "POST",
+      "url": "{{server1}}/pet",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\r\n  \"name\": \"name81\",\r\n  \"photoUrls\": [\r\n    \"photoUrls33\"\r\n  ],\r\n  \"id\": 94,\r\n  \"category\": {\r\n    \"id\": 90,\r\n    \"name\": \"name9\"\r\n  },\r\n  \"tags\": [\r\n    {\r\n      \"id\": 33,\r\n      \"name\": \"name29\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "disabled": false
+        }
+      ],
+      "authentication": {
+        "type": "oauth2",
+        "authorizationUrl": "https://petstore.swagger.io/oauth/authorize",
+        "grantType": "implicit"
+      },
+      "_type": "request",
+      "_id": "req_7ad06f62a17c4842ae48e1959f6bfc3b",
+      "parentId": "fld_64d58442c14a4559aab8035862711c63",
+      "description": "Add a new pet to the store"
+    },
+    {
+      "name": "updatePet",
+      "method": "PUT",
+      "url": "{{server1}}/pet",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\r\n  \"name\": \"name81\",\r\n  \"photoUrls\": [\r\n    \"photoUrls33\"\r\n  ],\r\n  \"id\": 94,\r\n  \"category\": {\r\n    \"id\": 90,\r\n    \"name\": \"name9\"\r\n  },\r\n  \"tags\": [\r\n    {\r\n      \"id\": 33,\r\n      \"name\": \"name29\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "disabled": false
+        }
+      ],
+      "authentication": {
+        "type": "oauth2",
+        "authorizationUrl": "https://petstore.swagger.io/oauth/authorize",
+        "grantType": "implicit"
+      },
+      "_type": "request",
+      "_id": "req_8ddb68f72ea242c295dc4f8787f9c370",
+      "parentId": "fld_64d58442c14a4559aab8035862711c63",
+      "description": "Update an existing pet"
+    },
+    {
+      "name": "findPetsByStatus",
+      "method": "GET",
+      "url": "{{server1}}/pet/findByStatus",
+      "parameters": [
+        {
+          "name": "status",
+          "value": "[\"available\"]",
+          "disabled": false
+        }
+      ],
+      "authentication": {
+        "type": "oauth2",
+        "authorizationUrl": "https://petstore.swagger.io/oauth/authorize",
+        "grantType": "implicit"
+      },
+      "_type": "request",
+      "_id": "req_485165f94a134669a59e630400771b03",
+      "parentId": "fld_64d58442c14a4559aab8035862711c63",
+      "description": "Multiple status values can be provided with comma separated strings"
+    },
+    {
+      "name": "findPetsByTags",
+      "method": "GET",
+      "url": "{{server1}}/pet/findByTags",
+      "parameters": [
+        {
+          "name": "tags",
+          "value": "[\"tags1\"]",
+          "disabled": false
+        }
+      ],
+      "authentication": {
+        "type": "oauth2",
+        "authorizationUrl": "https://petstore.swagger.io/oauth/authorize",
+        "grantType": "implicit"
+      },
+      "_type": "request",
+      "_id": "req_74c4e42e91a44087aeed3ba4672ddfef",
+      "parentId": "fld_64d58442c14a4559aab8035862711c63",
+      "description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing."
+    },
+    {
+      "name": "placeOrder",
+      "method": "POST",
+      "url": "{{server1}}/store/order",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\r\n  \"id\": 246,\r\n  \"petId\": 2,\r\n  \"quantity\": 209,\r\n  \"shipDate\": \"2023-05-02T12:20:04.8153631Z\",\r\n  \"status\": \"approved\",\r\n  \"complete\": true\r\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "disabled": false
+        }
+      ],
+      "_type": "request",
+      "_id": "req_c51fdd0854a64da08c3b004538c1fa44",
+      "parentId": "fld_51d3ede19f9e432e91dde93efb6078f7",
+      "description": "Place an order for a pet"
+    },
+    {
+      "name": "getOrderById",
+      "method": "GET",
+      "url": "{{server1}}/store/order/{orderId}",
+      "_type": "request",
+      "_id": "req_ee5a94f78c0044c6975158280d3cb1d6",
+      "parentId": "fld_51d3ede19f9e432e91dde93efb6078f7",
+      "description": "For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions"
+    },
+    {
+      "name": "deleteOrder",
+      "method": "DELETE",
+      "url": "{{server1}}/store/order/{orderId}",
+      "_type": "request",
+      "_id": "req_82f0a62fb5364ac296c259bb0d8a47b9",
+      "parentId": "fld_51d3ede19f9e432e91dde93efb6078f7",
+      "description": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors"
+    },
+    {
+      "name": "getInventory",
+      "method": "GET",
+      "url": "{{server1}}/store/inventory",
+      "headers": [
+        {
+          "name": "api_key",
+          "value": "api_key49",
+          "disabled": false
+        }
+      ],
+      "_type": "request",
+      "_id": "req_0eef2be0cd0c492ca3245c0dd45c5aa6",
+      "parentId": "fld_51d3ede19f9e432e91dde93efb6078f7",
+      "description": "Returns a map of status codes to quantities"
+    },
+    {
+      "name": "getUserByName",
+      "method": "GET",
+      "url": "{{server1}}/user/{username}",
+      "_type": "request",
+      "_id": "req_99e778e00ee64841b50ef3f4d531063d",
+      "parentId": "fld_a5dd79983745431d9a7bb49a732f8cfc",
+      "description": "Get user by user name"
+    },
+    {
+      "name": "updateUser",
+      "method": "PUT",
+      "url": "{{server1}}/user/{username}",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\r\n  \"id\": 98,\r\n  \"username\": \"username24\",\r\n  \"firstName\": \"firstName63\",\r\n  \"lastName\": \"lastName53\",\r\n  \"email\": \"email51\",\r\n  \"password\": \"password98\",\r\n  \"phone\": \"phone98\",\r\n  \"userStatus\": 151\r\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "disabled": false
+        }
+      ],
+      "_type": "request",
+      "_id": "req_374beb33e7a340698a2ef2f7677439d4",
+      "parentId": "fld_a5dd79983745431d9a7bb49a732f8cfc",
+      "description": "This can only be done by the logged in user."
+    },
+    {
+      "name": "deleteUser",
+      "method": "DELETE",
+      "url": "{{server1}}/user/{username}",
+      "_type": "request",
+      "_id": "req_9c77d4c2dffb4648ae423bf00639b8df",
+      "parentId": "fld_a5dd79983745431d9a7bb49a732f8cfc",
+      "description": "This can only be done by the logged in user."
+    },
+    {
+      "name": "loginUser",
+      "method": "GET",
+      "url": "{{server1}}/user/login",
+      "parameters": [
+        {
+          "name": "username",
+          "value": "username87",
+          "disabled": false
+        },
+        {
+          "name": "password",
+          "value": "password18",
+          "disabled": false
+        }
+      ],
+      "_type": "request",
+      "_id": "req_24b4888493344057be3759459f1fd708",
+      "parentId": "fld_a5dd79983745431d9a7bb49a732f8cfc",
+      "description": "Logs user into the system"
+    },
+    {
+      "name": "logoutUser",
+      "method": "GET",
+      "url": "{{server1}}/user/logout",
+      "_type": "request",
+      "_id": "req_6866e9cc64da40a086c8c93f1bdf0516",
+      "parentId": "fld_a5dd79983745431d9a7bb49a732f8cfc",
+      "description": "Logs out current logged in user session"
+    },
+    {
+      "name": "createUsersWithArrayInput",
+      "method": "POST",
+      "url": "{{server1}}/user/createWithArray",
+      "body": {
+        "mimeType": "application/json",
+        "text": "[\r\n  {\r\n    \"id\": 98,\r\n    \"username\": \"username24\",\r\n    \"firstName\": \"firstName63\",\r\n    \"lastName\": \"lastName53\",\r\n    \"email\": \"email51\",\r\n    \"password\": \"password98\",\r\n    \"phone\": \"phone98\",\r\n    \"userStatus\": 151\r\n  }\r\n]"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "disabled": false
+        }
+      ],
+      "_type": "request",
+      "_id": "req_8b322275e93b4117b93da37804b1ee60",
+      "parentId": "fld_a5dd79983745431d9a7bb49a732f8cfc",
+      "description": "Creates list of users with given input array"
+    },
+    {
+      "name": "createUsersWithListInput",
+      "method": "POST",
+      "url": "{{server1}}/user/createWithList",
+      "body": {
+        "mimeType": "application/json",
+        "text": "[\r\n  {\r\n    \"id\": 98,\r\n    \"username\": \"username24\",\r\n    \"firstName\": \"firstName63\",\r\n    \"lastName\": \"lastName53\",\r\n    \"email\": \"email51\",\r\n    \"password\": \"password98\",\r\n    \"phone\": \"phone98\",\r\n    \"userStatus\": 151\r\n  }\r\n]"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "disabled": false
+        }
+      ],
+      "_type": "request",
+      "_id": "req_58d267eb2cc542baba15219f74519808",
+      "parentId": "fld_a5dd79983745431d9a7bb49a732f8cfc",
+      "description": "Creates list of users with given input array"
+    },
+    {
+      "name": "createUser",
+      "method": "POST",
+      "url": "{{server1}}/user",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\r\n  \"id\": 98,\r\n  \"username\": \"username24\",\r\n  \"firstName\": \"firstName63\",\r\n  \"lastName\": \"lastName53\",\r\n  \"email\": \"email51\",\r\n  \"password\": \"password98\",\r\n  \"phone\": \"phone98\",\r\n  \"userStatus\": 151\r\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "disabled": false
+        }
+      ],
+      "_type": "request",
+      "_id": "req_9e9c9b77cb53418d87fada2570ee55f1",
+      "parentId": "fld_a5dd79983745431d9a7bb49a732f8cfc",
+      "description": "This can only be done by the logged in user."
+    },
+    {
+      "name": "GET_lists-format",
+      "method": "GET",
+      "url": "{{default}}/lists.json",
+      "parameters": [
+        {
+          "name": "list",
+          "value": "hardcover-fiction",
+          "disabled": false
+        },
+        {
+          "name": "bestsellers-date",
+          "value": "bestsellers-date84",
+          "disabled": false
+        },
+        {
+          "name": "published-date",
+          "value": "published-date49",
+          "disabled": false
+        },
+        {
+          "name": "offset",
+          "value": "80",
+          "disabled": false
+        },
+        {
+          "name": "api-key",
+          "value": "S36VNES3R5jDxeBwfdVeWvqKUQoWem8l",
+          "disabled": false
+        }
+      ],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "disabled": false
+        }
+      ],
+      "_type": "request",
+      "_id": "req_038e2408e93b4400b69656a3c88e42d3",
+      "parentId": "wrk_483db78443fd498bac82af775648359e",
+      "description": "Get Best Sellers list.  If no date is provided returns the latest list."
+    },
+    {
+      "name": "GET_lists-date-list-json",
+      "method": "GET",
+      "url": "{{default}}/lists/{date}/{list}.json",
+      "parameters": [
+        {
+          "name": "offset",
+          "value": "120",
+          "disabled": false
+        },
+        {
+          "name": "api-key",
+          "value": "S36VNES3R5jDxeBwfdVeWvqKUQoWem8l",
+          "disabled": false
+        }
+      ],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "disabled": false
+        }
+      ],
+      "_type": "request",
+      "_id": "req_9ee6d074e622466f809063196b4cf1a1",
+      "parentId": "wrk_483db78443fd498bac82af775648359e",
+      "description": "Get Best Sellers list by date."
+    },
+    {
+      "name": "GET_lists-full-overview-format",
+      "method": "GET",
+      "url": "{{default}}/lists/full-overview.json",
+      "parameters": [
+        {
+          "name": "published_date",
+          "value": "published_date9",
+          "disabled": false
+        },
+        {
+          "name": "api-key",
+          "value": "S36VNES3R5jDxeBwfdVeWvqKUQoWem8l",
+          "disabled": false
+        }
+      ],
+      "_type": "request",
+      "_id": "req_96bd6745256f4790a8eaf5d770a2d0b1",
+      "parentId": "wrk_483db78443fd498bac82af775648359e",
+      "description": "Get all books for all the Best Sellers lists for specified date."
+    },
+    {
+      "name": "GET_lists-overview-format",
+      "method": "GET",
+      "url": "{{default}}/lists/overview.json",
+      "parameters": [
+        {
+          "name": "published_date",
+          "value": "published_date83",
+          "disabled": false
+        },
+        {
+          "name": "api-key",
+          "value": "S36VNES3R5jDxeBwfdVeWvqKUQoWem8l",
+          "disabled": false
+        }
+      ],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "disabled": false
+        }
+      ],
+      "_type": "request",
+      "_id": "req_cd31dc0c0bbe4a7dbd020d2dc0d5fc8d",
+      "parentId": "wrk_483db78443fd498bac82af775648359e",
+      "description": "Get top 5 books for all the Best Sellers lists for specified date."
+    },
+    {
+      "name": "GET_lists-names-format",
+      "method": "GET",
+      "url": "{{default}}/lists/names.json",
+      "parameters": [
+        {
+          "name": "api-key",
+          "value": "S36VNES3R5jDxeBwfdVeWvqKUQoWem8l",
+          "disabled": false
+        }
+      ],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "disabled": false
+        }
+      ],
+      "_type": "request",
+      "_id": "req_c00619be59b34c788c138fa2c1a1e89c",
+      "parentId": "wrk_483db78443fd498bac82af775648359e",
+      "description": "Get Best Sellers list names."
+    },
+    {
+      "name": "GET_lists-best-sellers-history-json",
+      "method": "GET",
+      "url": "{{default}}/lists/best-sellers/history.json",
+      "parameters": [
+        {
+          "name": "age-group",
+          "value": "age-group75",
+          "disabled": false
+        },
+        {
+          "name": "author",
+          "value": "author81",
+          "disabled": false
+        },
+        {
+          "name": "contributor",
+          "value": "contributor13",
+          "disabled": false
+        },
+        {
+          "name": "isbn",
+          "value": "isbn7",
+          "disabled": false
+        },
+        {
+          "name": "offset",
+          "value": "40",
+          "disabled": false
+        },
+        {
+          "name": "price",
+          "value": "price63",
+          "disabled": false
+        },
+        {
+          "name": "publisher",
+          "value": "publisher28",
+          "disabled": false
+        },
+        {
+          "name": "title",
+          "value": "title9",
+          "disabled": false
+        },
+        {
+          "name": "api-key",
+          "value": "S36VNES3R5jDxeBwfdVeWvqKUQoWem8l",
+          "disabled": false
+        }
+      ],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "disabled": false
+        }
+      ],
+      "_type": "request",
+      "_id": "req_898eba172aaf42c3a346cb1389365377",
+      "parentId": "wrk_483db78443fd498bac82af775648359e",
+      "description": "Get Best Sellers list history."
+    },
+    {
+      "name": "GET_reviews-format",
+      "method": "GET",
+      "url": "{{default}}/reviews.json",
+      "parameters": [
+        {
+          "name": "isbn",
+          "value": "140",
+          "disabled": false
+        },
+        {
+          "name": "title",
+          "value": "title5",
+          "disabled": false
+        },
+        {
+          "name": "author",
+          "value": "author3",
+          "disabled": false
+        },
+        {
+          "name": "api-key",
+          "value": "S36VNES3R5jDxeBwfdVeWvqKUQoWem8l",
+          "disabled": false
+        }
+      ],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "disabled": false
+        }
+      ],
+      "_type": "request",
+      "_id": "req_d72ecee71de64e93b93531bd7b978b46",
+      "parentId": "wrk_483db78443fd498bac82af775648359e",
+      "description": "Get book reviews."
+    }
+  ]
+}

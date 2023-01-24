@@ -1,0 +1,2755 @@
+{
+  "swaggerVersion": "1.2",
+  "basePath": "https://api.nytimes.com/svc/books/v3",
+  "resourcePath": "/",
+  "apis": [
+    {
+      "path": "/pet/{petId}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Returns a single pet",
+          "nickname": "getPetById",
+          "parameters": [
+            {
+              "name": "petId",
+              "description": "ID of pet to return",
+              "paramType": "path",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "minimum": "",
+              "maximum": "",
+              "uniqueItems": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "authorizations": {
+            "api_key": []
+          },
+          "produces": [
+            "application/json",
+            "application/xml"
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid ID supplied"
+            },
+            {
+              "code": 404,
+              "message": "Pet not found"
+            }
+          ],
+          "uniqueItems": false,
+          "$ref": "Pet"
+        },
+        {
+          "method": "POST",
+          "summary": "Updates a pet in the store with form data",
+          "nickname": "updatePetWithForm",
+          "parameters": [
+            {
+              "name": "petId",
+              "description": "ID of pet that needs to be updated",
+              "paramType": "path",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "minimum": "",
+              "maximum": "",
+              "uniqueItems": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "Content-Type",
+              "description": "",
+              "paramType": "header",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "application/x-www-form-urlencoded",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "name",
+              "description": "Updated name of the pet",
+              "paramType": "form",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "status",
+              "description": "Updated status of the pet",
+              "paramType": "form",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            }
+          ],
+          "authorizations": {
+            "petstore_auth": [
+              {
+                "scope": "write:pets",
+                "description": "modify pets in your account"
+              },
+              {
+                "scope": "read:pets",
+                "description": "read your pets"
+              }
+            ]
+          },
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "responseMessages": [
+            {
+              "code": 405,
+              "message": "Invalid input"
+            }
+          ],
+          "uniqueItems": false,
+          "type": "void"
+        },
+        {
+          "method": "DELETE",
+          "summary": "Deletes a pet",
+          "nickname": "deletePet",
+          "parameters": [
+            {
+              "name": "petId",
+              "description": "Pet id to delete",
+              "paramType": "path",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "minimum": "",
+              "maximum": "",
+              "uniqueItems": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "api_key",
+              "description": "",
+              "paramType": "header",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            }
+          ],
+          "authorizations": {
+            "petstore_auth": [
+              {
+                "scope": "write:pets",
+                "description": "modify pets in your account"
+              },
+              {
+                "scope": "read:pets",
+                "description": "read your pets"
+              }
+            ]
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid ID supplied"
+            },
+            {
+              "code": 404,
+              "message": "Pet not found"
+            }
+          ],
+          "uniqueItems": false,
+          "type": "void"
+        }
+      ]
+    },
+    {
+      "path": "/pet/{petId}/uploadImage",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "uploads an image",
+          "nickname": "uploadFile",
+          "parameters": [
+            {
+              "name": "petId",
+              "description": "ID of pet to update",
+              "paramType": "path",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "minimum": "",
+              "maximum": "",
+              "uniqueItems": false,
+              "type": "integer",
+              "format": "int64"
+            },
+            {
+              "name": "additionalMetadata",
+              "description": "Additional data to pass to server",
+              "paramType": "form",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "file",
+              "description": "file to upload",
+              "paramType": "form",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "object"
+            }
+          ],
+          "authorizations": {
+            "petstore_auth": [
+              {
+                "scope": "write:pets",
+                "description": "modify pets in your account"
+              },
+              {
+                "scope": "read:pets",
+                "description": "read your pets"
+              }
+            ]
+          },
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "responseMessages": [],
+          "uniqueItems": false,
+          "$ref": "ApiResponse"
+        }
+      ]
+    },
+    {
+      "path": "/pet",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "Add a new pet to the store",
+          "nickname": "addPet",
+          "parameters": [
+            {
+              "name": "body",
+              "description": "Pet object that needs to be added to the store",
+              "paramType": "body",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "Pet"
+            },
+            {
+              "name": "Content-Type",
+              "description": "",
+              "paramType": "header",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "application/json",
+              "uniqueItems": false,
+              "type": "string"
+            }
+          ],
+          "authorizations": {
+            "petstore_auth": [
+              {
+                "scope": "write:pets",
+                "description": "modify pets in your account"
+              },
+              {
+                "scope": "read:pets",
+                "description": "read your pets"
+              }
+            ]
+          },
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responseMessages": [
+            {
+              "code": 405,
+              "message": "Invalid input"
+            }
+          ],
+          "uniqueItems": false,
+          "type": "void"
+        },
+        {
+          "method": "PUT",
+          "summary": "Update an existing pet",
+          "nickname": "updatePet",
+          "parameters": [
+            {
+              "name": "body",
+              "description": "Pet object that needs to be added to the store",
+              "paramType": "body",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "Pet"
+            },
+            {
+              "name": "Content-Type",
+              "description": "",
+              "paramType": "header",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "application/json",
+              "uniqueItems": false,
+              "type": "string"
+            }
+          ],
+          "authorizations": {
+            "petstore_auth": [
+              {
+                "scope": "write:pets",
+                "description": "modify pets in your account"
+              },
+              {
+                "scope": "read:pets",
+                "description": "read your pets"
+              }
+            ]
+          },
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid ID supplied"
+            },
+            {
+              "code": 404,
+              "message": "Pet not found"
+            },
+            {
+              "code": 405,
+              "message": "Validation exception"
+            }
+          ],
+          "uniqueItems": false,
+          "type": "void"
+        }
+      ]
+    },
+    {
+      "path": "/pet/findByStatus",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Multiple status values can be provided with comma separated strings",
+          "nickname": "findPetsByStatus",
+          "parameters": [
+            {
+              "name": "status",
+              "description": "Status values that need to be considered for filter",
+              "paramType": "query",
+              "required": true,
+              "allowMultiple": false,
+              "items": {
+                "type": "string"
+              },
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "array"
+            }
+          ],
+          "authorizations": {
+            "petstore_auth": [
+              {
+                "scope": "write:pets",
+                "description": "modify pets in your account"
+              },
+              {
+                "scope": "read:pets",
+                "description": "read your pets"
+              }
+            ]
+          },
+          "produces": [
+            "application/json",
+            "application/xml"
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid status value"
+            }
+          ],
+          "items": {
+            "$ref": "Pet"
+          },
+          "uniqueItems": false,
+          "type": "array"
+        }
+      ]
+    },
+    {
+      "path": "/pet/findByTags",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
+          "nickname": "findPetsByTags",
+          "parameters": [
+            {
+              "name": "tags",
+              "description": "Tags to filter by",
+              "paramType": "query",
+              "required": true,
+              "allowMultiple": false,
+              "items": {
+                "type": "string"
+              },
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "array"
+            }
+          ],
+          "authorizations": {
+            "petstore_auth": [
+              {
+                "scope": "write:pets",
+                "description": "modify pets in your account"
+              },
+              {
+                "scope": "read:pets",
+                "description": "read your pets"
+              }
+            ]
+          },
+          "produces": [
+            "application/json",
+            "application/xml"
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid tag value"
+            }
+          ],
+          "items": {
+            "$ref": "Pet"
+          },
+          "uniqueItems": false,
+          "type": "array"
+        }
+      ]
+    },
+    {
+      "path": "/store/order",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "Place an order for a pet",
+          "nickname": "placeOrder",
+          "parameters": [
+            {
+              "name": "body",
+              "description": "order placed for purchasing the pet",
+              "paramType": "body",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "Order"
+            },
+            {
+              "name": "Content-Type",
+              "description": "",
+              "paramType": "header",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "application/json",
+              "uniqueItems": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/json",
+            "application/xml"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid Order"
+            }
+          ],
+          "uniqueItems": false,
+          "$ref": "Order"
+        }
+      ]
+    },
+    {
+      "path": "/store/order/{orderId}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions",
+          "nickname": "getOrderById",
+          "parameters": [
+            {
+              "name": "orderId",
+              "description": "ID of pet that needs to be fetched",
+              "paramType": "path",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "minimum": "1",
+              "maximum": "10",
+              "uniqueItems": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "produces": [
+            "application/json",
+            "application/xml"
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid ID supplied"
+            },
+            {
+              "code": 404,
+              "message": "Order not found"
+            }
+          ],
+          "uniqueItems": false,
+          "$ref": "Order"
+        },
+        {
+          "method": "DELETE",
+          "summary": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors",
+          "nickname": "deleteOrder",
+          "parameters": [
+            {
+              "name": "orderId",
+              "description": "ID of the order that needs to be deleted",
+              "paramType": "path",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "minimum": "1",
+              "maximum": "",
+              "uniqueItems": false,
+              "type": "integer",
+              "format": "int64"
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid ID supplied"
+            },
+            {
+              "code": 404,
+              "message": "Order not found"
+            }
+          ],
+          "uniqueItems": false,
+          "type": "void"
+        }
+      ]
+    },
+    {
+      "path": "/store/inventory",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Returns a map of status codes to quantities",
+          "nickname": "getInventory",
+          "parameters": [],
+          "authorizations": {
+            "api_key": []
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responseMessages": [],
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        }
+      ]
+    },
+    {
+      "path": "/user/{username}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get user by user name",
+          "nickname": "getUserByName",
+          "parameters": [
+            {
+              "name": "username",
+              "description": "The name that needs to be fetched. Use user1 for testing.",
+              "paramType": "path",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/json",
+            "application/xml"
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid username supplied"
+            },
+            {
+              "code": 404,
+              "message": "User not found"
+            }
+          ],
+          "uniqueItems": false,
+          "$ref": "User"
+        },
+        {
+          "method": "PUT",
+          "summary": "This can only be done by the logged in user.",
+          "nickname": "updateUser",
+          "parameters": [
+            {
+              "name": "username",
+              "description": "name that need to be updated",
+              "paramType": "path",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "body",
+              "description": "Updated user object",
+              "paramType": "body",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "User"
+            },
+            {
+              "name": "Content-Type",
+              "description": "",
+              "paramType": "header",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "application/json",
+              "uniqueItems": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid user supplied"
+            },
+            {
+              "code": 404,
+              "message": "User not found"
+            }
+          ],
+          "uniqueItems": false,
+          "type": "void"
+        },
+        {
+          "method": "DELETE",
+          "summary": "This can only be done by the logged in user.",
+          "nickname": "deleteUser",
+          "parameters": [
+            {
+              "name": "username",
+              "description": "The name that needs to be deleted",
+              "paramType": "path",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid username supplied"
+            },
+            {
+              "code": 404,
+              "message": "User not found"
+            }
+          ],
+          "uniqueItems": false,
+          "type": "void"
+        }
+      ]
+    },
+    {
+      "path": "/user/login",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Logs user into the system",
+          "nickname": "loginUser",
+          "parameters": [
+            {
+              "name": "username",
+              "description": "The user name for login",
+              "paramType": "query",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "password",
+              "description": "The password for login in clear text",
+              "paramType": "query",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/json",
+            "application/xml"
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid username/password supplied"
+            }
+          ],
+          "uniqueItems": false,
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "path": "/user/logout",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Logs out current logged in user session",
+          "nickname": "logoutUser",
+          "parameters": [],
+          "produces": [
+            "application/json"
+          ],
+          "responseMessages": [],
+          "uniqueItems": false,
+          "type": "void"
+        }
+      ]
+    },
+    {
+      "path": "/user/createWithArray",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "Creates list of users with given input array",
+          "nickname": "createUsersWithArrayInput",
+          "parameters": [
+            {
+              "name": "body",
+              "description": "List of user object",
+              "paramType": "body",
+              "required": true,
+              "allowMultiple": false,
+              "items": {
+                "type": "User"
+              },
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "array"
+            },
+            {
+              "name": "Content-Type",
+              "description": "",
+              "paramType": "header",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "application/json",
+              "uniqueItems": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responseMessages": [],
+          "uniqueItems": false,
+          "type": "void"
+        }
+      ]
+    },
+    {
+      "path": "/user/createWithList",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "Creates list of users with given input array",
+          "nickname": "createUsersWithListInput",
+          "parameters": [
+            {
+              "name": "body",
+              "description": "List of user object",
+              "paramType": "body",
+              "required": true,
+              "allowMultiple": false,
+              "items": {
+                "type": "User"
+              },
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "array"
+            },
+            {
+              "name": "Content-Type",
+              "description": "",
+              "paramType": "header",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "application/json",
+              "uniqueItems": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responseMessages": [],
+          "uniqueItems": false,
+          "type": "void"
+        }
+      ]
+    },
+    {
+      "path": "/user",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "This can only be done by the logged in user.",
+          "nickname": "createUser",
+          "parameters": [
+            {
+              "name": "body",
+              "description": "Created user object",
+              "paramType": "body",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "User"
+            },
+            {
+              "name": "Content-Type",
+              "description": "",
+              "paramType": "header",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "application/json",
+              "uniqueItems": false,
+              "type": "string"
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responseMessages": [],
+          "uniqueItems": false,
+          "type": "void"
+        }
+      ]
+    },
+    {
+      "path": "/lists.json",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get Best Sellers list.  If no date is provided returns the latest list.",
+          "nickname": "GET_listsformat",
+          "parameters": [
+            {
+              "name": "list",
+              "description": "The name of the Times best sellers list (hardcover-fiction, paperback-nonfiction, ...).\nThe /lists/names service returns all the list names.\nThe encoded list names are lower case with hyphens instead of spaces (e.g. e-book-fiction, instead of E-Book Fiction).",
+              "paramType": "query",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "hardcover-fiction",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "Content-Type",
+              "description": "",
+              "paramType": "header",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "application/json",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "bestsellers-date",
+              "description": "YYYY-MM-DD\n\nThe week-ending date for the sales reflected on list-name. Times best sellers lists are compiled using available book sale data. The bestsellers-date may be significantly earlier than published-date. For additional information, see the explanation at the bottom of any best-seller list page on NYTimes.com (example: Hardcover Fiction, published Dec. 5 but reflecting sales to Nov. 29).",
+              "paramType": "query",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "published-date",
+              "description": "YYYY-MM-DD\n\nThe date the best sellers list was published on NYTimes.com (different than bestsellers-date).  Use \"current\" for latest list.",
+              "paramType": "query",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "offset",
+              "description": "Sets the starting point of the result set (0, 20, ...).  Used to paginate thru books if list has more than 20. Defaults to 0.  The num_results field indicates how many books are in the list.",
+              "paramType": "query",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "minimum": "",
+              "maximum": "",
+              "uniqueItems": false,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "authorizations": {
+            "apikey": []
+          },
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responseMessages": [],
+          "uniqueItems": false,
+          "$ref": "GET_listsformatResponse"
+        }
+      ]
+    },
+    {
+      "path": "/lists/{date}/{list}.json",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get Best Sellers list by date.",
+          "nickname": "GET_listsdatelistjson",
+          "parameters": [
+            {
+              "name": "date",
+              "description": "YYYY-MM-DD or \"current\"\n\nThe date the best sellers list was published on NYTimes.com.  Use \"current\" to get latest list.",
+              "paramType": "path",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "list",
+              "description": "Name of the Best Sellers List (e.g. hardcover-fiction). You can get the full list of names from the /lists/names.json service.",
+              "paramType": "path",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "Content-Type",
+              "description": "",
+              "paramType": "header",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "application/json",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "offset",
+              "description": "Sets the starting point of the result set (0, 20, ...).  Used to paginate thru books if list has more than 20. Defaults to 0.  The num_results field indicates how many books are in the list.",
+              "paramType": "query",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "minimum": "",
+              "maximum": "",
+              "uniqueItems": false,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "authorizations": {
+            "apikey": []
+          },
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responseMessages": [],
+          "uniqueItems": false,
+          "$ref": "GET_listsdatelistjsonResponse"
+        }
+      ]
+    },
+    {
+      "path": "/lists/full-overview.json",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get all books for all the Best Sellers lists for specified date.",
+          "nickname": "GET_listsfulloverviewformat",
+          "parameters": [
+            {
+              "name": "published_date",
+              "description": "YYYY-MM-DD\n\nThe best-seller list publication date.\nYou do not have to specify the exact date the list was published. The service will search forward (into the future) for the closest publication date to the date you specify. For example, a request for lists/overview/2013-05-22 will retrieve the list that was published on 05-26.\n\nIf you do not include a published date, the current week's best sellers lists will be returned.",
+              "paramType": "query",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            }
+          ],
+          "authorizations": {
+            "apikey": []
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responseMessages": [],
+          "uniqueItems": false,
+          "$ref": "OverviewResponse"
+        }
+      ]
+    },
+    {
+      "path": "/lists/overview.json",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get top 5 books for all the Best Sellers lists for specified date.",
+          "nickname": "GET_listsoverviewformat",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "description": "",
+              "paramType": "header",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "application/json",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "published_date",
+              "description": "YYYY-MM-DD\n\nThe best-seller list publication date.\nYou do not have to specify the exact date the list was published. The service will search forward (into the future) for the closest publication date to the date you specify. For example, a request for lists/overview/2013-05-22 will retrieve the list that was published on 05-26.\n\nIf you do not include a published date, the current week's best sellers lists will be returned.",
+              "paramType": "query",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            }
+          ],
+          "authorizations": {
+            "apikey": []
+          },
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responseMessages": [],
+          "uniqueItems": false,
+          "$ref": "OverviewResponse"
+        }
+      ]
+    },
+    {
+      "path": "/lists/names.json",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get Best Sellers list names.",
+          "nickname": "GET_listsnamesformat",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "description": "",
+              "paramType": "header",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "application/json",
+              "uniqueItems": false,
+              "type": "string"
+            }
+          ],
+          "authorizations": {
+            "apikey": []
+          },
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responseMessages": [],
+          "uniqueItems": false,
+          "$ref": "GET_listsnamesformatResponse"
+        }
+      ]
+    },
+    {
+      "path": "/lists/best-sellers/history.json",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get Best Sellers list history.",
+          "nickname": "GET_listsbestsellershistoryjson",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "description": "",
+              "paramType": "header",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "application/json",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "age-group",
+              "description": "The target age group for the best seller.",
+              "paramType": "query",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "author",
+              "description": "The author of the best seller. The author field does not include additional contributors (see Data Structure for more details about the author and contributor fields).\n\nWhen searching the author field, you can specify any combination of first, middle and last names.\n\nWhen sort-by is set to author, the results will be sorted by author's first name.",
+              "paramType": "query",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "contributor",
+              "description": "The author of the best seller, as well as other contributors such as the illustrator (to search or sort by author name only, use author instead).\n\nWhen searching, you can specify any combination of first, middle and last names of any of the contributors.\n\nWhen sort-by is set to contributor, the results will be sorted by the first name of the first contributor listed.",
+              "paramType": "query",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "isbn",
+              "description": "International Standard Book Number, 10 or 13 digits\n\nA best seller may have both 10-digit and 13-digit ISBNs, and may have multiple ISBNs of each type. To search on multiple ISBNs, separate the ISBNs with semicolons (example: 9780446579933;0061374229).",
+              "paramType": "query",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "offset",
+              "description": "Sets the starting point of the result set (0, 20, ...).  Used to paginate thru results if there are more than 20. Defaults to 0. The num_results field indicates how many results there are total.",
+              "paramType": "query",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "minimum": "",
+              "maximum": "",
+              "uniqueItems": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "price",
+              "description": "The publisher's list price of the best seller, including decimal point.",
+              "paramType": "query",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "publisher",
+              "description": "The standardized name of the publisher",
+              "paramType": "query",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "title",
+              "description": "The title of the best seller\n\nWhen searching, you can specify a portion of a title or a full title.",
+              "paramType": "query",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            }
+          ],
+          "authorizations": {
+            "apikey": []
+          },
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responseMessages": [],
+          "uniqueItems": false,
+          "$ref": "GET_listsbestsellershistoryjsonResponse"
+        }
+      ]
+    },
+    {
+      "path": "/reviews.json",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get book reviews.",
+          "nickname": "GET_reviewsformat",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "description": "",
+              "paramType": "header",
+              "required": true,
+              "allowMultiple": false,
+              "defaultValue": "application/json",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "isbn",
+              "description": "Searching by ISBN is the recommended method. You can enter 10- or 13-digit ISBNs.",
+              "paramType": "query",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "minimum": "",
+              "maximum": "",
+              "uniqueItems": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "title",
+              "description": "You’ll need to enter the full title of the book. Spaces in the title will be converted into the characters %20.",
+              "paramType": "query",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            },
+            {
+              "name": "author",
+              "description": "You’ll need to enter the author’s first and last name, separated by a space. This space will be converted into the characters %20.",
+              "paramType": "query",
+              "required": false,
+              "allowMultiple": false,
+              "defaultValue": "",
+              "uniqueItems": false,
+              "type": "string"
+            }
+          ],
+          "authorizations": {
+            "apikey": []
+          },
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responseMessages": [],
+          "uniqueItems": false,
+          "$ref": "GET_reviewsformatResponse"
+        }
+      ]
+    }
+  ],
+  "models": {
+    "OverviewResponse": {
+      "id": "OverviewResponse",
+      "required": [],
+      "properties": {
+        "status": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "copyright": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "num_results": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "results": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "$ref": "Results"
+        }
+      }
+    },
+    "Book": {
+      "id": "Book",
+      "required": [],
+      "properties": {
+        "age_group": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "author": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "contributor": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "contributor_note": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "created_date": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "description": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "price": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "primary_isbn13": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "primary_isbn10": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "publisher": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "rank": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "updated_date": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        }
+      }
+    },
+    "Book1": {
+      "id": "Book1",
+      "required": [],
+      "properties": {
+        "rank": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "rank_last_week": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "weeks_on_list": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "asterisk": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "dagger": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "primary_isbn10": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "primary_isbn13": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "publisher": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "description": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "price": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "author": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "contributor": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "contributor_note": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "book_image": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "amazon_product_url": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "age_group": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "book_review_link": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "first_chapter_link": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "sunday_review_link": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "article_chapter_link": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "isbns": {
+          "description": "",
+          "items": {
+            "$ref": "Isbn"
+          },
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "array"
+        }
+      }
+    },
+    "BookDetail": {
+      "id": "BookDetail",
+      "required": [],
+      "properties": {
+        "title": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "description": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "contributor": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "author": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "contributor_note": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "price": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "age_group": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "publisher": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "primary_isbn13": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "primary_isbn10": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        }
+      }
+    },
+    "GET_listsbestsellershistoryjsonResponse": {
+      "id": "GET_listsbestsellershistoryjsonResponse",
+      "required": [],
+      "properties": {
+        "status": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "copyright": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "num_results": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "results": {
+          "description": "",
+          "items": {
+            "$ref": "Results4"
+          },
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "array"
+        }
+      }
+    },
+    "GET_listsdatelistjsonResponse": {
+      "id": "GET_listsdatelistjsonResponse",
+      "required": [],
+      "properties": {
+        "status": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "copyright": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "num_results": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "last_modified": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "results": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "$ref": "Results2"
+        }
+      }
+    },
+    "GET_listsformatResponse": {
+      "id": "GET_listsformatResponse",
+      "required": [],
+      "properties": {
+        "status": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "copyright": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "num_results": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "last_modified": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "results": {
+          "description": "",
+          "items": {
+            "$ref": "Results1"
+          },
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "array"
+        }
+      }
+    },
+    "GET_listsnamesformatResponse": {
+      "id": "GET_listsnamesformatResponse",
+      "required": [],
+      "properties": {
+        "status": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "copyright": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "num_results": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "results": {
+          "description": "",
+          "items": {
+            "$ref": "Results3"
+          },
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "array"
+        }
+      }
+    },
+    "GET_reviewsformatResponse": {
+      "id": "GET_reviewsformatResponse",
+      "required": [],
+      "properties": {
+        "status": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "copyright": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "num_results": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "results": {
+          "description": "",
+          "items": {
+            "$ref": "Results5"
+          },
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "array"
+        }
+      }
+    },
+    "Isbn": {
+      "id": "Isbn",
+      "required": [],
+      "properties": {
+        "isbn10": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "isbn13": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        }
+      }
+    },
+    "List": {
+      "id": "List",
+      "required": [],
+      "properties": {
+        "list_id": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "list_name": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "display_name": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "updated": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "list_image": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "books": {
+          "description": "",
+          "items": {
+            "$ref": "Book"
+          },
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "array"
+        }
+      }
+    },
+    "RanksHistory": {
+      "id": "RanksHistory",
+      "required": [],
+      "properties": {
+        "primary_isbn10": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "primary_isbn13": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "rank": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "list_name": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "display_name": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "published_date": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "bestsellers_date": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "weeks_on_list": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "ranks_last_week": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "asterisk": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "dagger": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Results": {
+      "id": "Results",
+      "required": [],
+      "properties": {
+        "bestsellers_date": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "published_date": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "lists": {
+          "description": "",
+          "items": {
+            "$ref": "List"
+          },
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "array"
+        }
+      }
+    },
+    "Results1": {
+      "id": "Results1",
+      "required": [],
+      "properties": {
+        "list_name": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "display_name": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "bestsellers_date": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "published_date": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "rank": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "rank_last_week": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "weeks_on_list": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "asterisk": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "dagger": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "amazon_product_url": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "isbns": {
+          "description": "",
+          "items": {
+            "$ref": "Isbn"
+          },
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "array"
+        },
+        "book_details": {
+          "description": "",
+          "items": {
+            "$ref": "BookDetail"
+          },
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "array"
+        },
+        "reviews": {
+          "description": "",
+          "items": {
+            "$ref": "Review"
+          },
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "array"
+        }
+      }
+    },
+    "Results2": {
+      "id": "Results2",
+      "required": [],
+      "properties": {
+        "list_name": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "bestsellers_date": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "published_date": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "display_name": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "normal_list_ends_at": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "updated": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "books": {
+          "description": "",
+          "items": {
+            "$ref": "Book1"
+          },
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "array"
+        },
+        "corrections": {
+          "description": "",
+          "items": {
+            "type": "object"
+          },
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "array"
+        }
+      }
+    },
+    "Results3": {
+      "id": "Results3",
+      "required": [],
+      "properties": {
+        "list_name": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "display_name": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "list_name_encoded": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "oldest_published_date": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "newest_published_date": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "updated": {
+          "description": "",
+          "defaultValue": "",
+          "enum": [
+            "WEEKLY",
+            "MONTHLY"
+          ],
+          "uniqueItems": false,
+          "type": "string"
+        }
+      }
+    },
+    "Results4": {
+      "id": "Results4",
+      "required": [],
+      "properties": {
+        "title": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "description": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "contributor": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "author": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "contributor_note": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "price": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "age_group": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "publisher": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "isbns": {
+          "description": "",
+          "items": {
+            "$ref": "Isbn"
+          },
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "array"
+        },
+        "ranks_history": {
+          "description": "",
+          "items": {
+            "$ref": "RanksHistory"
+          },
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "array"
+        },
+        "reviews": {
+          "description": "",
+          "items": {
+            "$ref": "Review"
+          },
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "array"
+        }
+      }
+    },
+    "Results5": {
+      "id": "Results5",
+      "required": [],
+      "properties": {
+        "url": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "publication_dt": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "byline": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "book_title": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "book_author": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "summary": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "isbn13": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "array"
+        }
+      }
+    },
+    "Review": {
+      "id": "Review",
+      "required": [],
+      "properties": {
+        "book_review_link": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "first_chapter_link": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "sunday_review_link": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "article_chapter_link": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        }
+      }
+    },
+    "Category": {
+      "id": "Category",
+      "required": [],
+      "properties": {
+        "id": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        }
+      }
+    },
+    "Pet": {
+      "id": "Pet",
+      "required": [
+        "name",
+        "photoUrls"
+      ],
+      "properties": {
+        "id": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        "category": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "$ref": "Category"
+        },
+        "name": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "photoUrls": {
+          "description": "",
+          "items": {
+            "type": "string"
+          },
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "array"
+        },
+        "tags": {
+          "description": "",
+          "items": {
+            "$ref": "Tag"
+          },
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "array"
+        },
+        "status": {
+          "description": "pet status in the store",
+          "defaultValue": "",
+          "enum": [
+            "available",
+            "pending",
+            "sold"
+          ],
+          "uniqueItems": false,
+          "type": "string"
+        }
+      }
+    },
+    "Tag": {
+      "id": "Tag",
+      "required": [],
+      "properties": {
+        "id": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        }
+      }
+    },
+    "ApiResponse": {
+      "id": "ApiResponse",
+      "required": [],
+      "properties": {
+        "code": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "message": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        }
+      }
+    },
+    "Order": {
+      "id": "Order",
+      "required": [],
+      "properties": {
+        "id": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        "petId": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        "quantity": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        },
+        "shipDate": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "description": "Order Status",
+          "defaultValue": "",
+          "enum": [
+            "placed",
+            "approved",
+            "delivered"
+          ],
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "complete": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "User": {
+      "id": "User",
+      "required": [],
+      "properties": {
+        "id": {
+          "description": "",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int64"
+        },
+        "username": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "firstName": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "lastName": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "email": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "password": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "phone": {
+          "description": "",
+          "defaultValue": "",
+          "uniqueItems": false,
+          "type": "string"
+        },
+        "userStatus": {
+          "description": "User Status",
+          "defaultValue": "",
+          "minimum": "",
+          "maximum": "",
+          "uniqueItems": false,
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  },
+  "authorizations": {
+    "apikey": {
+      "passAs": "query",
+      "keyname": "api-key",
+      "type": "apiKey"
+    },
+    "api_key": {
+      "passAs": "header",
+      "keyname": "api_key",
+      "type": "apiKey"
+    },
+    "petstore_auth": {
+      "scopes": [
+        {
+          "scope": "read:pets",
+          "description": "read your pets"
+        },
+        {
+          "scope": "write:pets",
+          "description": "modify pets in your account"
+        }
+      ],
+      "grantTypes": {
+        "implicit": {
+          "loginEndpoint": {
+            "url": "https://petstore.swagger.io/oauth/authorize"
+          }
+        }
+      },
+      "type": "oauth2"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ]
+}

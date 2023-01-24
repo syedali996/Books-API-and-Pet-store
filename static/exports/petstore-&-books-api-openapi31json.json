@@ -1,0 +1,3114 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Petstore & Books API",
+    "description": "The Books API provides information about book reviews and The New York Times Best Sellers lists.\n\n## Best Sellers Lists Services\n### List Names\nThe lists/names service returns a list of all the NYT Best Sellers Lists.  Some lists are published weekly and others monthly.  The response includes when each list was first published and last published.\n\n```\n/lists/names.json\n```\n\n### List Data\n\nThe lists/{date}/{name} service returns the books on the best sellers list for the specified date and list name.\n\n```\n/lists/2019-01-20/hardcover-fiction.json\n```\n\nUse \"current\" for {date} to get the latest list.\n```\n/lists/current/hardcover-fiction.json\n```\n\n## Book Reviews Services\n\nThe book reviews service lets you get NYT book review by author, ISBN, or title.\n\n```\n/reviews.json?author=Michelle+Obama\n```\n\n```\n/reviews.json?isbn=9781524763138\n```\n\n```\n/reviews.json?title=Becoming\n```\n\n## Example Calls\n\n```\nhttps://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=yourkey\n```\n\n```\nhttps://api.nytimes.com/svc/books/v3/reviews.json?author=Stephen+King&api-key=yourkey\n```\n",
+    "contact": {},
+    "version": "3.0.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://api.nytimes.com/svc/books/v3",
+      "variables": {}
+    },
+    {
+      "url": "https://petstore.swagger.io/v2",
+      "variables": {}
+    },
+    {
+      "url": "http://petstore.swagger.io/v2",
+      "variables": {}
+    },
+    {
+      "url": "https://petstore.swagger.io/oauth",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/pet/{petId}": {
+      "get": {
+        "tags": [
+          "pet"
+        ],
+        "summary": "getPetById",
+        "description": "Returns a single pet",
+        "operationId": "getPetById",
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "description": "ID of pet to return",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "contentEncoding": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Pet"
+                    },
+                    {
+                      "xml": {
+                        "name": "Pet",
+                        "attribute": false,
+                        "wrapped": false
+                      }
+                    }
+                  ],
+                  "contentMediaType": "application/xml"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied",
+            "headers": {},
+            "content": {}
+          },
+          "404": {
+            "description": "Pet not found",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "pet"
+        ],
+        "summary": "updatePetWithForm",
+        "description": "Updates a pet in the store with form data",
+        "operationId": "updatePetWithForm",
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "description": "ID of pet that needs to be updated",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "contentEncoding": "int64"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/x-www-form-urlencoded",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Updated name of the pet"
+                  },
+                  "status": {
+                    "type": "string",
+                    "description": "Updated status of the pet"
+                  }
+                },
+                "contentMediaType": "application/x-www-form-urlencoded"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "405": {
+            "description": "Invalid input",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "pet"
+        ],
+        "summary": "deletePet",
+        "description": "Deletes a pet",
+        "operationId": "deletePet",
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "description": "Pet id to delete",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "contentEncoding": "int64"
+            }
+          },
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "",
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied",
+            "headers": {},
+            "content": {}
+          },
+          "404": {
+            "description": "Pet not found",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/pet/{petId}/uploadImage": {
+      "post": {
+        "tags": [
+          "pet"
+        ],
+        "summary": "uploadFile",
+        "description": "uploads an image",
+        "operationId": "uploadFile",
+        "parameters": [
+          {
+            "name": "petId",
+            "in": "path",
+            "description": "ID of pet to update",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "contentEncoding": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {},
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "additionalMetadata": {
+                    "type": "string",
+                    "description": "Additional data to pass to server"
+                  },
+                  "file": {
+                    "type": "string",
+                    "description": "file to upload",
+                    "contentEncoding": "base64"
+                  }
+                },
+                "contentMediaType": "multipart/form-data"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/pet": {
+      "post": {
+        "tags": [
+          "pet"
+        ],
+        "summary": "addPet",
+        "description": "Add a new pet to the store",
+        "operationId": "addPet",
+        "parameters": [],
+        "requestBody": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Pet"
+                  },
+                  {
+                    "description": "Pet object that needs to be added to the store"
+                  }
+                ],
+                "contentMediaType": "application/json"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "405": {
+            "description": "Invalid input",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "pet"
+        ],
+        "summary": "updatePet",
+        "description": "Update an existing pet",
+        "operationId": "updatePet",
+        "parameters": [],
+        "requestBody": {
+          "description": "Pet object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Pet"
+                  },
+                  {
+                    "description": "Pet object that needs to be added to the store"
+                  }
+                ],
+                "contentMediaType": "application/json"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied",
+            "headers": {},
+            "content": {}
+          },
+          "404": {
+            "description": "Pet not found",
+            "headers": {},
+            "content": {}
+          },
+          "405": {
+            "description": "Validation exception",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/pet/findByStatus": {
+      "get": {
+        "tags": [
+          "pet"
+        ],
+        "summary": "findPetsByStatus",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "findPetsByStatus",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status values that need to be considered for filter",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/status2"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pet"
+                  },
+                  "description": "",
+                  "contentMediaType": "application/json"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pet"
+                  },
+                  "description": "",
+                  "xml": {
+                    "attribute": false,
+                    "wrapped": false
+                  },
+                  "contentMediaType": "application/xml"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/pet/findByTags": {
+      "get": {
+        "tags": [
+          "pet"
+        ],
+        "summary": "findPetsByTags",
+        "description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
+        "operationId": "findPetsByTags",
+        "parameters": [
+          {
+            "name": "tags",
+            "in": "query",
+            "description": "Tags to filter by",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pet"
+                  },
+                  "description": "",
+                  "contentMediaType": "application/json"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pet"
+                  },
+                  "description": "",
+                  "xml": {
+                    "attribute": false,
+                    "wrapped": false
+                  },
+                  "contentMediaType": "application/xml"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid tag value",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/store/order": {
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "summary": "placeOrder",
+        "description": "Place an order for a pet",
+        "operationId": "placeOrder",
+        "parameters": [],
+        "requestBody": {
+          "description": "order placed for purchasing the pet",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Order"
+                  },
+                  {
+                    "description": "order placed for purchasing the pet"
+                  }
+                ],
+                "contentMediaType": "application/json"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Order"
+                    },
+                    {
+                      "xml": {
+                        "name": "Order",
+                        "attribute": false,
+                        "wrapped": false
+                      }
+                    }
+                  ],
+                  "contentMediaType": "application/xml"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Order",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/store/order/{orderId}": {
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "summary": "getOrderById",
+        "description": "For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions",
+        "operationId": "getOrderById",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "ID of pet that needs to be fetched",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "maximum": 10.0,
+              "minimum": 1.0,
+              "type": "integer",
+              "contentEncoding": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Order"
+                    },
+                    {
+                      "xml": {
+                        "name": "Order",
+                        "attribute": false,
+                        "wrapped": false
+                      }
+                    }
+                  ],
+                  "contentMediaType": "application/xml"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied",
+            "headers": {},
+            "content": {}
+          },
+          "404": {
+            "description": "Order not found",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "store"
+        ],
+        "summary": "deleteOrder",
+        "description": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors",
+        "operationId": "deleteOrder",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "ID of the order that needs to be deleted",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "minimum": 1.0,
+              "type": "integer",
+              "contentEncoding": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied",
+            "headers": {},
+            "content": {}
+          },
+          "404": {
+            "description": "Order not found",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/store/inventory": {
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "summary": "getInventory",
+        "description": "Returns a map of status codes to quantities",
+        "operationId": "getInventory",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "contentMediaType": "application/json"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/user/{username}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "getUserByName",
+        "description": "Get user by user name",
+        "operationId": "getUserByName",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The name that needs to be fetched. Use user1 for testing.",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/User"
+                    },
+                    {
+                      "xml": {
+                        "name": "User",
+                        "attribute": false,
+                        "wrapped": false
+                      }
+                    }
+                  ],
+                  "contentMediaType": "application/xml"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username supplied",
+            "headers": {},
+            "content": {}
+          },
+          "404": {
+            "description": "User not found",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "updateUser",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Updated user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/User"
+                  },
+                  {
+                    "description": "Updated user object"
+                  }
+                ],
+                "contentMediaType": "application/json"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "400": {
+            "description": "Invalid user supplied",
+            "headers": {},
+            "content": {}
+          },
+          "404": {
+            "description": "User not found",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "summary": "deleteUser",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The name that needs to be deleted",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid username supplied",
+            "headers": {},
+            "content": {}
+          },
+          "404": {
+            "description": "User not found",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/user/login": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "loginUser",
+        "description": "Logs user into the system",
+        "operationId": "loginUser",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "The user name for login",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "The password for login in clear text",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {
+              "X-Expires-After": {
+                "description": "date in UTC when token expires",
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "description": "date in UTC when token expires",
+                      "contentMediaType": "text/plain"
+                    }
+                  }
+                }
+              },
+              "X-Rate-Limit": {
+                "description": "calls per hour allowed by the user",
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "description": "calls per hour allowed by the user",
+                      "contentMediaType": "text/plain"
+                    }
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "contentMediaType": "application/json"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string",
+                  "xml": {
+                    "name": "response",
+                    "attribute": false,
+                    "wrapped": false
+                  },
+                  "contentMediaType": "application/xml"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/user/logout": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "logoutUser",
+        "description": "Logs out current logged in user session",
+        "operationId": "logoutUser",
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/user/createWithArray": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "createUsersWithArrayInput",
+        "description": "Creates list of users with given input array",
+        "operationId": "createUsersWithArrayInput",
+        "parameters": [],
+        "requestBody": {
+          "description": "List of user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "description": "List of user object",
+                "contentMediaType": "application/json"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/user/createWithList": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "createUsersWithListInput",
+        "description": "Creates list of users with given input array",
+        "operationId": "createUsersWithListInput",
+        "parameters": [],
+        "requestBody": {
+          "description": "List of user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "description": "List of user object",
+                "contentMediaType": "application/json"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/user": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "createUser",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "createUser",
+        "parameters": [],
+        "requestBody": {
+          "description": "Created user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/User"
+                  },
+                  {
+                    "description": "Created user object"
+                  }
+                ],
+                "contentMediaType": "application/json"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://petstore.swagger.io/v2",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/lists.json": {
+      "get": {
+        "summary": "GET_lists-format",
+        "description": "Get Best Sellers list.  If no date is provided returns the latest list.",
+        "operationId": "GET_lists-format",
+        "parameters": [
+          {
+            "name": "list",
+            "in": "query",
+            "description": "The name of the Times best sellers list (hardcover-fiction, paperback-nonfiction, ...).\nThe /lists/names service returns all the list names.\nThe encoded list names are lower case with hyphens instead of spaces (e.g. e-book-fiction, instead of E-Book Fiction).",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/json",
+              "type": "string"
+            }
+          },
+          {
+            "name": "bestsellers-date",
+            "in": "query",
+            "description": "YYYY-MM-DD\n\nThe week-ending date for the sales reflected on list-name. Times best sellers lists are compiled using available book sale data. The bestsellers-date may be significantly earlier than published-date. For additional information, see the explanation at the bottom of any best-seller list page on NYTimes.com (example: Hardcover Fiction, published Dec. 5 but reflecting sales to Nov. 29).",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "published-date",
+            "in": "query",
+            "description": "YYYY-MM-DD\n\nThe date the best sellers list was published on NYTimes.com (different than bestsellers-date).  Use \"current\" for latest list.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Sets the starting point of the result set (0, 20, ...).  Used to paginate thru books if list has more than 20. Defaults to 0.  The num_results field indicates how many books are in the list.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "multipleOf": 20.0,
+              "type": "integer",
+              "contentEncoding": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Best Sellers list books",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/GET_lists-formatResponse"
+                    },
+                    {
+                      "examples": [
+                        {
+                          "status": "OK",
+                          "copyright": "Copyright (c) 2019 The New York Times Company.  All Rights Reserved.",
+                          "num_results": 1,
+                          "last_modified": "2016-03-11T13:09:01-05:00",
+                          "results": [
+                            {
+                              "list_name": "Hardcover Fiction",
+                              "display_name": "Hardcover Fiction",
+                              "bestsellers_date": "2016-03-05",
+                              "published_date": "2016-03-20",
+                              "rank": 5,
+                              "rank_last_week": 2,
+                              "weeks_on_list": 2,
+                              "asterisk": 0,
+                              "dagger": 0,
+                              "amazon_product_url": "http://www.amazon.com/Girls-Guide-Moving-On-Novel-ebook/dp/B00ZNE17B4?tag=thenewyorktim-20",
+                              "isbns": [
+                                {
+                                  "isbn10": "0553391925",
+                                  "isbn13": "9780553391923"
+                                }
+                              ],
+                              "book_details": [
+                                {
+                                  "title": "A GIRL'S GUIDE TO MOVING ON",
+                                  "description": "A mother and her daughter-in-law both leave unhappy marriages and take up with new men.",
+                                  "contributor": "by Debbie Macomber",
+                                  "author": "Debbie Macomber",
+                                  "contributor_note": "",
+                                  "price": 0,
+                                  "age_group": "",
+                                  "publisher": "Ballantine",
+                                  "primary_isbn13": "9780553391923",
+                                  "primary_isbn10": "0553391925"
+                                }
+                              ],
+                              "reviews": [
+                                {
+                                  "book_review_link": "",
+                                  "first_chapter_link": "",
+                                  "sunday_review_link": "",
+                                  "article_chapter_link": ""
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "contentMediaType": "application/json"
+                },
+                "example": {
+                  "status": "OK",
+                  "copyright": "Copyright (c) 2019 The New York Times Company.  All Rights Reserved.",
+                  "num_results": 1,
+                  "last_modified": "2016-03-11T13:09:01-05:00",
+                  "results": [
+                    {
+                      "list_name": "Hardcover Fiction",
+                      "display_name": "Hardcover Fiction",
+                      "bestsellers_date": "2016-03-05",
+                      "published_date": "2016-03-20",
+                      "rank": 5,
+                      "rank_last_week": 2,
+                      "weeks_on_list": 2,
+                      "asterisk": 0,
+                      "dagger": 0,
+                      "amazon_product_url": "http://www.amazon.com/Girls-Guide-Moving-On-Novel-ebook/dp/B00ZNE17B4?tag=thenewyorktim-20",
+                      "isbns": [
+                        {
+                          "isbn10": "0553391925",
+                          "isbn13": "9780553391923"
+                        }
+                      ],
+                      "book_details": [
+                        {
+                          "title": "A GIRL'S GUIDE TO MOVING ON",
+                          "description": "A mother and her daughter-in-law both leave unhappy marriages and take up with new men.",
+                          "contributor": "by Debbie Macomber",
+                          "author": "Debbie Macomber",
+                          "contributor_note": "",
+                          "price": 0,
+                          "age_group": "",
+                          "publisher": "Ballantine",
+                          "primary_isbn13": "9780553391923",
+                          "primary_isbn10": "0553391925"
+                        }
+                      ],
+                      "reviews": [
+                        {
+                          "book_review_link": "",
+                          "first_chapter_link": "",
+                          "sunday_review_link": "",
+                          "article_chapter_link": ""
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "api-key": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/lists/{date}/{list}.json": {
+      "get": {
+        "summary": "GET_lists-date-list-json",
+        "description": "Get Best Sellers list by date.",
+        "operationId": "GET_lists-date-list-json",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "description": "YYYY-MM-DD or \"current\"\n\nThe date the best sellers list was published on NYTimes.com.  Use \"current\" to get latest list.",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "pattern": "^(\\d{4}-\\d{2}-\\d{2}|current)$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "list",
+            "in": "path",
+            "description": "Name of the Best Sellers List (e.g. hardcover-fiction). You can get the full list of names from the /lists/names.json service.",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/json",
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Sets the starting point of the result set (0, 20, ...).  Used to paginate thru books if list has more than 20. Defaults to 0.  The num_results field indicates how many books are in the list.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "multipleOf": 20.0,
+              "type": "integer",
+              "contentEncoding": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Best Sellers list books.",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/GET_lists-date-list-jsonResponse"
+                    },
+                    {
+                      "examples": [
+                        {
+                          "status": "OK",
+                          "copyright": "Copyright (c) 2019 The New York Times Company.  All Rights Reserved.",
+                          "num_results": 15,
+                          "last_modified": "2015-12-25T13:05:20-05:00",
+                          "results": {
+                            "list_name": "Trade Fiction Paperback",
+                            "bestsellers_date": "2015-12-19",
+                            "published_date": "2016-01-03",
+                            "display_name": "Paperback Trade Fiction",
+                            "normal_list_ends_at": 10,
+                            "updated": "WEEKLY",
+                            "books": [
+                              {
+                                "rank": 1,
+                                "rank_last_week": 0,
+                                "weeks_on_list": 60,
+                                "asterisk": 0,
+                                "dagger": 0,
+                                "primary_isbn10": "0553418025",
+                                "primary_isbn13": "9780553418026",
+                                "publisher": "Broadway",
+                                "description": "Separated from his crew, an astronaut embarks on a quest to stay alive on Mars. The basis of the movie.",
+                                "price": 0,
+                                "title": "THE MARTIAN",
+                                "author": "Andy Weir",
+                                "contributor": "by Andy Weir",
+                                "contributor_note": "",
+                                "book_image": "http://du.ec2.nytimes.com.s3.amazonaws.com/prd/books/9780804139038.jpg",
+                                "amazon_product_url": "http://www.amazon.com/The-Martian-Novel-Andy-Weir-ebook/dp/B00EMXBDMA?tag=thenewyorktim-20",
+                                "age_group": "",
+                                "book_review_link": "",
+                                "first_chapter_link": "",
+                                "sunday_review_link": "",
+                                "article_chapter_link": "",
+                                "isbns": [
+                                  {
+                                    "isbn10": "0804139024",
+                                    "isbn13": "9780804139021"
+                                  }
+                                ]
+                              }
+                            ],
+                            "corrections": []
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "contentMediaType": "application/json"
+                },
+                "example": {
+                  "status": "OK",
+                  "copyright": "Copyright (c) 2019 The New York Times Company.  All Rights Reserved.",
+                  "num_results": 15,
+                  "last_modified": "2015-12-25T13:05:20-05:00",
+                  "results": {
+                    "list_name": "Trade Fiction Paperback",
+                    "bestsellers_date": "2015-12-19",
+                    "published_date": "2016-01-03",
+                    "display_name": "Paperback Trade Fiction",
+                    "normal_list_ends_at": 10,
+                    "updated": "WEEKLY",
+                    "books": [
+                      {
+                        "rank": 1,
+                        "rank_last_week": 0,
+                        "weeks_on_list": 60,
+                        "asterisk": 0,
+                        "dagger": 0,
+                        "primary_isbn10": "0553418025",
+                        "primary_isbn13": "9780553418026",
+                        "publisher": "Broadway",
+                        "description": "Separated from his crew, an astronaut embarks on a quest to stay alive on Mars. The basis of the movie.",
+                        "price": 0,
+                        "title": "THE MARTIAN",
+                        "author": "Andy Weir",
+                        "contributor": "by Andy Weir",
+                        "contributor_note": "",
+                        "book_image": "http://du.ec2.nytimes.com.s3.amazonaws.com/prd/books/9780804139038.jpg",
+                        "amazon_product_url": "http://www.amazon.com/The-Martian-Novel-Andy-Weir-ebook/dp/B00EMXBDMA?tag=thenewyorktim-20",
+                        "age_group": "",
+                        "book_review_link": "",
+                        "first_chapter_link": "",
+                        "sunday_review_link": "",
+                        "article_chapter_link": "",
+                        "isbns": [
+                          {
+                            "isbn10": "0804139024",
+                            "isbn13": "9780804139021"
+                          }
+                        ]
+                      }
+                    ],
+                    "corrections": []
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "api-key": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/lists/full-overview.json": {
+      "get": {
+        "summary": "GET_lists-full-overview-format",
+        "description": "Get all books for all the Best Sellers lists for specified date.",
+        "operationId": "GET_lists-full-overview-format",
+        "parameters": [
+          {
+            "name": "published_date",
+            "in": "query",
+            "description": "YYYY-MM-DD\n\nThe best-seller list publication date.\nYou do not have to specify the exact date the list was published. The service will search forward (into the future) for the closest publication date to the date you specify. For example, a request for lists/overview/2013-05-22 will retrieve the list that was published on 05-26.\n\nIf you do not include a published date, the current week's best sellers lists will be returned.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Full overview of Best Sellers lists.",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OverviewResponse"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "api-key": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/lists/overview.json": {
+      "get": {
+        "summary": "GET_lists-overview-format",
+        "description": "Get top 5 books for all the Best Sellers lists for specified date.",
+        "operationId": "GET_lists-overview-format",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/json",
+              "type": "string"
+            }
+          },
+          {
+            "name": "published_date",
+            "in": "query",
+            "description": "YYYY-MM-DD\n\nThe best-seller list publication date.\nYou do not have to specify the exact date the list was published. The service will search forward (into the future) for the closest publication date to the date you specify. For example, a request for lists/overview/2013-05-22 will retrieve the list that was published on 05-26.\n\nIf you do not include a published date, the current week's best sellers lists will be returned.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Overview of Best Sellers lists.",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/OverviewResponse"
+                    },
+                    {
+                      "examples": [
+                        {
+                          "status": "OK",
+                          "copyright": "Copyright (c) 2019 The New York Times Company.  All Rights Reserved.",
+                          "num_results": 210,
+                          "results": {
+                            "bestsellers_date": "2016-03-05",
+                            "published_date": "2016-03-20",
+                            "lists": [
+                              {
+                                "list_id": 704,
+                                "list_name": "Combined Print and E-Book Fiction",
+                                "display_name": "Combined Print & E-Book Fiction",
+                                "updated": "WEEKLY",
+                                "list_image": "http://du.ec2.nytimes.com.s3.amazonaws.com/prd/books/9780399175954.jpg",
+                                "books": [
+                                  {
+                                    "age_group": "",
+                                    "author": "Clive Cussler and Justin Scott",
+                                    "contributor": "by Clive Cussler and Justin Scott",
+                                    "contributor_note": "",
+                                    "created_date": "2016-03-10 12:00:22",
+                                    "description": "In the ninth book in this series, set in 1906, the New York detective Isaac Bell contends with a crime boss passing as a respectable businessman and a tycoon’s plot against President Theodore Roosevelt.",
+                                    "price": 0,
+                                    "primary_isbn13": "9780698406421",
+                                    "primary_isbn10": "0698406427",
+                                    "publisher": "Putnam",
+                                    "rank": 1,
+                                    "title": "THE GANGSTER",
+                                    "updated_date": "2016-03-10 17:00:21"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "contentMediaType": "application/json"
+                },
+                "example": {
+                  "status": "OK",
+                  "copyright": "Copyright (c) 2019 The New York Times Company.  All Rights Reserved.",
+                  "num_results": 210,
+                  "results": {
+                    "bestsellers_date": "2016-03-05",
+                    "published_date": "2016-03-20",
+                    "lists": [
+                      {
+                        "list_id": 704,
+                        "list_name": "Combined Print and E-Book Fiction",
+                        "display_name": "Combined Print & E-Book Fiction",
+                        "updated": "WEEKLY",
+                        "list_image": "http://du.ec2.nytimes.com.s3.amazonaws.com/prd/books/9780399175954.jpg",
+                        "books": [
+                          {
+                            "age_group": "",
+                            "author": "Clive Cussler and Justin Scott",
+                            "contributor": "by Clive Cussler and Justin Scott",
+                            "contributor_note": "",
+                            "created_date": "2016-03-10 12:00:22",
+                            "description": "In the ninth book in this series, set in 1906, the New York detective Isaac Bell contends with a crime boss passing as a respectable businessman and a tycoon’s plot against President Theodore Roosevelt.",
+                            "price": 0,
+                            "primary_isbn13": "9780698406421",
+                            "primary_isbn10": "0698406427",
+                            "publisher": "Putnam",
+                            "rank": 1,
+                            "title": "THE GANGSTER",
+                            "updated_date": "2016-03-10 17:00:21"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "api-key": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/lists/names.json": {
+      "get": {
+        "summary": "GET_lists-names-format",
+        "description": "Get Best Sellers list names.",
+        "operationId": "GET_lists-names-format",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/json",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Best Sellers list names.",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/GET_lists-names-formatResponse"
+                    },
+                    {
+                      "examples": [
+                        {
+                          "status": "OK",
+                          "copyright": "Copyright (c) 2019 The New York Times Company.  All Rights Reserved.",
+                          "num_results": 53,
+                          "results": [
+                            {
+                              "list_name": "Combined Print and E-Book Fiction",
+                              "display_name": "Combined Print & E-Book Fiction",
+                              "list_name_encoded": "combined-print-and-e-book-fiction",
+                              "oldest_published_date": "2011-02-13",
+                              "newest_published_date": "2016-03-20",
+                              "updated": "WEEKLY"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "contentMediaType": "application/json"
+                },
+                "example": {
+                  "status": "OK",
+                  "copyright": "Copyright (c) 2019 The New York Times Company.  All Rights Reserved.",
+                  "num_results": 53,
+                  "results": [
+                    {
+                      "list_name": "Combined Print and E-Book Fiction",
+                      "display_name": "Combined Print & E-Book Fiction",
+                      "list_name_encoded": "combined-print-and-e-book-fiction",
+                      "oldest_published_date": "2011-02-13",
+                      "newest_published_date": "2016-03-20",
+                      "updated": "WEEKLY"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "api-key": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/lists/best-sellers/history.json": {
+      "get": {
+        "summary": "GET_lists-best-sellers-history-json",
+        "description": "Get Best Sellers list history.",
+        "operationId": "GET_lists-best-sellers-history-json",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/json",
+              "type": "string"
+            }
+          },
+          {
+            "name": "age-group",
+            "in": "query",
+            "description": "The target age group for the best seller.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "author",
+            "in": "query",
+            "description": "The author of the best seller. The author field does not include additional contributors (see Data Structure for more details about the author and contributor fields).\n\nWhen searching the author field, you can specify any combination of first, middle and last names.\n\nWhen sort-by is set to author, the results will be sorted by author's first name.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contributor",
+            "in": "query",
+            "description": "The author of the best seller, as well as other contributors such as the illustrator (to search or sort by author name only, use author instead).\n\nWhen searching, you can specify any combination of first, middle and last names of any of the contributors.\n\nWhen sort-by is set to contributor, the results will be sorted by the first name of the first contributor listed.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isbn",
+            "in": "query",
+            "description": "International Standard Book Number, 10 or 13 digits\n\nA best seller may have both 10-digit and 13-digit ISBNs, and may have multiple ISBNs of each type. To search on multiple ISBNs, separate the ISBNs with semicolons (example: 9780446579933;0061374229).",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Sets the starting point of the result set (0, 20, ...).  Used to paginate thru results if there are more than 20. Defaults to 0. The num_results field indicates how many results there are total.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "multipleOf": 20.0,
+              "type": "integer",
+              "contentEncoding": "int32"
+            }
+          },
+          {
+            "name": "price",
+            "in": "query",
+            "description": "The publisher's list price of the best seller, including decimal point.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publisher",
+            "in": "query",
+            "description": "The standardized name of the publisher",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "description": "The title of the best seller\n\nWhen searching, you can specify a portion of a title or a full title.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Best Sellers list history",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/GET_lists-best-sellers-history-jsonResponse"
+                    },
+                    {
+                      "examples": [
+                        {
+                          "status": "OK",
+                          "copyright": "Copyright (c) 2019 The New York Times Company.  All Rights Reserved.",
+                          "num_results": 28970,
+                          "results": [
+                            {
+                              "title": "#GIRLBOSS",
+                              "description": "An online fashion retailer traces her path to success.",
+                              "contributor": "by Sophia Amoruso",
+                              "author": "Sophia Amoruso",
+                              "contributor_note": "",
+                              "price": 0,
+                              "age_group": "",
+                              "publisher": "Portfolio/Penguin/Putnam",
+                              "isbns": [
+                                {
+                                  "isbn10": "039916927X",
+                                  "isbn13": "9780399169274"
+                                }
+                              ],
+                              "ranks_history": [
+                                {
+                                  "primary_isbn10": "1591847931",
+                                  "primary_isbn13": "9781591847939",
+                                  "rank": 8,
+                                  "list_name": "Business Books",
+                                  "display_name": "Business",
+                                  "published_date": "2016-03-13",
+                                  "bestsellers_date": "2016-02-27",
+                                  "weeks_on_list": 0,
+                                  "ranks_last_week": null,
+                                  "asterisk": 0,
+                                  "dagger": 0
+                                }
+                              ],
+                              "reviews": [
+                                {
+                                  "book_review_link": "",
+                                  "first_chapter_link": "",
+                                  "sunday_review_link": "",
+                                  "article_chapter_link": ""
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "contentMediaType": "application/json"
+                },
+                "example": {
+                  "status": "OK",
+                  "copyright": "Copyright (c) 2019 The New York Times Company.  All Rights Reserved.",
+                  "num_results": 28970,
+                  "results": [
+                    {
+                      "title": "#GIRLBOSS",
+                      "description": "An online fashion retailer traces her path to success.",
+                      "contributor": "by Sophia Amoruso",
+                      "author": "Sophia Amoruso",
+                      "contributor_note": "",
+                      "price": 0,
+                      "age_group": "",
+                      "publisher": "Portfolio/Penguin/Putnam",
+                      "isbns": [
+                        {
+                          "isbn10": "039916927X",
+                          "isbn13": "9780399169274"
+                        }
+                      ],
+                      "ranks_history": [
+                        {
+                          "primary_isbn10": "1591847931",
+                          "primary_isbn13": "9781591847939",
+                          "rank": 8,
+                          "list_name": "Business Books",
+                          "display_name": "Business",
+                          "published_date": "2016-03-13",
+                          "bestsellers_date": "2016-02-27",
+                          "weeks_on_list": 0,
+                          "ranks_last_week": null,
+                          "asterisk": 0,
+                          "dagger": 0
+                        }
+                      ],
+                      "reviews": [
+                        {
+                          "book_review_link": "",
+                          "first_chapter_link": "",
+                          "sunday_review_link": "",
+                          "article_chapter_link": ""
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "api-key": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/reviews.json": {
+      "get": {
+        "summary": "GET_reviews-format",
+        "description": "Get book reviews.",
+        "operationId": "GET_reviews-format",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/json",
+              "type": "string"
+            }
+          },
+          {
+            "name": "isbn",
+            "in": "query",
+            "description": "Searching by ISBN is the recommended method. You can enter 10- or 13-digit ISBNs.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "contentEncoding": "int32"
+            }
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "description": "You’ll need to enter the full title of the book. Spaces in the title will be converted into the characters %20.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "author",
+            "in": "query",
+            "description": "You’ll need to enter the author’s first and last name, separated by a space. This space will be converted into the characters %20.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Book reviews.",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/GET_reviews-formatResponse"
+                    },
+                    {
+                      "examples": [
+                        {
+                          "status": "OK",
+                          "copyright": "Copyright (c) 2019 The New York Times Company.  All Rights Reserved.",
+                          "num_results": 2,
+                          "results": [
+                            {
+                              "url": "http://www.nytimes.com/2011/11/10/books/1q84-by-haruki-murakami-review.html",
+                              "publication_dt": "2011-11-10",
+                              "byline": "JANET MASLIN",
+                              "book_title": "1Q84",
+                              "book_author": "Haruki Murakami",
+                              "summary": "In “1Q84,” the Japanese novelist Haruki Murakami writes about characters in a Tokyo with two moons.",
+                              "isbn13": [
+                                "9780307476463"
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "contentMediaType": "application/json"
+                },
+                "example": {
+                  "status": "OK",
+                  "copyright": "Copyright (c) 2019 The New York Times Company.  All Rights Reserved.",
+                  "num_results": 2,
+                  "results": [
+                    {
+                      "url": "http://www.nytimes.com/2011/11/10/books/1q84-by-haruki-murakami-review.html",
+                      "publication_dt": "2011-11-10",
+                      "byline": "JANET MASLIN",
+                      "book_title": "1Q84",
+                      "book_author": "Haruki Murakami",
+                      "summary": "In “1Q84,” the Japanese novelist Haruki Murakami writes about characters in a Tokyo with two moons.",
+                      "isbn13": [
+                        "9780307476463"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "api-key": []
+          }
+        ]
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "OverviewResponse": {
+        "title": "OverviewResponse",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "copyright": {
+            "type": "string"
+          },
+          "num_results": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "results": {
+            "$ref": "#/components/schemas/Results"
+          }
+        }
+      },
+      "Book": {
+        "title": "Book",
+        "type": "object",
+        "properties": {
+          "age_group": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "contributor": {
+            "type": "string"
+          },
+          "contributor_note": {
+            "type": "string"
+          },
+          "created_date": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "primary_isbn13": {
+            "type": "string"
+          },
+          "primary_isbn10": {
+            "type": "string"
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "title": {
+            "type": "string"
+          },
+          "updated_date": {
+            "type": "string"
+          }
+        }
+      },
+      "Book1": {
+        "title": "Book1",
+        "type": "object",
+        "properties": {
+          "rank": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "rank_last_week": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "weeks_on_list": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "asterisk": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "dagger": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "primary_isbn10": {
+            "type": "string"
+          },
+          "primary_isbn13": {
+            "type": "string"
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "title": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "contributor": {
+            "type": "string"
+          },
+          "contributor_note": {
+            "type": "string"
+          },
+          "book_image": {
+            "type": "string"
+          },
+          "amazon_product_url": {
+            "type": "string"
+          },
+          "age_group": {
+            "type": "string"
+          },
+          "book_review_link": {
+            "type": "string"
+          },
+          "first_chapter_link": {
+            "type": "string"
+          },
+          "sunday_review_link": {
+            "type": "string"
+          },
+          "article_chapter_link": {
+            "type": "string"
+          },
+          "isbns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Isbn"
+            },
+            "description": ""
+          }
+        }
+      },
+      "BookDetail": {
+        "title": "BookDetail",
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "contributor": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "contributor_note": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "age_group": {
+            "type": "string"
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "primary_isbn13": {
+            "type": "string"
+          },
+          "primary_isbn10": {
+            "type": "string"
+          }
+        }
+      },
+      "GET_lists-best-sellers-history-jsonResponse": {
+        "title": "GET_lists-best-sellers-history-jsonResponse",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "copyright": {
+            "type": "string"
+          },
+          "num_results": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Results4"
+            },
+            "description": ""
+          }
+        }
+      },
+      "GET_lists-date-list-jsonResponse": {
+        "title": "GET_lists-date-list-jsonResponse",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "copyright": {
+            "type": "string"
+          },
+          "num_results": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "last_modified": {
+            "type": "string"
+          },
+          "results": {
+            "$ref": "#/components/schemas/Results2"
+          }
+        }
+      },
+      "GET_lists-formatResponse": {
+        "title": "GET_lists-formatResponse",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "copyright": {
+            "type": "string"
+          },
+          "num_results": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "last_modified": {
+            "type": "string"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Results1"
+            },
+            "description": ""
+          }
+        }
+      },
+      "GET_lists-names-formatResponse": {
+        "title": "GET_lists-names-formatResponse",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "copyright": {
+            "type": "string"
+          },
+          "num_results": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Results3"
+            },
+            "description": ""
+          }
+        }
+      },
+      "GET_reviews-formatResponse": {
+        "title": "GET_reviews-formatResponse",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "copyright": {
+            "type": "string"
+          },
+          "num_results": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Results5"
+            },
+            "description": ""
+          }
+        }
+      },
+      "Isbn": {
+        "title": "Isbn",
+        "type": "object",
+        "properties": {
+          "isbn10": {
+            "type": "string"
+          },
+          "isbn13": {
+            "type": "string"
+          }
+        }
+      },
+      "List": {
+        "title": "List",
+        "type": "object",
+        "properties": {
+          "list_id": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "list_name": {
+            "type": "string"
+          },
+          "display_name": {
+            "type": "string"
+          },
+          "updated": {
+            "type": "string"
+          },
+          "list_image": {
+            "type": "string"
+          },
+          "books": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Book"
+            },
+            "description": ""
+          }
+        }
+      },
+      "RanksHistory": {
+        "title": "RanksHistory",
+        "type": "object",
+        "properties": {
+          "primary_isbn10": {
+            "type": "string"
+          },
+          "primary_isbn13": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "list_name": {
+            "type": "string"
+          },
+          "display_name": {
+            "type": "string"
+          },
+          "published_date": {
+            "type": "string"
+          },
+          "bestsellers_date": {
+            "type": "string"
+          },
+          "weeks_on_list": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "ranks_last_week": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "asterisk": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "dagger": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          }
+        }
+      },
+      "Results": {
+        "title": "Results",
+        "type": "object",
+        "properties": {
+          "bestsellers_date": {
+            "type": "string"
+          },
+          "published_date": {
+            "type": "string"
+          },
+          "lists": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/List"
+            },
+            "description": ""
+          }
+        }
+      },
+      "Results1": {
+        "title": "Results1",
+        "type": "object",
+        "properties": {
+          "list_name": {
+            "type": "string"
+          },
+          "display_name": {
+            "type": "string"
+          },
+          "bestsellers_date": {
+            "type": "string"
+          },
+          "published_date": {
+            "type": "string"
+          },
+          "rank": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "rank_last_week": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "weeks_on_list": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "asterisk": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "dagger": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "amazon_product_url": {
+            "type": "string"
+          },
+          "isbns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Isbn"
+            },
+            "description": ""
+          },
+          "book_details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BookDetail"
+            },
+            "description": ""
+          },
+          "reviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Review"
+            },
+            "description": ""
+          }
+        }
+      },
+      "Results2": {
+        "title": "Results2",
+        "type": "object",
+        "properties": {
+          "list_name": {
+            "type": "string"
+          },
+          "bestsellers_date": {
+            "type": "string"
+          },
+          "published_date": {
+            "type": "string"
+          },
+          "display_name": {
+            "type": "string"
+          },
+          "normal_list_ends_at": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "updated": {
+            "type": "string"
+          },
+          "books": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Book1"
+            },
+            "description": ""
+          },
+          "corrections": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": ""
+          }
+        }
+      },
+      "Results3": {
+        "title": "Results3",
+        "type": "object",
+        "properties": {
+          "list_name": {
+            "type": "string"
+          },
+          "display_name": {
+            "type": "string"
+          },
+          "list_name_encoded": {
+            "type": "string"
+          },
+          "oldest_published_date": {
+            "type": "string"
+          },
+          "newest_published_date": {
+            "type": "string"
+          },
+          "updated": {
+            "$ref": "#/components/schemas/Updated"
+          }
+        }
+      },
+      "Results4": {
+        "title": "Results4",
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "contributor": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "contributor_note": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "age_group": {
+            "type": "string"
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "isbns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Isbn"
+            },
+            "description": ""
+          },
+          "ranks_history": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RanksHistory"
+            },
+            "description": ""
+          },
+          "reviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Review"
+            },
+            "description": ""
+          }
+        }
+      },
+      "Results5": {
+        "title": "Results5",
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "publication_dt": {
+            "type": "string"
+          },
+          "byline": {
+            "type": "string"
+          },
+          "book_title": {
+            "type": "string"
+          },
+          "book_author": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "isbn13": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        }
+      },
+      "Review": {
+        "title": "Review",
+        "type": "object",
+        "properties": {
+          "book_review_link": {
+            "type": "string"
+          },
+          "first_chapter_link": {
+            "type": "string"
+          },
+          "sunday_review_link": {
+            "type": "string"
+          },
+          "article_chapter_link": {
+            "type": "string"
+          }
+        }
+      },
+      "Updated": {
+        "title": "Updated",
+        "enum": [
+          "WEEKLY",
+          "MONTHLY"
+        ],
+        "type": "string"
+      },
+      "Category": {
+        "title": "Category",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "contentEncoding": "int64"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "Category",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "Pet": {
+        "title": "Pet",
+        "required": [
+          "name",
+          "photoUrls"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "contentEncoding": "int64"
+          },
+          "category": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Category"
+              },
+              {
+                "xml": {
+                  "name": "Category",
+                  "attribute": false,
+                  "wrapped": false
+                }
+              }
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "photoUrls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "xml": {
+                "name": "photoUrl",
+                "attribute": false,
+                "wrapped": false
+              }
+            },
+            "description": "",
+            "xml": {
+              "attribute": false,
+              "wrapped": true
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Tag"
+            },
+            "description": "",
+            "xml": {
+              "attribute": false,
+              "wrapped": true
+            }
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Status"
+              },
+              {
+                "description": "pet status in the store"
+              }
+            ]
+          }
+        },
+        "xml": {
+          "name": "Pet",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "Tag": {
+        "title": "Tag",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "contentEncoding": "int64"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "Tag",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "ApiResponse": {
+        "title": "ApiResponse",
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "Order": {
+        "title": "Order",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "contentEncoding": "int64"
+          },
+          "petId": {
+            "type": "integer",
+            "contentEncoding": "int64"
+          },
+          "quantity": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "shipDate": {
+            "type": "string",
+            "contentEncoding": "date-time"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Status1"
+              },
+              {
+                "description": "Order Status"
+              }
+            ]
+          },
+          "complete": {
+            "type": "boolean"
+          }
+        },
+        "xml": {
+          "name": "Order",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "User": {
+        "title": "User",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "contentEncoding": "int64"
+          },
+          "username": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "userStatus": {
+            "type": "integer",
+            "description": "User Status",
+            "contentEncoding": "int32"
+          }
+        },
+        "xml": {
+          "name": "User",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "Status": {
+        "title": "Status",
+        "enum": [
+          "available",
+          "pending",
+          "sold"
+        ],
+        "type": "string",
+        "description": "pet status in the store"
+      },
+      "Status1": {
+        "title": "Status1",
+        "enum": [
+          "placed",
+          "approved",
+          "delivered"
+        ],
+        "type": "string",
+        "description": "Order Status"
+      },
+      "status2": {
+        "title": "status2",
+        "enum": [
+          "available",
+          "pending",
+          "sold"
+        ],
+        "type": "string"
+      }
+    },
+    "securitySchemes": {
+      "api-key": {
+        "type": "apiKey",
+        "name": "api-key",
+        "in": "query"
+      },
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      },
+      "petstore_auth": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://petstore.swagger.io/oauth/authorize",
+            "scopes": {
+              "read:pets": "read your pets",
+              "write:pets": "modify pets in your account"
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "pet",
+      "description": "Everything about your Pets",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "store",
+      "description": "Access to Petstore orders"
+    },
+    {
+      "name": "user",
+      "description": "Operations about user",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": "http://swagger.io"
+      }
+    }
+  ],
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}

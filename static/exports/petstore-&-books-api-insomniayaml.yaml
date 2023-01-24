@@ -1,0 +1,707 @@
+_type: export
+__export_format: 4
+__export_source: apimatic.transformer
+resources:
+- name: Petstore & Books API
+  _type: workspace
+  _id: wrk_b993bb413b1a4de2a5049ce6b1b45e94
+  description: >
+    The Books API provides information about book reviews and The New York Times Best Sellers lists.
+
+
+    ## Best Sellers Lists Services
+
+    ### List Names
+
+    The lists/names service returns a list of all the NYT Best Sellers Lists.  Some lists are published weekly and others monthly.  The response includes when each list was first published and last published.
+
+
+    ```
+
+    /lists/names.json
+
+    ```
+
+
+    ### List Data
+
+
+    The lists/{date}/{name} service returns the books on the best sellers list for the specified date and list name.
+
+
+    ```
+
+    /lists/2019-01-20/hardcover-fiction.json
+
+    ```
+
+
+    Use "current" for {date} to get the latest list.
+
+    ```
+
+    /lists/current/hardcover-fiction.json
+
+    ```
+
+
+    ## Book Reviews Services
+
+
+    The book reviews service lets you get NYT book review by author, ISBN, or title.
+
+
+    ```
+
+    /reviews.json?author=Michelle+Obama
+
+    ```
+
+
+    ```
+
+    /reviews.json?isbn=9781524763138
+
+    ```
+
+
+    ```
+
+    /reviews.json?title=Becoming
+
+    ```
+
+
+    ## Example Calls
+
+
+    ```
+
+    https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=yourkey
+
+    ```
+
+
+    ```
+
+    https://api.nytimes.com/svc/books/v3/reviews.json?author=Stephen+King&api-key=yourkey
+
+    ```
+- name: production
+  data:
+    default: https://api.nytimes.com/svc/books/v3
+    server1: https://petstore.swagger.io/v2
+    server2: http://petstore.swagger.io/v2
+    authserver: https://petstore.swagger.io/oauth
+  _type: environment
+  _id: env_9967b67a609b4233ac716ba8047b4e43
+  parentId: wrk_b993bb413b1a4de2a5049ce6b1b45e94
+- name: pet
+  _type: request_group
+  _id: fld_4bb29e2d872a4e4e8b795b5ae34a7afa
+  parentId: wrk_b993bb413b1a4de2a5049ce6b1b45e94
+  description: Everything about your Pets
+- name: store
+  _type: request_group
+  _id: fld_510be34916f3431aa797c41c7efe8bf3
+  parentId: wrk_b993bb413b1a4de2a5049ce6b1b45e94
+  description: Access to Petstore orders
+- name: user
+  _type: request_group
+  _id: fld_e8a3ea57053c4099834d8240072b5100
+  parentId: wrk_b993bb413b1a4de2a5049ce6b1b45e94
+  description: Operations about user
+- name: getPetById
+  method: GET
+  url: '{{server1}}/pet/{petId}'
+  headers:
+  - name: api_key
+    value: api_key30
+    disabled: false
+  _type: request
+  _id: req_751d8448077c478388e7cfc3384dc30d
+  parentId: fld_4bb29e2d872a4e4e8b795b5ae34a7afa
+  description: Returns a single pet
+- name: updatePetWithForm
+  method: POST
+  url: '{{server1}}/pet/{petId}'
+  body:
+    mimeType: application/x-www-form-urlencoded
+    params:
+    - type: text
+      name: name
+      value: name15
+      disabled: false
+    - type: text
+      name: status
+      value: status98
+      disabled: false
+  headers:
+  - name: Content-Type
+    value: application/x-www-form-urlencoded
+    disabled: false
+  authentication:
+    type: oauth2
+    authorizationUrl: https://petstore.swagger.io/oauth/authorize
+    grantType: implicit
+  _type: request
+  _id: req_71414daa177544408f0fa271d5ae985c
+  parentId: fld_4bb29e2d872a4e4e8b795b5ae34a7afa
+  description: Updates a pet in the store with form data
+- name: deletePet
+  method: DELETE
+  url: '{{server1}}/pet/{petId}'
+  headers:
+  - name: api_key
+    value: api_key47
+    disabled: false
+  authentication:
+    type: oauth2
+    authorizationUrl: https://petstore.swagger.io/oauth/authorize
+    grantType: implicit
+  _type: request
+  _id: req_6eadb3993a284eafac5edb810efb19a4
+  parentId: fld_4bb29e2d872a4e4e8b795b5ae34a7afa
+  description: Deletes a pet
+- name: uploadFile
+  method: POST
+  url: '{{server1}}/pet/{petId}/uploadImage'
+  body:
+    mimeType: multipart/form-data
+    params:
+    - type: text
+      name: additionalMetadata
+      value: additionalMetadata47
+      disabled: false
+    - type: file
+      name: file
+      value: path/to/file79
+      disabled: false
+  authentication:
+    type: oauth2
+    authorizationUrl: https://petstore.swagger.io/oauth/authorize
+    grantType: implicit
+  _type: request
+  _id: req_162f8f26f7124cf2b3a7b481360de982
+  parentId: fld_4bb29e2d872a4e4e8b795b5ae34a7afa
+  description: uploads an image
+- name: addPet
+  method: POST
+  url: '{{server1}}/pet'
+  body:
+    mimeType: application/json
+    text: >-
+      {
+
+        "name": "name30",
+
+        "photoUrls": [
+
+          "photoUrls66"
+
+        ],
+
+        "id": 206,
+
+        "category": {
+
+          "id": 92,
+
+          "name": "name49"
+
+        },
+
+        "tags": [
+
+          {
+
+            "id": 78,
+
+            "name": "name69"
+
+          }
+
+        ],
+
+        "status": "pending"
+
+      }
+  headers:
+  - name: Content-Type
+    value: application/json
+    disabled: false
+  authentication:
+    type: oauth2
+    authorizationUrl: https://petstore.swagger.io/oauth/authorize
+    grantType: implicit
+  _type: request
+  _id: req_c09a8ea161e64942858313c2a7d4dac8
+  parentId: fld_4bb29e2d872a4e4e8b795b5ae34a7afa
+  description: Add a new pet to the store
+- name: updatePet
+  method: PUT
+  url: '{{server1}}/pet'
+  body:
+    mimeType: application/json
+    text: >-
+      {
+
+        "name": "name30",
+
+        "photoUrls": [
+
+          "photoUrls66"
+
+        ],
+
+        "id": 206,
+
+        "category": {
+
+          "id": 92,
+
+          "name": "name49"
+
+        },
+
+        "tags": [
+
+          {
+
+            "id": 78,
+
+            "name": "name69"
+
+          }
+
+        ],
+
+        "status": "pending"
+
+      }
+  headers:
+  - name: Content-Type
+    value: application/json
+    disabled: false
+  authentication:
+    type: oauth2
+    authorizationUrl: https://petstore.swagger.io/oauth/authorize
+    grantType: implicit
+  _type: request
+  _id: req_4e78ec1025d442be9339522d6dd17ba5
+  parentId: fld_4bb29e2d872a4e4e8b795b5ae34a7afa
+  description: Update an existing pet
+- name: findPetsByStatus
+  method: GET
+  url: '{{server1}}/pet/findByStatus'
+  parameters:
+  - name: status
+    value: '["pending"]'
+    disabled: false
+  authentication:
+    type: oauth2
+    authorizationUrl: https://petstore.swagger.io/oauth/authorize
+    grantType: implicit
+  _type: request
+  _id: req_ac3927b0378a45e08a75eab6727b4cd9
+  parentId: fld_4bb29e2d872a4e4e8b795b5ae34a7afa
+  description: Multiple status values can be provided with comma separated strings
+- name: findPetsByTags
+  method: GET
+  url: '{{server1}}/pet/findByTags'
+  parameters:
+  - name: tags
+    value: '["tags67"]'
+    disabled: false
+  authentication:
+    type: oauth2
+    authorizationUrl: https://petstore.swagger.io/oauth/authorize
+    grantType: implicit
+  _type: request
+  _id: req_03e33df77c6f4626968cf7d261c74142
+  parentId: fld_4bb29e2d872a4e4e8b795b5ae34a7afa
+  description: Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+- name: placeOrder
+  method: POST
+  url: '{{server1}}/store/order'
+  body:
+    mimeType: application/json
+    text: >-
+      {
+
+        "id": 173,
+
+        "petId": 198,
+
+        "quantity": 96,
+
+        "shipDate": "2023-03-22T12:20:04.7369845Z",
+
+        "status": "approved",
+
+        "complete": false
+
+      }
+  headers:
+  - name: Content-Type
+    value: application/json
+    disabled: false
+  _type: request
+  _id: req_4f07fb366e5c4021af06c48aabcf6be8
+  parentId: fld_510be34916f3431aa797c41c7efe8bf3
+  description: Place an order for a pet
+- name: getOrderById
+  method: GET
+  url: '{{server1}}/store/order/{orderId}'
+  _type: request
+  _id: req_1b2358fb99f34b958ffdbaca1d7ee808
+  parentId: fld_510be34916f3431aa797c41c7efe8bf3
+  description: For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions
+- name: deleteOrder
+  method: DELETE
+  url: '{{server1}}/store/order/{orderId}'
+  _type: request
+  _id: req_a82404f3f901430e9fcd687c39d06898
+  parentId: fld_510be34916f3431aa797c41c7efe8bf3
+  description: For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors
+- name: getInventory
+  method: GET
+  url: '{{server1}}/store/inventory'
+  headers:
+  - name: api_key
+    value: api_key11
+    disabled: false
+  _type: request
+  _id: req_8a4aa4657c5c49afadb4c826e2f02814
+  parentId: fld_510be34916f3431aa797c41c7efe8bf3
+  description: Returns a map of status codes to quantities
+- name: getUserByName
+  method: GET
+  url: '{{server1}}/user/{username}'
+  _type: request
+  _id: req_254cba9c5a43473881b14c307e04c3b7
+  parentId: fld_e8a3ea57053c4099834d8240072b5100
+  description: Get user by user name
+- name: updateUser
+  method: PUT
+  url: '{{server1}}/user/{username}'
+  body:
+    mimeType: application/json
+    text: >-
+      {
+
+        "id": 236,
+
+        "username": "username68",
+
+        "firstName": "firstName11",
+
+        "lastName": "lastName9",
+
+        "email": "email92",
+
+        "password": "password69",
+
+        "phone": "phone43",
+
+        "userStatus": 11
+
+      }
+  headers:
+  - name: Content-Type
+    value: application/json
+    disabled: false
+  _type: request
+  _id: req_8395f8c22be5413a82e19efa9462b7a8
+  parentId: fld_e8a3ea57053c4099834d8240072b5100
+  description: This can only be done by the logged in user.
+- name: deleteUser
+  method: DELETE
+  url: '{{server1}}/user/{username}'
+  _type: request
+  _id: req_d5c9fa40dcb44573822f29b8d68a10e7
+  parentId: fld_e8a3ea57053c4099834d8240072b5100
+  description: This can only be done by the logged in user.
+- name: loginUser
+  method: GET
+  url: '{{server1}}/user/login'
+  parameters:
+  - name: username
+    value: username29
+    disabled: false
+  - name: password
+    value: password21
+    disabled: false
+  _type: request
+  _id: req_3abbbf502c624ac6978685bb551c3fef
+  parentId: fld_e8a3ea57053c4099834d8240072b5100
+  description: Logs user into the system
+- name: logoutUser
+  method: GET
+  url: '{{server1}}/user/logout'
+  _type: request
+  _id: req_ad81d9777f0f446f94f0199cece4a871
+  parentId: fld_e8a3ea57053c4099834d8240072b5100
+  description: Logs out current logged in user session
+- name: createUsersWithArrayInput
+  method: POST
+  url: '{{server1}}/user/createWithArray'
+  body:
+    mimeType: application/json
+    text: >-
+      [
+
+        {
+
+          "id": 236,
+
+          "username": "username68",
+
+          "firstName": "firstName11",
+
+          "lastName": "lastName9",
+
+          "email": "email92",
+
+          "password": "password69",
+
+          "phone": "phone43",
+
+          "userStatus": 11
+
+        }
+
+      ]
+  headers:
+  - name: Content-Type
+    value: application/json
+    disabled: false
+  _type: request
+  _id: req_a7164ec9aee8476897b03063bfb57876
+  parentId: fld_e8a3ea57053c4099834d8240072b5100
+  description: Creates list of users with given input array
+- name: createUsersWithListInput
+  method: POST
+  url: '{{server1}}/user/createWithList'
+  body:
+    mimeType: application/json
+    text: >-
+      [
+
+        {
+
+          "id": 236,
+
+          "username": "username68",
+
+          "firstName": "firstName11",
+
+          "lastName": "lastName9",
+
+          "email": "email92",
+
+          "password": "password69",
+
+          "phone": "phone43",
+
+          "userStatus": 11
+
+        }
+
+      ]
+  headers:
+  - name: Content-Type
+    value: application/json
+    disabled: false
+  _type: request
+  _id: req_273894832d95463783ff2f332a7baf20
+  parentId: fld_e8a3ea57053c4099834d8240072b5100
+  description: Creates list of users with given input array
+- name: createUser
+  method: POST
+  url: '{{server1}}/user'
+  body:
+    mimeType: application/json
+    text: >-
+      {
+
+        "id": 236,
+
+        "username": "username68",
+
+        "firstName": "firstName11",
+
+        "lastName": "lastName9",
+
+        "email": "email92",
+
+        "password": "password69",
+
+        "phone": "phone43",
+
+        "userStatus": 11
+
+      }
+  headers:
+  - name: Content-Type
+    value: application/json
+    disabled: false
+  _type: request
+  _id: req_4eab30de245e4182ae271c62f019f7e5
+  parentId: fld_e8a3ea57053c4099834d8240072b5100
+  description: This can only be done by the logged in user.
+- name: GET_lists-format
+  method: GET
+  url: '{{default}}/lists.json'
+  parameters:
+  - name: list
+    value: hardcover-fiction
+    disabled: false
+  - name: bestsellers-date
+    value: bestsellers-date37
+    disabled: false
+  - name: published-date
+    value: published-date38
+    disabled: false
+  - name: offset
+    value: '100'
+    disabled: false
+  - name: api-key
+    value: S36VNES3R5jDxeBwfdVeWvqKUQoWem8l
+    disabled: false
+  headers:
+  - name: Content-Type
+    value: application/json
+    disabled: false
+  _type: request
+  _id: req_b2458b04bb3f4d0fa49749021f0a5d40
+  parentId: wrk_b993bb413b1a4de2a5049ce6b1b45e94
+  description: Get Best Sellers list.  If no date is provided returns the latest list.
+- name: GET_lists-date-list-json
+  method: GET
+  url: '{{default}}/lists/{date}/{list}.json'
+  parameters:
+  - name: offset
+    value: '220'
+    disabled: false
+  - name: api-key
+    value: S36VNES3R5jDxeBwfdVeWvqKUQoWem8l
+    disabled: false
+  headers:
+  - name: Content-Type
+    value: application/json
+    disabled: false
+  _type: request
+  _id: req_6f66834d09304b95b49a03d89404ed37
+  parentId: wrk_b993bb413b1a4de2a5049ce6b1b45e94
+  description: Get Best Sellers list by date.
+- name: GET_lists-full-overview-format
+  method: GET
+  url: '{{default}}/lists/full-overview.json'
+  parameters:
+  - name: published_date
+    value: published_date56
+    disabled: false
+  - name: api-key
+    value: S36VNES3R5jDxeBwfdVeWvqKUQoWem8l
+    disabled: false
+  _type: request
+  _id: req_6a4bc74754e941a78cc8c51f5845b09c
+  parentId: wrk_b993bb413b1a4de2a5049ce6b1b45e94
+  description: Get all books for all the Best Sellers lists for specified date.
+- name: GET_lists-overview-format
+  method: GET
+  url: '{{default}}/lists/overview.json'
+  parameters:
+  - name: published_date
+    value: published_date71
+    disabled: false
+  - name: api-key
+    value: S36VNES3R5jDxeBwfdVeWvqKUQoWem8l
+    disabled: false
+  headers:
+  - name: Content-Type
+    value: application/json
+    disabled: false
+  _type: request
+  _id: req_bce83d3359ab462980385f60e869b172
+  parentId: wrk_b993bb413b1a4de2a5049ce6b1b45e94
+  description: Get top 5 books for all the Best Sellers lists for specified date.
+- name: GET_lists-names-format
+  method: GET
+  url: '{{default}}/lists/names.json'
+  parameters:
+  - name: api-key
+    value: S36VNES3R5jDxeBwfdVeWvqKUQoWem8l
+    disabled: false
+  headers:
+  - name: Content-Type
+    value: application/json
+    disabled: false
+  _type: request
+  _id: req_d7270fdcdb0b4d49861a0f5ab5f3fa1c
+  parentId: wrk_b993bb413b1a4de2a5049ce6b1b45e94
+  description: Get Best Sellers list names.
+- name: GET_lists-best-sellers-history-json
+  method: GET
+  url: '{{default}}/lists/best-sellers/history.json'
+  parameters:
+  - name: age-group
+    value: age-group44
+    disabled: false
+  - name: author
+    value: author52
+    disabled: false
+  - name: contributor
+    value: contributor78
+    disabled: false
+  - name: isbn
+    value: isbn98
+    disabled: false
+  - name: offset
+    value: '40'
+    disabled: false
+  - name: price
+    value: price68
+    disabled: false
+  - name: publisher
+    value: publisher85
+    disabled: false
+  - name: title
+    value: title20
+    disabled: false
+  - name: api-key
+    value: S36VNES3R5jDxeBwfdVeWvqKUQoWem8l
+    disabled: false
+  headers:
+  - name: Content-Type
+    value: application/json
+    disabled: false
+  _type: request
+  _id: req_b4d0c404b1c845a09a7260faa92383dc
+  parentId: wrk_b993bb413b1a4de2a5049ce6b1b45e94
+  description: Get Best Sellers list history.
+- name: GET_reviews-format
+  method: GET
+  url: '{{default}}/reviews.json'
+  parameters:
+  - name: isbn
+    value: '212'
+    disabled: false
+  - name: title
+    value: title19
+    disabled: false
+  - name: author
+    value: author5
+    disabled: false
+  - name: api-key
+    value: S36VNES3R5jDxeBwfdVeWvqKUQoWem8l
+    disabled: false
+  headers:
+  - name: Content-Type
+    value: application/json
+    disabled: false
+  _type: request
+  _id: req_74dfc397a99c47c4a1daaf312b823bee
+  parentId: wrk_b993bb413b1a4de2a5049ce6b1b45e94
+  description: Get book reviews.

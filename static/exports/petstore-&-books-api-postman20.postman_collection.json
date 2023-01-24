@@ -1,0 +1,1766 @@
+{
+  "info": {
+    "name": "Petstore & Books API",
+    "_postman_id": "01d358e6-bf12-46f2-ab25-3a1741f73923",
+    "description": "The Books API provides information about book reviews and The New York Times Best Sellers lists.\n\n## Best Sellers Lists Services\n### List Names\nThe lists/names service returns a list of all the NYT Best Sellers Lists.  Some lists are published weekly and others monthly.  The response includes when each list was first published and last published.\n\n```\n/lists/names.json\n```\n\n### List Data\n\nThe lists/{date}/{name} service returns the books on the best sellers list for the specified date and list name.\n\n```\n/lists/2019-01-20/hardcover-fiction.json\n```\n\nUse \"current\" for {date} to get the latest list.\n```\n/lists/current/hardcover-fiction.json\n```\n\n## Book Reviews Services\n\nThe book reviews service lets you get NYT book review by author, ISBN, or title.\n\n```\n/reviews.json?author=Michelle+Obama\n```\n\n```\n/reviews.json?isbn=9781524763138\n```\n\n```\n/reviews.json?title=Becoming\n```\n\n## Example Calls\n\n```\nhttps://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=yourkey\n```\n\n```\nhttps://api.nytimes.com/svc/books/v3/reviews.json?author=Stephen+King&api-key=yourkey\n```\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "pet",
+      "description": "Everything about your Pets",
+      "item": [
+        {
+          "id": "4bb01a38-ec19-4eeb-9406-f19d4468c701",
+          "name": "getPetById",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "pet/:petId"
+              ],
+              "variable": [
+                {
+                  "id": "petId",
+                  "value": "152",
+                  "type": "string",
+                  "description": "ID of pet to return"
+                }
+              ]
+            },
+            "auth": {
+              "type": "apikey",
+              "apikey": {
+                "key": "api_key",
+                "value": "api_key54",
+                "in": "header"
+              }
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json,application/xml",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "Returns a single pet"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"name\": \"name28\",\r\n  \"photoUrls\": [\r\n    \"photoUrls37\"\r\n  ],\r\n  \"id\": 252,\r\n  \"category\": {\r\n    \"id\": 242,\r\n    \"name\": \"name83\"\r\n  },\r\n  \"tags\": [\r\n    {\r\n      \"id\": 48,\r\n      \"name\": \"name65\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+              "status": "successful operation",
+              "code": 200,
+              "name": "Response_200",
+              "id": "0c0fa4e7-7dcd-4ac8-9b65-29e9be25139e"
+            },
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"name\": \"name57\",\r\n  \"photoUrls\": [\r\n    \"photoUrls56\"\r\n  ],\r\n  \"id\": 194,\r\n  \"category\": {\r\n    \"id\": 192,\r\n    \"name\": \"name51\"\r\n  },\r\n  \"tags\": [\r\n    {\r\n      \"id\": 40,\r\n      \"name\": \"name67\"\r\n    }\r\n  ],\r\n  \"status\": \"pending\"\r\n}",
+              "status": "successful operation",
+              "code": 200,
+              "name": "Response_200",
+              "id": "b8ed7eac-b514-4c19-8f67-ad9f9c982c3b"
+            },
+            {
+              "header": [],
+              "status": "Invalid ID supplied",
+              "code": 400,
+              "name": "Response_400",
+              "id": "efa589cb-75a9-4ccc-a190-c608d859b03d"
+            },
+            {
+              "header": [],
+              "status": "Pet not found",
+              "code": 404,
+              "name": "Response_404",
+              "id": "a6394448-392a-48b6-aa2d-ae5883d9fd69"
+            }
+          ]
+        },
+        {
+          "id": "6f48324e-99cf-404a-bad8-dbb9529227e0",
+          "name": "updatePetWithForm",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "pet/:petId"
+              ],
+              "variable": [
+                {
+                  "id": "petId",
+                  "value": "14",
+                  "type": "string",
+                  "description": "ID of pet that needs to be updated"
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "oauth2": {
+                "authUrl": "https://petstore.swagger.io/oauth/authorize",
+                "scope": "write:pets read:pets",
+                "grant_type": "implicit"
+              }
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded",
+                "description": "",
+                "disabled": false
+              },
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "name",
+                  "value": "name23",
+                  "disabled": false,
+                  "type": "text",
+                  "description": "Updated name of the pet"
+                },
+                {
+                  "key": "status",
+                  "value": "status15",
+                  "disabled": false,
+                  "type": "text",
+                  "description": "Updated status of the pet"
+                }
+              ],
+              "disabled": false
+            },
+            "description": "Updates a pet in the store with form data"
+          },
+          "response": [
+            {
+              "header": [],
+              "status": "Invalid input",
+              "code": 405,
+              "name": "Response_405",
+              "id": "38c02e19-afd0-4620-bea3-8103169861ea"
+            }
+          ]
+        },
+        {
+          "id": "0983508a-f0e2-475f-8dc6-721fd42e5c40",
+          "name": "deletePet",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "pet/:petId"
+              ],
+              "variable": [
+                {
+                  "id": "petId",
+                  "value": "53",
+                  "type": "string",
+                  "description": "Pet id to delete"
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "oauth2": {
+                "authUrl": "https://petstore.swagger.io/oauth/authorize",
+                "scope": "write:pets read:pets",
+                "grant_type": "implicit"
+              }
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "api_key",
+                "value": "api_key93",
+                "description": "",
+                "disabled": false
+              },
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "Deletes a pet"
+          },
+          "response": [
+            {
+              "header": [],
+              "status": "Invalid ID supplied",
+              "code": 400,
+              "name": "Response_400",
+              "id": "110ba77e-af50-44cc-96f1-af3497c4431c"
+            },
+            {
+              "header": [],
+              "status": "Pet not found",
+              "code": 404,
+              "name": "Response_404",
+              "id": "88cd582d-1bed-40a9-a02b-bf323ec15ed6"
+            }
+          ]
+        },
+        {
+          "id": "cf20d1b8-c29c-45e5-bbd0-0e49c7584825",
+          "name": "uploadFile",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "pet/:petId/uploadImage"
+              ],
+              "variable": [
+                {
+                  "id": "petId",
+                  "value": "122",
+                  "type": "string",
+                  "description": "ID of pet to update"
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "oauth2": {
+                "authUrl": "https://petstore.swagger.io/oauth/authorize",
+                "scope": "write:pets read:pets",
+                "grant_type": "implicit"
+              }
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "additionalMetadata",
+                  "value": "additionalMetadata49",
+                  "disabled": false,
+                  "type": "text",
+                  "description": "Additional data to pass to server"
+                },
+                {
+                  "key": "file",
+                  "disabled": false,
+                  "type": "file",
+                  "description": "file to upload"
+                }
+              ],
+              "disabled": false
+            },
+            "description": "uploads an image"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"code\": 22,\r\n  \"type\": \"type82\",\r\n  \"message\": \"message52\"\r\n}",
+              "status": "successful operation",
+              "code": 200,
+              "name": "Response_200",
+              "id": "5c4adb2a-c540-4d50-9f6f-167c690fcf91"
+            }
+          ]
+        },
+        {
+          "id": "c42bef87-85a9-4413-a692-b39cb3a75948",
+          "name": "addPet",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "pet"
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "oauth2": {
+                "authUrl": "https://petstore.swagger.io/oauth/authorize",
+                "scope": "write:pets read:pets",
+                "grant_type": "implicit"
+              }
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false
+              },
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"name13\",\r\n  \"photoUrls\": [\r\n    \"photoUrls65\"\r\n  ],\r\n  \"id\": 87,\r\n  \"category\": {\r\n    \"id\": 253,\r\n    \"name\": \"name97\"\r\n  },\r\n  \"tags\": [\r\n    {\r\n      \"id\": 204,\r\n      \"name\": \"name93\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+              "disabled": false
+            },
+            "description": "Add a new pet to the store"
+          },
+          "response": [
+            {
+              "header": [],
+              "status": "Invalid input",
+              "code": 405,
+              "name": "Response_405",
+              "id": "4989082f-25c1-4901-a67e-0849e2375a8b"
+            }
+          ]
+        },
+        {
+          "id": "71c00dbb-c4dd-4cfc-b497-a71664e1c7b0",
+          "name": "updatePet",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "pet"
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "oauth2": {
+                "authUrl": "https://petstore.swagger.io/oauth/authorize",
+                "scope": "write:pets read:pets",
+                "grant_type": "implicit"
+              }
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false
+              },
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"name13\",\r\n  \"photoUrls\": [\r\n    \"photoUrls65\"\r\n  ],\r\n  \"id\": 87,\r\n  \"category\": {\r\n    \"id\": 253,\r\n    \"name\": \"name97\"\r\n  },\r\n  \"tags\": [\r\n    {\r\n      \"id\": 204,\r\n      \"name\": \"name93\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+              "disabled": false
+            },
+            "description": "Update an existing pet"
+          },
+          "response": [
+            {
+              "header": [],
+              "status": "Invalid ID supplied",
+              "code": 400,
+              "name": "Response_400",
+              "id": "5b3a3e87-f381-4607-b112-25a191d1a0f3"
+            },
+            {
+              "header": [],
+              "status": "Pet not found",
+              "code": 404,
+              "name": "Response_404",
+              "id": "faa54026-93f9-44d9-bbb3-21fff0e66f2a"
+            },
+            {
+              "header": [],
+              "status": "Validation exception",
+              "code": 405,
+              "name": "Response_405",
+              "id": "30556eb6-00f5-432a-a27a-377434de3bb3"
+            }
+          ]
+        },
+        {
+          "id": "d8eb2307-5fb3-4d86-a8a0-704baf50b704",
+          "name": "findPetsByStatus",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "pet/findByStatus"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "%5B%22available%22%5D",
+                  "description": "Status values that need to be considered for filter",
+                  "disabled": false
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "oauth2": {
+                "authUrl": "https://petstore.swagger.io/oauth/authorize",
+                "scope": "write:pets read:pets",
+                "grant_type": "implicit"
+              }
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json,application/xml",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "Multiple status values can be provided with comma separated strings"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "[\r\n  {\r\n    \"name\": \"name28\",\r\n    \"photoUrls\": [\r\n      \"photoUrls37\"\r\n    ],\r\n    \"id\": 252,\r\n    \"category\": {\r\n      \"id\": 242,\r\n      \"name\": \"name83\"\r\n    },\r\n    \"tags\": [\r\n      {\r\n        \"id\": 48,\r\n        \"name\": \"name65\"\r\n      }\r\n    ],\r\n    \"status\": \"available\"\r\n  }\r\n]",
+              "status": "successful operation",
+              "code": 200,
+              "name": "Response_200",
+              "id": "9f43cc3d-c8a0-4d50-8701-4f43d49da5a6"
+            },
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml",
+                  "disabled": false
+                }
+              ],
+              "body": "[\r\n  {\r\n    \"name\": \"name77\",\r\n    \"photoUrls\": [\r\n      \"photoUrls19\"\r\n    ],\r\n    \"id\": 70,\r\n    \"category\": {\r\n      \"id\": 189,\r\n      \"name\": \"name10\"\r\n    },\r\n    \"tags\": [\r\n      {\r\n        \"id\": 6,\r\n        \"name\": \"name43\"\r\n      }\r\n    ],\r\n    \"status\": \"available\"\r\n  }\r\n]",
+              "status": "successful operation",
+              "code": 200,
+              "name": "Response_200",
+              "id": "e9185e32-24b4-45c1-84c4-85a10ec9185f"
+            },
+            {
+              "header": [],
+              "status": "Invalid status value",
+              "code": 400,
+              "name": "Response_400",
+              "id": "cc975695-9d0b-4d23-ac7b-1fb778b46438"
+            }
+          ]
+        },
+        {
+          "id": "d278ef05-711f-4b04-985c-ccbcd98e6bbd",
+          "name": "findPetsByTags",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "pet/findByTags"
+              ],
+              "query": [
+                {
+                  "key": "tags",
+                  "value": "%5B%22tags95%22%5D",
+                  "description": "Tags to filter by",
+                  "disabled": false
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "oauth2": {
+                "authUrl": "https://petstore.swagger.io/oauth/authorize",
+                "scope": "write:pets read:pets",
+                "grant_type": "implicit"
+              }
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json,application/xml",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing."
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "[\r\n  {\r\n    \"name\": \"name28\",\r\n    \"photoUrls\": [\r\n      \"photoUrls37\"\r\n    ],\r\n    \"id\": 252,\r\n    \"category\": {\r\n      \"id\": 242,\r\n      \"name\": \"name83\"\r\n    },\r\n    \"tags\": [\r\n      {\r\n        \"id\": 48,\r\n        \"name\": \"name65\"\r\n      }\r\n    ],\r\n    \"status\": \"available\"\r\n  }\r\n]",
+              "status": "successful operation",
+              "code": 200,
+              "name": "Response_200",
+              "id": "498ae54a-afdb-40bb-a1f9-7dce8ea5b8e7"
+            },
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml",
+                  "disabled": false
+                }
+              ],
+              "body": "[\r\n  {\r\n    \"name\": \"name59\",\r\n    \"photoUrls\": [\r\n      \"photoUrls4\"\r\n    ],\r\n    \"id\": 80,\r\n    \"category\": {\r\n      \"id\": 16,\r\n      \"name\": \"name51\"\r\n    },\r\n    \"tags\": [\r\n      {\r\n        \"id\": 205,\r\n        \"name\": \"name86\"\r\n      }\r\n    ],\r\n    \"status\": \"available\"\r\n  }\r\n]",
+              "status": "successful operation",
+              "code": 200,
+              "name": "Response_200",
+              "id": "ca201e5f-3b2d-4e36-9a42-b01ac8d75986"
+            },
+            {
+              "header": [],
+              "status": "Invalid tag value",
+              "code": 400,
+              "name": "Response_400",
+              "id": "469dcbe5-8040-4338-8320-36aa57e82d55"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "store",
+      "description": "Access to Petstore orders",
+      "item": [
+        {
+          "id": "8d06a445-b215-48e6-bbff-01717652e8cf",
+          "name": "placeOrder",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "store/order"
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false
+              },
+              {
+                "key": "Accept",
+                "value": "application/json,application/xml",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": 202,\r\n  \"petId\": 41,\r\n  \"quantity\": 125,\r\n  \"shipDate\": \"2023-03-06T12:20:04.737679Z\",\r\n  \"status\": \"approved\",\r\n  \"complete\": false\r\n}",
+              "disabled": false
+            },
+            "description": "Place an order for a pet"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"id\": 168,\r\n  \"petId\": 42,\r\n  \"quantity\": 226,\r\n  \"shipDate\": \"2023-02-17T12:20:04.7377623Z\",\r\n  \"status\": \"approved\",\r\n  \"complete\": true\r\n}",
+              "status": "successful operation",
+              "code": 200,
+              "name": "Response_200",
+              "id": "2e61118d-dbdb-4d89-b856-f247980d058f"
+            },
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"id\": 253,\r\n  \"petId\": 191,\r\n  \"quantity\": 43,\r\n  \"shipDate\": \"2023-04-25T12:20:04.7378411Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}",
+              "status": "successful operation",
+              "code": 200,
+              "name": "Response_200",
+              "id": "791218d8-aa3f-4885-ae12-2f239a7ae8fa"
+            },
+            {
+              "header": [],
+              "status": "Invalid Order",
+              "code": 400,
+              "name": "Response_400",
+              "id": "49e986c1-f871-420a-8dad-9237d326847b"
+            }
+          ]
+        },
+        {
+          "id": "88f66222-b256-4366-a30a-c79ab4ac7826",
+          "name": "getOrderById",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "store/order/:orderId"
+              ],
+              "variable": [
+                {
+                  "id": "orderId",
+                  "value": "6",
+                  "type": "string",
+                  "description": "ID of pet that needs to be fetched"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json,application/xml",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"id\": 168,\r\n  \"petId\": 42,\r\n  \"quantity\": 226,\r\n  \"shipDate\": \"2023-02-17T12:20:04.7377623Z\",\r\n  \"status\": \"approved\",\r\n  \"complete\": true\r\n}",
+              "status": "successful operation",
+              "code": 200,
+              "name": "Response_200",
+              "id": "db2818d1-4ff9-4166-986f-ebdcacd1d44e"
+            },
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"id\": 27,\r\n  \"petId\": 157,\r\n  \"quantity\": 247,\r\n  \"shipDate\": \"2023-04-30T12:20:04.7379767Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}",
+              "status": "successful operation",
+              "code": 200,
+              "name": "Response_200",
+              "id": "191a3ecd-ff85-4e19-b076-96a2f3ea3e53"
+            },
+            {
+              "header": [],
+              "status": "Invalid ID supplied",
+              "code": 400,
+              "name": "Response_400",
+              "id": "a5ef4dbc-a8ff-434d-8a57-dde50041b829"
+            },
+            {
+              "header": [],
+              "status": "Order not found",
+              "code": 404,
+              "name": "Response_404",
+              "id": "1a297313-2dff-417c-85ce-5c17ff6399e6"
+            }
+          ]
+        },
+        {
+          "id": "39b7c80f-bb39-40a2-86a1-981f4927d855",
+          "name": "deleteOrder",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "store/order/:orderId"
+              ],
+              "variable": [
+                {
+                  "id": "orderId",
+                  "value": "3",
+                  "type": "string",
+                  "description": "ID of the order that needs to be deleted"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors"
+          },
+          "response": [
+            {
+              "header": [],
+              "status": "Invalid ID supplied",
+              "code": 400,
+              "name": "Response_400",
+              "id": "6848095e-d60e-4084-9306-155d9e6ce0da"
+            },
+            {
+              "header": [],
+              "status": "Order not found",
+              "code": 404,
+              "name": "Response_404",
+              "id": "c66c02fa-8348-4f06-8333-d8b4da47d37c"
+            }
+          ]
+        },
+        {
+          "id": "1b069f3d-6e77-45aa-9091-d5e807114ea6",
+          "name": "getInventory",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "store/inventory"
+              ]
+            },
+            "auth": {
+              "type": "apikey",
+              "apikey": {
+                "key": "api_key",
+                "value": "api_key7",
+                "in": "header"
+              }
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "Returns a map of status codes to quantities"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"key1\": 59\r\n}",
+              "status": "successful operation",
+              "code": 200,
+              "name": "Response_200",
+              "id": "b54c5fd6-61bc-4e69-8d5e-cb2d3e346385"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "user",
+      "description": "Operations about user",
+      "item": [
+        {
+          "id": "5591f245-8f6b-4df4-9440-2752dd34715e",
+          "name": "getUserByName",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "user/:username"
+              ],
+              "variable": [
+                {
+                  "id": "username",
+                  "value": "username16",
+                  "type": "string",
+                  "description": "The name that needs to be fetched. Use user1 for testing."
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json,application/xml",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "Get user by user name"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"id\": 50,\r\n  \"username\": \"username6\",\r\n  \"firstName\": \"firstName42\",\r\n  \"lastName\": \"lastName63\",\r\n  \"email\": \"email68\",\r\n  \"password\": \"password86\",\r\n  \"phone\": \"phone58\",\r\n  \"userStatus\": 170\r\n}",
+              "status": "successful operation",
+              "code": 200,
+              "name": "Response_200",
+              "id": "e6282865-73c8-4471-9673-3f6cc28a0cc3"
+            },
+            {
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml",
+                  "disabled": false
+                }
+              ],
+              "body": "{\r\n  \"id\": 198,\r\n  \"username\": \"username93\",\r\n  \"firstName\": \"firstName60\",\r\n  \"lastName\": \"lastName54\",\r\n  \"email\": \"email79\",\r\n  \"password\": \"password25\",\r\n  \"phone\": \"phone32\",\r\n  \"userStatus\": 139\r\n}",
+              "status": "successful operation",
+              "code": 200,
+              "name": "Response_200",
+              "id": "25c08676-3fc5-4c1c-85ce-4296bd793c1a"
+            },
+            {
+              "header": [],
+              "status": "Invalid username supplied",
+              "code": 400,
+              "name": "Response_400",
+              "id": "0ffd21f6-a51f-4aea-b404-ab306a528a6e"
+            },
+            {
+              "header": [],
+              "status": "User not found",
+              "code": 404,
+              "name": "Response_404",
+              "id": "fda81f4a-37ef-441b-af7a-2b63b78ff3fa"
+            }
+          ]
+        },
+        {
+          "id": "94a8f9c8-c6aa-450c-aa90-1a03a43eb908",
+          "name": "updateUser",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "user/:username"
+              ],
+              "variable": [
+                {
+                  "id": "username",
+                  "value": "username64",
+                  "type": "string",
+                  "description": "name that need to be updated"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false
+              },
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": 76,\r\n  \"username\": \"username18\",\r\n  \"firstName\": \"firstName36\",\r\n  \"lastName\": \"lastName60\",\r\n  \"email\": \"email12\",\r\n  \"password\": \"password7\",\r\n  \"phone\": \"phone48\",\r\n  \"userStatus\": 25\r\n}",
+              "disabled": false
+            },
+            "description": "This can only be done by the logged in user."
+          },
+          "response": [
+            {
+              "header": [],
+              "status": "Invalid user supplied",
+              "code": 400,
+              "name": "Response_400",
+              "id": "97f674da-1a79-4c04-a04c-f6085c43dba4"
+            },
+            {
+              "header": [],
+              "status": "User not found",
+              "code": 404,
+              "name": "Response_404",
+              "id": "7c3aef13-1120-4555-a5d5-09f77ee78c57"
+            }
+          ]
+        },
+        {
+          "id": "d820a415-f694-45ef-bf20-6e106d6ca87c",
+          "name": "deleteUser",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "user/:username"
+              ],
+              "variable": [
+                {
+                  "id": "username",
+                  "value": "username27",
+                  "type": "string",
+                  "description": "The name that needs to be deleted"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "This can only be done by the logged in user."
+          },
+          "response": [
+            {
+              "header": [],
+              "status": "Invalid username supplied",
+              "code": 400,
+              "name": "Response_400",
+              "id": "be801a22-0c35-411c-81a2-5c5896d6ccda"
+            },
+            {
+              "header": [],
+              "status": "User not found",
+              "code": 404,
+              "name": "Response_404",
+              "id": "fce35557-948f-4725-8386-59bd0b7ddce2"
+            }
+          ]
+        },
+        {
+          "id": "4c068e0d-0329-495d-a0e2-8dc8b3ca48e2",
+          "name": "loginUser",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "user/login"
+              ],
+              "query": [
+                {
+                  "key": "username",
+                  "value": "username57",
+                  "description": "The user name for login",
+                  "disabled": false
+                },
+                {
+                  "key": "password",
+                  "value": "password60",
+                  "description": "The password for login in clear text",
+                  "disabled": false
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json,application/xml",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "Logs user into the system"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "X-Expires-After",
+                  "value": "",
+                  "disabled": false
+                },
+                {
+                  "key": "X-Rate-Limit",
+                  "value": "",
+                  "disabled": false
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "disabled": false
+                }
+              ],
+              "body": "response 20066",
+              "status": "successful operation",
+              "code": 200,
+              "name": "Response_200",
+              "id": "22c01165-8e06-4980-b7ff-954ab12585a5"
+            },
+            {
+              "header": [
+                {
+                  "key": "X-Expires-After",
+                  "value": "",
+                  "disabled": false
+                },
+                {
+                  "key": "X-Rate-Limit",
+                  "value": "",
+                  "disabled": false
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml",
+                  "disabled": false
+                }
+              ],
+              "body": "response 20037",
+              "status": "successful operation",
+              "code": 200,
+              "name": "Response_200",
+              "id": "1e81608c-6782-416a-a078-9d33762d2ae3"
+            },
+            {
+              "header": [],
+              "status": "Invalid username/password supplied",
+              "code": 400,
+              "name": "Response_400",
+              "id": "c1665230-d1c3-496b-a9a0-99d4604c1d21"
+            }
+          ]
+        },
+        {
+          "id": "48793c97-be57-4139-a0e7-609cd0454625",
+          "name": "logoutUser",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "user/logout"
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "disabled": false
+            },
+            "description": "Logs out current logged in user session"
+          },
+          "response": []
+        },
+        {
+          "id": "0ec9af35-f1c6-4842-a769-fcfcd61d5164",
+          "name": "createUsersWithArrayInput",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "user/createWithArray"
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false
+              },
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\r\n  {\r\n    \"id\": 76,\r\n    \"username\": \"username18\",\r\n    \"firstName\": \"firstName36\",\r\n    \"lastName\": \"lastName60\",\r\n    \"email\": \"email12\",\r\n    \"password\": \"password7\",\r\n    \"phone\": \"phone48\",\r\n    \"userStatus\": 25\r\n  }\r\n]",
+              "disabled": false
+            },
+            "description": "Creates list of users with given input array"
+          },
+          "response": []
+        },
+        {
+          "id": "cab379b7-3eee-4327-afd9-81c1c91359fd",
+          "name": "createUsersWithListInput",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "user/createWithList"
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false
+              },
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\r\n  {\r\n    \"id\": 76,\r\n    \"username\": \"username18\",\r\n    \"firstName\": \"firstName36\",\r\n    \"lastName\": \"lastName60\",\r\n    \"email\": \"email12\",\r\n    \"password\": \"password7\",\r\n    \"phone\": \"phone48\",\r\n    \"userStatus\": 25\r\n  }\r\n]",
+              "disabled": false
+            },
+            "description": "Creates list of users with given input array"
+          },
+          "response": []
+        },
+        {
+          "id": "ecb5b63c-34f7-4550-b2b2-a5c84afba0fe",
+          "name": "createUser",
+          "request": {
+            "url": {
+              "host": "{{server1}}",
+              "path": [
+                "user"
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "",
+                "disabled": false
+              },
+              {
+                "key": "Accept",
+                "value": "*/*",
+                "disabled": false
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": 76,\r\n  \"username\": \"username18\",\r\n  \"firstName\": \"firstName36\",\r\n  \"lastName\": \"lastName60\",\r\n  \"email\": \"email12\",\r\n  \"password\": \"password7\",\r\n  \"phone\": \"phone48\",\r\n  \"userStatus\": 25\r\n}",
+              "disabled": false
+            },
+            "description": "This can only be done by the logged in user."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "393044ea-5d5a-4daa-895a-f8bbcfe3538b",
+      "name": "GET_lists-format",
+      "request": {
+        "url": {
+          "host": "{{default}}",
+          "path": [
+            "lists.json"
+          ],
+          "query": [
+            {
+              "key": "list",
+              "value": "hardcover-fiction",
+              "description": "The name of the Times best sellers list (hardcover-fiction, paperback-nonfiction, ...).\nThe /lists/names service returns all the list names.\nThe encoded list names are lower case with hyphens instead of spaces (e.g. e-book-fiction, instead of E-Book Fiction).",
+              "disabled": false
+            },
+            {
+              "key": "bestsellers-date",
+              "value": "bestsellers-date65",
+              "description": "YYYY-MM-DD\n\nThe week-ending date for the sales reflected on list-name. Times best sellers lists are compiled using available book sale data. The bestsellers-date may be significantly earlier than published-date. For additional information, see the explanation at the bottom of any best-seller list page on NYTimes.com (example: Hardcover Fiction, published Dec. 5 but reflecting sales to Nov. 29).",
+              "disabled": false
+            },
+            {
+              "key": "published-date",
+              "value": "published-date87",
+              "description": "YYYY-MM-DD\n\nThe date the best sellers list was published on NYTimes.com (different than bestsellers-date).  Use \"current\" for latest list.",
+              "disabled": false
+            },
+            {
+              "key": "offset",
+              "value": "80",
+              "description": "Sets the starting point of the result set (0, 20, ...).  Used to paginate thru books if list has more than 20. Defaults to 0.  The num_results field indicates how many books are in the list.",
+              "disabled": false
+            }
+          ]
+        },
+        "auth": {
+          "type": "apikey",
+          "apikey": {
+            "key": "api-key",
+            "value": "S36VNES3R5jDxeBwfdVeWvqKUQoWem8l",
+            "in": "query"
+          }
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": "",
+            "disabled": false
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "disabled": false
+        },
+        "description": "Get Best Sellers list.  If no date is provided returns the latest list."
+      },
+      "response": [
+        {
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "disabled": false
+            }
+          ],
+          "body": "{\r\n  \"status\": \"OK\",\r\n  \"copyright\": \"Copyright (c) 2019 The New York Times Company.  All Rights Reserved.\",\r\n  \"num_results\": 1,\r\n  \"last_modified\": \"2016-03-11T13:09:01-05:00\",\r\n  \"results\": [\r\n    {\r\n      \"list_name\": \"Hardcover Fiction\",\r\n      \"display_name\": \"Hardcover Fiction\",\r\n      \"bestsellers_date\": \"2016-03-05\",\r\n      \"published_date\": \"2016-03-20\",\r\n      \"rank\": 5,\r\n      \"rank_last_week\": 2,\r\n      \"weeks_on_list\": 2,\r\n      \"asterisk\": 0,\r\n      \"dagger\": 0,\r\n      \"amazon_product_url\": \"http://www.amazon.com/Girls-Guide-Moving-On-Novel-ebook/dp/B00ZNE17B4?tag=thenewyorktim-20\",\r\n      \"isbns\": [\r\n        {\r\n          \"isbn10\": \"0553391925\",\r\n          \"isbn13\": \"9780553391923\"\r\n        }\r\n      ],\r\n      \"book_details\": [\r\n        {\r\n          \"title\": \"A GIRL'S GUIDE TO MOVING ON\",\r\n          \"description\": \"A mother and her daughter-in-law both leave unhappy marriages and take up with new men.\",\r\n          \"contributor\": \"by Debbie Macomber\",\r\n          \"author\": \"Debbie Macomber\",\r\n          \"contributor_note\": \"\",\r\n          \"price\": 0,\r\n          \"age_group\": \"\",\r\n          \"publisher\": \"Ballantine\",\r\n          \"primary_isbn13\": \"9780553391923\",\r\n          \"primary_isbn10\": \"0553391925\"\r\n        }\r\n      ],\r\n      \"reviews\": [\r\n        {\r\n          \"book_review_link\": \"\",\r\n          \"first_chapter_link\": \"\",\r\n          \"sunday_review_link\": \"\",\r\n          \"article_chapter_link\": \"\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+          "status": "Best Sellers list books",
+          "code": 200,
+          "name": "Response_200",
+          "id": "19c83081-df4b-47b7-b9d9-bab10483391e"
+        }
+      ]
+    },
+    {
+      "id": "5069499a-0a37-4cff-b575-c07b80c3ba88",
+      "name": "GET_lists-date-list-json",
+      "request": {
+        "url": {
+          "host": "{{default}}",
+          "path": [
+            "lists/:date/:list.json"
+          ],
+          "query": [
+            {
+              "key": "offset",
+              "value": "240",
+              "description": "Sets the starting point of the result set (0, 20, ...).  Used to paginate thru books if list has more than 20. Defaults to 0.  The num_results field indicates how many books are in the list.",
+              "disabled": false
+            }
+          ],
+          "variable": [
+            {
+              "id": "date",
+              "value": "date67",
+              "type": "string",
+              "description": "YYYY-MM-DD or \"current\"\n\nThe date the best sellers list was published on NYTimes.com.  Use \"current\" to get latest list."
+            },
+            {
+              "id": "list",
+              "value": "list17",
+              "type": "string",
+              "description": "Name of the Best Sellers List (e.g. hardcover-fiction). You can get the full list of names from the /lists/names.json service."
+            }
+          ]
+        },
+        "auth": {
+          "type": "apikey",
+          "apikey": {
+            "key": "api-key",
+            "value": "S36VNES3R5jDxeBwfdVeWvqKUQoWem8l",
+            "in": "query"
+          }
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": "",
+            "disabled": false
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "disabled": false
+        },
+        "description": "Get Best Sellers list by date."
+      },
+      "response": [
+        {
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "disabled": false
+            }
+          ],
+          "body": "{\r\n  \"status\": \"OK\",\r\n  \"copyright\": \"Copyright (c) 2019 The New York Times Company.  All Rights Reserved.\",\r\n  \"num_results\": 15,\r\n  \"last_modified\": \"2015-12-25T13:05:20-05:00\",\r\n  \"results\": {\r\n    \"list_name\": \"Trade Fiction Paperback\",\r\n    \"bestsellers_date\": \"2015-12-19\",\r\n    \"published_date\": \"2016-01-03\",\r\n    \"display_name\": \"Paperback Trade Fiction\",\r\n    \"normal_list_ends_at\": 10,\r\n    \"updated\": \"WEEKLY\",\r\n    \"books\": [\r\n      {\r\n        \"rank\": 1,\r\n        \"rank_last_week\": 0,\r\n        \"weeks_on_list\": 60,\r\n        \"asterisk\": 0,\r\n        \"dagger\": 0,\r\n        \"primary_isbn10\": \"0553418025\",\r\n        \"primary_isbn13\": \"9780553418026\",\r\n        \"publisher\": \"Broadway\",\r\n        \"description\": \"Separated from his crew, an astronaut embarks on a quest to stay alive on Mars. The basis of the movie.\",\r\n        \"price\": 0,\r\n        \"title\": \"THE MARTIAN\",\r\n        \"author\": \"Andy Weir\",\r\n        \"contributor\": \"by Andy Weir\",\r\n        \"contributor_note\": \"\",\r\n        \"book_image\": \"http://du.ec2.nytimes.com.s3.amazonaws.com/prd/books/9780804139038.jpg\",\r\n        \"amazon_product_url\": \"http://www.amazon.com/The-Martian-Novel-Andy-Weir-ebook/dp/B00EMXBDMA?tag=thenewyorktim-20\",\r\n        \"age_group\": \"\",\r\n        \"book_review_link\": \"\",\r\n        \"first_chapter_link\": \"\",\r\n        \"sunday_review_link\": \"\",\r\n        \"article_chapter_link\": \"\",\r\n        \"isbns\": [\r\n          {\r\n            \"isbn10\": \"0804139024\",\r\n            \"isbn13\": \"9780804139021\"\r\n          }\r\n        ]\r\n      }\r\n    ],\r\n    \"corrections\": []\r\n  }\r\n}",
+          "status": "Best Sellers list books.",
+          "code": 200,
+          "name": "Response_200",
+          "id": "4dab09de-0c0f-422f-9518-fe1de4aae31a"
+        }
+      ]
+    },
+    {
+      "id": "388d8660-11c1-4740-ab44-a324fc217abd",
+      "name": "GET_lists-full-overview-format",
+      "request": {
+        "url": {
+          "host": "{{default}}",
+          "path": [
+            "lists/full-overview.json"
+          ],
+          "query": [
+            {
+              "key": "published_date",
+              "value": "published_date61",
+              "description": "YYYY-MM-DD\n\nThe best-seller list publication date.\nYou do not have to specify the exact date the list was published. The service will search forward (into the future) for the closest publication date to the date you specify. For example, a request for lists/overview/2013-05-22 will retrieve the list that was published on 05-26.\n\nIf you do not include a published date, the current week's best sellers lists will be returned.",
+              "disabled": false
+            }
+          ]
+        },
+        "auth": {
+          "type": "apikey",
+          "apikey": {
+            "key": "api-key",
+            "value": "S36VNES3R5jDxeBwfdVeWvqKUQoWem8l",
+            "in": "query"
+          }
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "disabled": false
+        },
+        "description": "Get all books for all the Best Sellers lists for specified date."
+      },
+      "response": [
+        {
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "disabled": false
+            }
+          ],
+          "body": "{\r\n  \"status\": \"status89\",\r\n  \"copyright\": \"copyright25\",\r\n  \"num_results\": 106,\r\n  \"results\": {\r\n    \"bestsellers_date\": \"bestsellers_date53\",\r\n    \"published_date\": \"published_date59\",\r\n    \"lists\": [\r\n      {\r\n        \"list_id\": 69,\r\n        \"list_name\": \"list_name98\",\r\n        \"display_name\": \"display_name74\",\r\n        \"updated\": \"updated3\",\r\n        \"list_image\": \"list_image83\",\r\n        \"books\": [\r\n          {\r\n            \"age_group\": \"age_group33\",\r\n            \"author\": \"author74\",\r\n            \"contributor\": \"contributor28\",\r\n            \"contributor_note\": \"contributor_note95\",\r\n            \"created_date\": \"created_date23\",\r\n            \"description\": \"description71\",\r\n            \"price\": 54,\r\n            \"primary_isbn13\": \"primary_isbn1341\",\r\n            \"primary_isbn10\": \"primary_isbn1024\",\r\n            \"publisher\": \"publisher50\",\r\n            \"rank\": 78,\r\n            \"title\": \"title4\",\r\n            \"updated_date\": \"updated_date80\"\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }\r\n}",
+          "status": "Full overview of Best Sellers lists.",
+          "code": 200,
+          "name": "Response_200",
+          "id": "69ac66a2-6276-4d7a-89a1-2565bb48e2d9"
+        }
+      ]
+    },
+    {
+      "id": "ff3015c2-bc46-4c7e-a32d-17cde4e2e36b",
+      "name": "GET_lists-overview-format",
+      "request": {
+        "url": {
+          "host": "{{default}}",
+          "path": [
+            "lists/overview.json"
+          ],
+          "query": [
+            {
+              "key": "published_date",
+              "value": "published_date18",
+              "description": "YYYY-MM-DD\n\nThe best-seller list publication date.\nYou do not have to specify the exact date the list was published. The service will search forward (into the future) for the closest publication date to the date you specify. For example, a request for lists/overview/2013-05-22 will retrieve the list that was published on 05-26.\n\nIf you do not include a published date, the current week's best sellers lists will be returned.",
+              "disabled": false
+            }
+          ]
+        },
+        "auth": {
+          "type": "apikey",
+          "apikey": {
+            "key": "api-key",
+            "value": "S36VNES3R5jDxeBwfdVeWvqKUQoWem8l",
+            "in": "query"
+          }
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": "",
+            "disabled": false
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "disabled": false
+        },
+        "description": "Get top 5 books for all the Best Sellers lists for specified date."
+      },
+      "response": [
+        {
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "disabled": false
+            }
+          ],
+          "body": "{\r\n  \"status\": \"OK\",\r\n  \"copyright\": \"Copyright (c) 2019 The New York Times Company.  All Rights Reserved.\",\r\n  \"num_results\": 210,\r\n  \"results\": {\r\n    \"bestsellers_date\": \"2016-03-05\",\r\n    \"published_date\": \"2016-03-20\",\r\n    \"lists\": [\r\n      {\r\n        \"list_id\": 704,\r\n        \"list_name\": \"Combined Print and E-Book Fiction\",\r\n        \"display_name\": \"Combined Print & E-Book Fiction\",\r\n        \"updated\": \"WEEKLY\",\r\n        \"list_image\": \"http://du.ec2.nytimes.com.s3.amazonaws.com/prd/books/9780399175954.jpg\",\r\n        \"books\": [\r\n          {\r\n            \"age_group\": \"\",\r\n            \"author\": \"Clive Cussler and Justin Scott\",\r\n            \"contributor\": \"by Clive Cussler and Justin Scott\",\r\n            \"contributor_note\": \"\",\r\n            \"created_date\": \"2016-03-10 12:00:22\",\r\n            \"description\": \"In the ninth book in this series, set in 1906, the New York detective Isaac Bell contends with a crime boss passing as a respectable businessman and a tycoon’s plot against President Theodore Roosevelt.\",\r\n            \"price\": 0,\r\n            \"primary_isbn13\": \"9780698406421\",\r\n            \"primary_isbn10\": \"0698406427\",\r\n            \"publisher\": \"Putnam\",\r\n            \"rank\": 1,\r\n            \"title\": \"THE GANGSTER\",\r\n            \"updated_date\": \"2016-03-10 17:00:21\"\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  }\r\n}",
+          "status": "Overview of Best Sellers lists.",
+          "code": 200,
+          "name": "Response_200",
+          "id": "6dda9190-b17c-4eb4-a3ad-f52b68a1a6e8"
+        }
+      ]
+    },
+    {
+      "id": "87ed4d64-3fd6-426d-a439-9fd95b224e40",
+      "name": "GET_lists-names-format",
+      "request": {
+        "url": {
+          "host": "{{default}}",
+          "path": [
+            "lists/names.json"
+          ]
+        },
+        "auth": {
+          "type": "apikey",
+          "apikey": {
+            "key": "api-key",
+            "value": "S36VNES3R5jDxeBwfdVeWvqKUQoWem8l",
+            "in": "query"
+          }
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": "",
+            "disabled": false
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "disabled": false
+        },
+        "description": "Get Best Sellers list names."
+      },
+      "response": [
+        {
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "disabled": false
+            }
+          ],
+          "body": "{\r\n  \"status\": \"OK\",\r\n  \"copyright\": \"Copyright (c) 2019 The New York Times Company.  All Rights Reserved.\",\r\n  \"num_results\": 53,\r\n  \"results\": [\r\n    {\r\n      \"list_name\": \"Combined Print and E-Book Fiction\",\r\n      \"display_name\": \"Combined Print & E-Book Fiction\",\r\n      \"list_name_encoded\": \"combined-print-and-e-book-fiction\",\r\n      \"oldest_published_date\": \"2011-02-13\",\r\n      \"newest_published_date\": \"2016-03-20\",\r\n      \"updated\": \"WEEKLY\"\r\n    }\r\n  ]\r\n}",
+          "status": "Get Best Sellers list names.",
+          "code": 200,
+          "name": "Response_200",
+          "id": "9951b84f-edb8-432e-8125-62ba1bc601cd"
+        }
+      ]
+    },
+    {
+      "id": "ffde018a-fac1-4603-b419-ff94ce087277",
+      "name": "GET_lists-best-sellers-history-json",
+      "request": {
+        "url": {
+          "host": "{{default}}",
+          "path": [
+            "lists/best-sellers/history.json"
+          ],
+          "query": [
+            {
+              "key": "age-group",
+              "value": "age-group76",
+              "description": "The target age group for the best seller.",
+              "disabled": false
+            },
+            {
+              "key": "author",
+              "value": "author23",
+              "description": "The author of the best seller. The author field does not include additional contributors (see Data Structure for more details about the author and contributor fields).\n\nWhen searching the author field, you can specify any combination of first, middle and last names.\n\nWhen sort-by is set to author, the results will be sorted by author's first name.",
+              "disabled": false
+            },
+            {
+              "key": "contributor",
+              "value": "contributor68",
+              "description": "The author of the best seller, as well as other contributors such as the illustrator (to search or sort by author name only, use author instead).\n\nWhen searching, you can specify any combination of first, middle and last names of any of the contributors.\n\nWhen sort-by is set to contributor, the results will be sorted by the first name of the first contributor listed.",
+              "disabled": false
+            },
+            {
+              "key": "isbn",
+              "value": "isbn56",
+              "description": "International Standard Book Number, 10 or 13 digits\n\nA best seller may have both 10-digit and 13-digit ISBNs, and may have multiple ISBNs of each type. To search on multiple ISBNs, separate the ISBNs with semicolons (example: 9780446579933;0061374229).",
+              "disabled": false
+            },
+            {
+              "key": "offset",
+              "value": "200",
+              "description": "Sets the starting point of the result set (0, 20, ...).  Used to paginate thru results if there are more than 20. Defaults to 0. The num_results field indicates how many results there are total.",
+              "disabled": false
+            },
+            {
+              "key": "price",
+              "value": "price10",
+              "description": "The publisher's list price of the best seller, including decimal point.",
+              "disabled": false
+            },
+            {
+              "key": "publisher",
+              "value": "publisher74",
+              "description": "The standardized name of the publisher",
+              "disabled": false
+            },
+            {
+              "key": "title",
+              "value": "title76",
+              "description": "The title of the best seller\n\nWhen searching, you can specify a portion of a title or a full title.",
+              "disabled": false
+            }
+          ]
+        },
+        "auth": {
+          "type": "apikey",
+          "apikey": {
+            "key": "api-key",
+            "value": "S36VNES3R5jDxeBwfdVeWvqKUQoWem8l",
+            "in": "query"
+          }
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": "",
+            "disabled": false
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "disabled": false
+        },
+        "description": "Get Best Sellers list history."
+      },
+      "response": [
+        {
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "disabled": false
+            }
+          ],
+          "body": "{\r\n  \"status\": \"OK\",\r\n  \"copyright\": \"Copyright (c) 2019 The New York Times Company.  All Rights Reserved.\",\r\n  \"num_results\": 28970,\r\n  \"results\": [\r\n    {\r\n      \"title\": \"#GIRLBOSS\",\r\n      \"description\": \"An online fashion retailer traces her path to success.\",\r\n      \"contributor\": \"by Sophia Amoruso\",\r\n      \"author\": \"Sophia Amoruso\",\r\n      \"contributor_note\": \"\",\r\n      \"price\": 0,\r\n      \"age_group\": \"\",\r\n      \"publisher\": \"Portfolio/Penguin/Putnam\",\r\n      \"isbns\": [\r\n        {\r\n          \"isbn10\": \"039916927X\",\r\n          \"isbn13\": \"9780399169274\"\r\n        }\r\n      ],\r\n      \"ranks_history\": [\r\n        {\r\n          \"primary_isbn10\": \"1591847931\",\r\n          \"primary_isbn13\": \"9781591847939\",\r\n          \"rank\": 8,\r\n          \"list_name\": \"Business Books\",\r\n          \"display_name\": \"Business\",\r\n          \"published_date\": \"2016-03-13\",\r\n          \"bestsellers_date\": \"2016-02-27\",\r\n          \"weeks_on_list\": 0,\r\n          \"ranks_last_week\": null,\r\n          \"asterisk\": 0,\r\n          \"dagger\": 0\r\n        }\r\n      ],\r\n      \"reviews\": [\r\n        {\r\n          \"book_review_link\": \"\",\r\n          \"first_chapter_link\": \"\",\r\n          \"sunday_review_link\": \"\",\r\n          \"article_chapter_link\": \"\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+          "status": "Best Sellers list history",
+          "code": 200,
+          "name": "Response_200",
+          "id": "60342bb3-168f-47a1-bdf7-06dc5f39c4d5"
+        }
+      ]
+    },
+    {
+      "id": "08d785ec-2b11-4c56-8f95-e18ff09d5c0e",
+      "name": "GET_reviews-format",
+      "request": {
+        "url": {
+          "host": "{{default}}",
+          "path": [
+            "reviews.json"
+          ],
+          "query": [
+            {
+              "key": "isbn",
+              "value": "242",
+              "description": "Searching by ISBN is the recommended method. You can enter 10- or 13-digit ISBNs.",
+              "disabled": false
+            },
+            {
+              "key": "title",
+              "value": "title95",
+              "description": "You’ll need to enter the full title of the book. Spaces in the title will be converted into the characters %20.",
+              "disabled": false
+            },
+            {
+              "key": "author",
+              "value": "author94",
+              "description": "You’ll need to enter the author’s first and last name, separated by a space. This space will be converted into the characters %20.",
+              "disabled": false
+            }
+          ]
+        },
+        "auth": {
+          "type": "apikey",
+          "apikey": {
+            "key": "api-key",
+            "value": "S36VNES3R5jDxeBwfdVeWvqKUQoWem8l",
+            "in": "query"
+          }
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": "",
+            "disabled": false
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "disabled": false
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "disabled": false
+        },
+        "description": "Get book reviews."
+      },
+      "response": [
+        {
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "disabled": false
+            }
+          ],
+          "body": "{\r\n  \"status\": \"OK\",\r\n  \"copyright\": \"Copyright (c) 2019 The New York Times Company.  All Rights Reserved.\",\r\n  \"num_results\": 2,\r\n  \"results\": [\r\n    {\r\n      \"url\": \"http://www.nytimes.com/2011/11/10/books/1q84-by-haruki-murakami-review.html\",\r\n      \"publication_dt\": \"2011-11-10\",\r\n      \"byline\": \"JANET MASLIN\",\r\n      \"book_title\": \"1Q84\",\r\n      \"book_author\": \"Haruki Murakami\",\r\n      \"summary\": \"In “1Q84,” the Japanese novelist Haruki Murakami writes about characters in a Tokyo with two moons.\",\r\n      \"isbn13\": [\r\n        \"9780307476463\"\r\n      ]\r\n    }\r\n  ]\r\n}",
+          "status": "Book reviews.",
+          "code": 200,
+          "name": "Response_200",
+          "id": "354c8a66-abd2-4e79-8f76-ef4507f1ed0d"
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "default",
+      "value": "https://api.nytimes.com/svc/books/v3"
+    },
+    {
+      "key": "server1",
+      "value": "https://petstore.swagger.io/v2"
+    },
+    {
+      "key": "server2",
+      "value": "http://petstore.swagger.io/v2"
+    },
+    {
+      "key": "auth server",
+      "value": "https://petstore.swagger.io/oauth"
+    }
+  ]
+}
